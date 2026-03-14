@@ -1,0 +1,583 @@
+.header-main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  padding: 20px 5%;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  background: transparent;
+ 
+}
+
+/* الهيدر عند السكرول */
+.header-active {
+  padding: 15px 5%;
+  background: rgba(2, 2, 2, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+.header-inner {
+  max-width: 1800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* المجموعات الجانبية */
+.nav-group {
+  display: flex;
+  gap: 50px;
+  flex: 1;
+  align-items: center;
+}
+
+.right-side {
+  justify-content: flex-end;
+}
+
+/* روابط التنقل */
+.nav-item-link {
+  color: #d4af37;
+  text-decoration: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-weight: 300;
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+.nav-item-link:hover {
+  color: #c59b12;
+  letter-spacing: 0.45em;
+}
+
+/* اللوجو المركزي */
+.header-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.brand-name {
+  font-family: 'Cinzel', serif ;
+  font-size: 1.4rem;
+  color: #ffffff;
+  letter-spacing: 0.7em;
+  margin: 0;
+  font-weight: 400;
+  text-indent: 0.7em; /* لموازنة المسافات */
+}
+
+.brand-name span {
+  color: #d4af37;
+  font-weight: 700;
+}
+
+.brand-vertical-line {
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, #d4af37, transparent);
+  opacity: 0.4;
+}
+
+/* زر حجز الطاولة الفخم */
+.booking-button-luxe {
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 12px 30px;
+  color: #d4af37;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s ease;
+}
+
+.booking-button-luxe:hover {
+  background: #d4af37;
+  color: #000;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+}
+
+/* تأثير التوهج السفلي */
+.header-bottom-glow {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+}
+
+
+
+
+/* تنسيق خاص وحصري لزر الـ Home */
+/* --- التنسيق الملكي للرابط النشط (Desktop) --- */
+
+.nav-item-link-luxe {
+  color: #d4af37; /* لون الروابط العادية (خافت) */
+  text-decoration: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 500;
+  position: relative;
+  padding: 8px 15px;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* عندما يصبح الرابط نشطاً يأخذ كل مواصفات "زر الـ Home" التي طلبتها */
+.nav-item-link-luxe.active-page {
+  color: #ffffff; 
+  letter-spacing: 0.5em; 
+  font-weight: 600;
+  background: rgba(212, 175, 55, 0.05);
+  border-radius: 2px;
+}
+
+/* الهالة الضوئية (Aura) للرابط النشط فقط */
+.nav-item-link-luxe.active-page::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%; height: 150%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+  z-index: -1;
+}
+
+/* الجوهرة المتوهجة أسفل الكلمة للرابط النشط فقط */
+.nav-item-link-luxe.active-page::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px; height: 5px;
+  background: #d4af37;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #d4af37, 0 0 30px rgba(212, 175, 55, 0.5);
+  animation: homePulse 2.5s infinite ease-in-out;
+}
+
+/* تفاعل الهوفر للروابط غير النشطة */
+.nav-item-link-luxe:hover:not(.active-page) {
+  color: #d4af37;
+  letter-spacing: 0.4em;
+}
+
+/* أنميشن نبض الجوهرة */
+@keyframes homePulse {
+  0%, 100% { 
+    transform: translateX(-50%) scale(1); 
+    opacity: 0.4; 
+    box-shadow: 0 0 10px #d4af37;
+  }
+  50% { 
+    transform: translateX(-50%) scale(1.4); 
+    opacity: 1; 
+    box-shadow: 0 0 20px #d4af37, 0 0 40px rgba(212, 175, 55, 0.4);
+  }
+}
+
+
+/* --- Responsive Adjustment for 1300px --- */
+@media screen and (max-width: 1300px) {
+  
+  .header-main {
+    padding: 15px 4%; /* تقليل الحواف الخارجية */
+  }
+
+  .header-active {
+    padding: 10px 4%; /* تنحيف الهيدر أكثر عند السكرول */
+  }
+
+  /* تصغير حجم اللوجو */
+  .brand-name {
+    font-size: 1.15rem; 
+    letter-spacing: 0.5em; /* تقليل التباعد قليلاً ليتناسب مع الحجم الجديد */
+  }
+
+  .brand-vertical-line {
+    height: 15px; /* تقصير الخطوط الزخرفية */
+  }
+
+  /* تقليل المسافات بين الروابط */
+  .nav-group {
+    gap: 30px; /* بدلاً من 50px */
+  }
+
+  /* تصغير الروابط */
+  .nav-item-link, 
+  .nav-item-link-home {
+    font-size: 9px; /* تصغير الخط درجة واحدة */
+    letter-spacing: 0.25em;
+  }
+
+  .nav-item-link-home {
+    padding: 6px 12px;
+  }
+
+  /* تصغير زر الحجز */
+  .booking-button-luxe {
+    padding: 10px 22px;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+
+  /* تعديل مكان الجوهرة المتوهجة لزر الهوم */
+  .nav-item-link-home::after {
+    bottom: -10px;
+    width: 4px;
+    height: 4px;
+  }
+}
+
+/* --- Responsive Adjustment for 1160px --- */
+@media screen and (max-width: 1160px) {
+  
+  .header-main {
+    padding: 12px 3%; /* تقليص الحواف الجانبية أكثر */
+  }
+
+  /* تصغير المسافات بين مجموعات الروابط */
+  .nav-group {
+    gap: 20px; /* تقليل الفراغ بين الروابط لضمان عدم تداخلها مع اللوجو */
+  }
+
+  /* ضبط حجم اللوجو المركزي */
+  .brand-name {
+    font-size: 1.05rem; 
+    letter-spacing: 0.4em; /* تقليل التباعد لموازنة الحجم الأصغر */
+    text-indent: 0.4em;
+  }
+
+  .brand-vertical-line {
+    height: 12px; /* خطوط زخرفية أنحف وأقصر */
+    opacity: 0.3;
+  }
+
+  /* تصغير الروابط (Desktop Links) */
+  .nav-item-link-luxe {
+    font-size: 8.5px; /* حجم خط دقيق وأنيق */
+    letter-spacing: 0.2em;
+    padding: 6px 10px;
+  }
+
+  /* موازنة حجم الرابط النشط */
+  .nav-item-link-luxe.active-page {
+    letter-spacing: 0.35em;
+  }
+
+  /* تصغير زر الحجز ليناسب المساحة الجديدة */
+  .booking-button-luxe {
+    padding: 8px 18px;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+  }
+
+  /* ضبط حجم ومكان الجوهرة المتوهجة */
+  .nav-item-link-luxe.active-page::after {
+    bottom: -8px; /* رفع الجوهرة قليلاً للأعلى */
+    width: 3.5px;
+    height: 3.5px;
+    box-shadow: 0 0 10px #d4af37, 0 0 20px rgba(212, 175, 55, 0.4);
+  }
+
+  /* تقليل حجم الهالة الضوئية خلف الرابط النشط */
+  .nav-item-link-luxe.active-page::before {
+    width: 110%;
+    height: 130%;
+  }
+}
+
+/* إخفاء الأيقونات تماماً في أي شاشة أكبر من 750px */
+.mobile-icon {
+    display: none;
+}
+/* --- Desktop Setup --- */
+.desktop-only {
+    display: flex; /* تظهر في الشاشات الكبيرة */
+}
+
+.mobile-bottom-bar-fixed {
+    display: none; /* تختفي تماماً في الشاشات الكبيرة */
+}
+
+/* ضمان سنترة اللوجو الحسابية */
+.nav-group.desktop-only, 
+.nav-group.right-side {
+    flex: 1;
+}
+
+/* --- Mobile Setup (750px) --- */
+@media screen and (max-width: 890px) {
+  /* إخفاء الرابط تماماً */
+  .hide-tablet {
+    display: none !important;
+  }
+    .desktop-only {
+        display: none !important; /* إخفاء روابط اليسار من الأعلى */
+    }
+
+    .header-brand {
+        flex: 1 !important;
+        align-items: flex-start !important;
+    }
+
+    .brand-name { font-size: 1.1rem !important; }
+
+   .mobile-bottom-bar-fixed {
+        display: flex !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 75px !important;
+        background: linear-gradient(to top, #050505, #0a0a0a) !important; /* تدرج فخم */
+        backdrop-filter: blur(20px) !important;
+        border-top: 1px solid rgba(212, 175, 55, 0.3) !important;
+        z-index: 100000 !important;
+        justify-content: space-around !important;
+        align-items: stretch !important; /* لضمان تمدد الروابط طولياً */
+        padding-bottom: env(safe-area-inset-bottom);
+        box-shadow: 0 -15px 50px rgba(0,0,0,0.9);
+    }
+
+    .nav-item-link-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.6); /* لون هادئ للروابط غير النشطة */
+        text-decoration: none;
+        font-size: 9px;
+        letter-spacing: 0.15em;
+        font-weight: 500;
+        gap: 6px;
+        flex: 1;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* هافر فخم (Hover Effect) */
+    .nav-item-link-mobile:hover {
+        color: #fff;
+        background: rgba(212, 175, 55, 0.03);
+    }
+
+    .nav-item-link-mobile:hover .mobile-icon {
+        transform: translateY(-3px);
+        color: #fff;
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+
+    .mobile-icon {
+        display: block !important;
+        font-size: 19px;
+        color: #d4af37;
+        transition: all 0.4s ease;
+    }
+
+   /* --- تمييز زر الـ Home (الوضع الملكي) --- */
+/* --- تمييز العنصر النشط في بار الموبايل (الوضع الملكي العام) --- */
+
+.nav-item-link-mobile.active-luxe {
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+/* 1. تأثير الهالة الضوئية (Soft Golden Aura) */
+.nav-item-link-mobile.active-luxe::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    z-index: -1;
+    border-radius: 50%;
+    animation: pulseAura 3s infinite ease-in-out;
+}
+
+/* 2. المؤشر السفلي المتوهج (Elegant Floating Dot) */
+.nav-item-link-mobile.active-luxe::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #d4af37;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #d4af37, 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+/* 3. تأثير الأيقونة النشطة (رفع الأيقونة وإضافة ظل ضوئي) */
+.nav-item-link-mobile.active-luxe .mobile-icon {
+    color: #fff !important;
+    transform: translateY(-5px);
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.9));
+    transition: all 0.4s ease;
+}
+
+/* 4. النص المتدرج تحت الأيقونة النشطة */
+.nav-item-link-mobile.active-luxe span {
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    /* تدرج من الأبيض للذهبي للنص */
+    background: linear-gradient(to bottom, #fff, #d4af37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- تنسيق زر الحجز (Booking Button Luxe) --- */
+.booking-button-luxe {
+    padding: 9px 20px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    background: transparent;
+    color: #d4af37;
+    border: 1px solid rgba(212, 175, 55, 0.3); /* إطار ذهبي رقيق */
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.booking-button-luxe:hover {
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+/* أنميشن الهالة (Aura Pulse) */
+@keyframes pulseAura {
+    0%, 100% { 
+        opacity: 0.5; 
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1.3); 
+    }
+}
+
+/* تنسيق الروابط العادية في الموبايل لضمان الوضوح */
+.nav-item-link-mobile {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+}
+
+
+
+
+
+
+
+/* --- Extreme Slimming for 580px --- */
+@media screen and (max-width: 580px) {
+  
+  .header-main {
+    padding: 8px 3% !important; /* تقليل الارتفاع لأقصى درجة */
+  }
+
+  .header-active {
+    padding: 5px 3% !important;
+    background: rgba(2, 2, 2, 0.98); /* سواد أعمق لتركيز العين */
+  }
+
+  /* 1. تصغير اللوجو */
+  .brand-name {
+    font-size: 0.9rem !important; /* تصغير حجم الخط */
+    letter-spacing: 0.3em !important; /* تقريب الحروف */
+    text-indent: 0.3em !important;
+  }
+
+  .brand-vertical-line {
+    height: 10px !important; /* تقصير الخط الزخرفي جداً */
+    margin: 0 !important;
+  }
+
+  /* 2. تصغير زر الحجز العلوي ليتناسب مع المساحة */
+  .booking-button-luxe {
+    padding: 6px 14px !important;
+    font-size: 7px !important;
+    letter-spacing: 0.1em !important;
+    border-width: 1px !important; /* إطار أنحف */
+  }
+
+  /* 3. تصغير رابط Billing إذا كان يظهر في الأعلى */
+  .right-side .nav-item-link {
+    font-size: 7px !important;
+    letter-spacing: 0.15em !important;
+  }
+
+  /* 4. موازنة الفجوات */
+  .header-inner {
+    gap: 10px;
+  }
+}
+
+/* --- Slim Luxury Bottom Bar (422px) --- */
+@media screen and (max-width: 422px) {
+    
+    .mobile-bottom-bar-fixed {
+        height: 60px !important; /* تقليل الارتفاع من 75px إلى 60px */
+        padding-bottom: env(safe-area-inset-bottom); /* الحفاظ على مساحة الأمان للآيفون */
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+    }
+
+    /* تصغير الأيقونات والنصوص داخل البار */
+    .nav-item-link-mobile {
+        gap: 2px; /* تقليل الفجوة بين الأيقونة والنص */
+    }
+
+    .mobile-icon {
+        font-size: 16px !important; /* تصغير حجم الأيقونة قليلاً */
+    }
+
+    .nav-item-link-mobile span {
+        font-size: 7.5px !important; /* تصغير الخط ليكون متناسقاً مع المساحة */
+        letter-spacing: 0.1em !important;
+    }
+
+    /* تعديل المؤشر النشط (النقطة) ليناسب الارتفاع الجديد */
+    .nav-item-link-mobile.active-home::after {
+        bottom: 5px; /* رفع النقطة قليلاً للأعلى */
+        width: 3px;
+        height: 3px;
+    }
+
+    /* تصغير الهالة الضوئية خلف الأيقونة النشطة */
+    .nav-item-link-mobile.active-home::before {
+        width: 45px;
+        height: 45px;
+    }
+
+    /* تعديل حركة الأيقونة النشطة لتكون بسيطة */
+    .nav-item-link-mobile.active-home .mobile-icon {
+        transform: translateY(-3px); /* تقليل مسافة الارتفاع */
+    }
+}

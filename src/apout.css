@@ -1,0 +1,1523 @@
+:root {
+    --gold: #c5a059;
+    --black: #050505;
+    --white: #ffffff;
+    --gray: rgba(255, 255, 255, 0.6);
+}
+
+.about-page {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- القسم الرئيسي (Hero Section) --- */
+.about-hero {
+    position: relative; /* وضعية نسبية لتكون مرجعاً للعناصر بداخلها */
+    height: 100vh; /* ملء كامل ارتفاع الشاشة */
+    width: 100%; /* ملء كامل عرض الشاشة */
+    display: flex; /* استخدام نظام المرونة */
+    align-items: center; /* توسيط المحتوى عمودياً */
+    justify-content: center; /* توسيط المحتوى أفقياً */
+    background-color: #0b0b0b; /* لون خلفية أسود احتياطي */
+    overflow: hidden; /* إخفاء أي محتوى يخرج عن حدود القسم */
+}
+
+/* --- تغليف الصورة والخلفية --- */
+.hero-image-wrapper {
+    position: absolute; /* وضعية مطلقة لتغطية القسم بالكامل */
+    top: 0; /* البداية من الأعلى */
+    left: 0; /* البداية من اليسار */
+    width: 100%; /* عرض كامل */
+    height: 100%; /* ارتفاع كامل */
+    z-index: 1; /* طبقة سفلية فوق الخلفية مباشرة */
+}
+
+.hero-bg-img {
+    width: 100%; /* عرض كامل للصورة */
+    height: 100%; /* ارتفاع كامل للصورة */
+    object-fit: cover; /* الحفاظ على أبعاد الصورة مع ملء المساحة */
+    filter: brightness(0.5) contrast(1.1); /* تقليل السطوع وزيادة التباين للفخامة */
+}
+
+/* --- طبقة التظليل السينمائي (Vignette Overlay) --- */
+.hero-overlay {
+    position: absolute; /* وضعية مطلقة فوق الصورة */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* تدرج شعاعي يعطي إضاءة في المنتصف وظلام في الأطراف */
+    background: radial-gradient(
+        circle, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(0, 0, 0, 0.6) 70%, 
+        rgba(0, 0, 0, 0.9) 100%
+    );
+    z-index: 2; /* فوق الصورة مباشرة */
+}
+
+/* --- المحتوى النصي الرئيسي --- */
+.about-hero-content {
+    position: relative; /* وضعية نسبية للتحكم في الطبقات */
+    z-index: 10; /* طبقة عليا لضمان الظهور فوق كل شيء */
+    text-align: center; /* توسيط النصوص */
+    color: #fff; /* لون نص أبيض */
+    pointer-events: none; /* جعل النصوص لا تعيق النقر على ما تحتها */
+}
+
+/* --- العنوان الصغير العلوي --- */
+.hero-pre-title {
+    font-family: 'Cinzel', serif; /* خط كلاسيكي فخم */
+    color: #C5A059; /* لون ذهبي */
+    letter-spacing: 15px; /* مسافات واسعة جداً بين الحروف للفخامة */
+    font-size: 0.75rem; /* حجم خط صغير */
+    font-weight: 400; /* وزن خط متوسط */
+    margin-bottom: 25px; /* مسافة أسفل النص */
+    display: block; /* عرض كعنصر مستقل */
+    opacity: 0.9; /* شفافية بسيطة */
+}
+
+/* --- العنوان الرئيسي الضخم --- */
+.about-hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(4rem, 12vw, 8rem); /* حجم خط مرن يتناسب مع الشاشة */
+    font-weight: 700; /* خط عريض */
+    text-transform: uppercase; /* حروف كبيرة */
+    line-height: 0.85; /* تقليل المسافة بين السطور لهيبة العنوان */
+    letter-spacing: -2px; /* تقريب الحروف لتعزيز القوة البصرية */
+}
+
+/* --- توهج النص الأبيض --- */
+.white-glow {
+    color: #FFFFFF;
+    /* تأثير ظل ناعم يعطي إحساساً بالنقاء والتوهج */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
+                 0 0 40px rgba(255, 255, 255, 0.1);
+}
+
+/* --- النص الذهبي المتحرك (Excellence) --- */
+.gold-gradient-text {
+    /* تدرج ذهبي ملكي متعدد الدرجات */
+    background: linear-gradient(
+        to right, 
+        #BF953F 0%, 
+        #FCF6BA 20%, 
+        #B38728 40%, 
+        #FBF5B7 60%, 
+        #AA771C 80%, 
+        #BF953F 100%
+    );
+    background-size: 200% auto; /* حجم الخلفية للتحريك */
+    -webkit-background-clip: text; /* قص الخلفية لتظهر داخل النص فقط */
+    -webkit-text-fill-color: transparent; /* جعل لون النص الأصلي شفافاً */
+    display: inline-block;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5)); /* ظل خارجي لعمق النص */
+    position: relative;
+    animation: shineGold 5s linear infinite; /* تشغيل أنميشن اللمعة */
+}
+
+@keyframes shineGold {
+    to { background-position: 200% center; } /* تحريك التدرج ليعطي تأثير اللمعان */
+}
+
+/* --- النص الوصفي (Subtitle) --- */
+.hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; /* خط مائل للمسة جمالية */
+    font-size: 1.5rem;
+    color: #E5E5E5;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    /* تدرج شفاف يجعل النص يظهر ويختفي بنعومة من الأطراف */
+    mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+}
+
+/* --- الفاصل بين العنوان والوصف --- */
+.hero-separator-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px auto;
+}
+
+.separator-line {
+    width: 80px;
+    height: 1px;
+    /* تدرج ذهبي للخطوط الفاصلة */
+    background: linear-gradient(90deg, transparent, #C5A059);
+}
+
+.hero-separator-container .separator-line:last-child {
+    background: linear-gradient(90deg, #C5A059, transparent); /* عكس التدرج للجهة الأخرى */
+}
+
+/* --- أيقونة اللؤلؤة المركزية --- */
+.pearl-icon {
+    width: 12px;
+    height: 12px;
+    /* تدرج شعاعي لجعلها تبدو ككرة ثلاثية الأبعاد */
+    background: radial-gradient(circle at 30% 30%, #fff, #f0e2c5, #C5A059);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+                0 0 5px rgba(197, 160, 89, 0.5);
+    position: relative;
+}
+
+.pearl-icon::after {
+    content: ''; /* إضافة لمعة ضوئية صغيرة فوق اللؤلؤة */
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    filter: blur(0.5px);
+}
+
+/* --- الزينة الجانبية المتطورة (Modern Decor Tags) --- */
+.hero-decor-tags {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* التمركز في منتصف الارتفاع */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    z-index: 20; /* طبقة فوق الصور والظلال */
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: #fff9ec; /* لون أبيض مائل للذهبي */
+    letter-spacing: 4px;
+    background: rgba(255, 255, 255, 0.03); /* خلفية زجاجية شفافة */
+    padding: 40px 10px;
+    border-radius: 50px;
+    backdrop-filter: blur(5px); /* تأثير تغبيش الخلفية خلف الزجاج */
+    border: 1px solid rgba(197, 160, 89, 0.1); /* إطار ذهبي خفيف جداً */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.hero-decor-tags.left { left: 20px; } /* محاذاة لليسار */
+.hero-decor-tags.right { right: 20px; } /* محاذاة لليمن */
+
+.tag-line {
+    width: 1px;
+    height: 80px;
+    /* خط متدرج من الشفاف للذهبي للشفاف */
+    background: linear-gradient(to bottom, transparent, #C5A059, #FCF6BA, #C5A059, transparent);
+    position: relative;
+    overflow: hidden;
+}
+
+.tag-line::after {
+    content: ''; /* أنميشن المسح الضوئي داخل الخط */
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #fff, transparent);
+    animation: scanLight 3s infinite;
+}
+
+@keyframes scanLight {
+    0% { top: -100%; }
+    100% { top: 100%; }
+}
+
+.tag-item {
+    writing-mode: vertical-rl; /* قلب النص بشكل رأسي */
+    text-orientation: mixed;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    opacity: 0.7;
+}
+
+/* --- تأثيرات التفاعل (Hover) للجوانب --- */
+.hero-decor-tags:hover {
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    background: rgba(197, 160, 89, 0.05);
+}
+
+.hero-decor-tags:hover .tag-item {
+    color: #fff;
+    opacity: 1;
+    text-shadow: 0 0 15px rgba(197, 160, 89, 0.8);
+    letter-spacing: 6px; /* تمدد الحروف عند الحوم بالماوس */
+}
+
+/* --- النقاط الذهبية النابضة --- */
+.hero-decor-tags::before,
+.hero-decor-tags::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: #FCF6BA;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #C5A059;
+    animation: pulseGold 2s infinite alternate; /* أنميشن النبض */
+}
+
+@keyframes pulseGold {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.5); opacity: 1; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Section 2: Philosophy */
+/* --- About Philosophy Section - Ultra Luxury --- */
+
+/* --- تعديل السكشن ليكون مفتوحاً وفخماً بدون إطارات --- */
+.about-philosophy {
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 60px 5%;
+    
+    /* درجة الأسود الملكي: أغمق من الفحمي وأهدا من الأسود الصرف */
+    background-color: #080808; 
+    
+    /* تدرج دائري "مخفي" (Subtle) جداً يعطي عمقاً دون أن يظهر كدوائر */
+    background: radial-gradient(
+        circle at center, 
+        #0f0f0f 0%, 
+        #050505 100%
+    );
+    
+    overflow: hidden;
+}
+
+/* إضافة طبقة "نويز" خفيفة جداً لكسر كآبة اللون (اختياري لكنه سحري) */
+.about-philosophy::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.02; /* خفيفة جداً لا تكاد تُرى */
+    pointer-events: none;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+}
+
+/* --- تنسيق الحبار (البطل العلوي) --- */
+.philosophy-image {
+    position: relative;
+    z-index: 5;
+    margin-bottom: 20px; /* مسافة بسيطة بينه وبين النص */
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.floating-cuttlefish {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(197, 160, 89, 0.25)); /* ظل أهدأ وأرقى */
+    animation: floatMaster 8s ease-in-out infinite alternate;
+}
+
+/* --- تنسيق المحتوى النصي (بدون خلفية أو هافر) --- */
+.philosophy-content2 {
+    position: relative;
+    z-index: 10;
+    width: 90%; /* العرض المطلوب */
+    max-width: 1400px; /* ضمان عدم التوسع الزائد في الشاشات العملاقة */
+    text-align: center;
+    transform: none !important; /* إلغاء أي دوران أو منظور سابق */
+    transition: none !important; /* إلغاء الانتقالات */
+    margin-top: 80px;
+}
+
+/* إلغاء أي تأثيرات للـ Hover */
+.philosophy-content2:hover {
+    transform: none !important;
+}
+
+/* العنوان بالتدرج الذهبي الأبيض المطلوب */
+.philosophy-title2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 7vw, 5rem); /* حجم ضخم ومهيب */
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 10px;
+    letter-spacing: normal; /* إزالة المسافات بين الحروف كما طلبت */
+    text-transform: uppercase;
+    line-height: 1.1;
+    
+    /* التدرج الذهبي والأبيض الانسيابي */
+    background: linear-gradient(
+        to bottom, 
+        #fff 0%, 
+        #FCF6BA 45%, 
+        #BF953F 55%, 
+        #fff 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+}
+
+/* الفاصل الذهبي البسيط */
+.title-separator {
+    width: 15%; /* فاصل صغير وأنيق */
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #BF953F, transparent);
+    margin: 25px auto;
+    opacity: 0.6;
+}
+
+/* --- تطوير الفقرة النصية بتدرج لوني ملكي --- */
+.philosophy-p {
+   font-family: 'Cinzel', serif;
+ 
+    font-size: clamp(1.1rem, 2vw, 1.8rem);
+    line-height: 1.8; /* زيادة المسافة قليلاً لراحة العين */
+    max-width: 85%;
+    margin: 0 auto;
+    
+    /* تدرج لوني يدمج بين الفضي والبلاتيني مع لمسة شامبين باهتة */
+    background: linear-gradient(
+        135deg, 
+        #ffffff 0%,    /* أبيض نقي للإضاءة */
+        #e5e5e5 40%,   /* رمادي بلاتيني */
+        #C5A059 100%   /* لمسة ذهبية في نهاية النص */
+    );
+    
+    /* تفعيل التدرج على النص */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* تحسين الظهور */
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    position: relative;
+    
+    /* لمسة إضافية: تنعيم الحواف */
+    -webkit-font-smoothing: antialiased;
+}
+
+
+
+
+
+/* --- الحبار العائم (البطل) --- */
+.philosophy-image {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* لضمان ترتيب العناصر عمودياً */
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    perspective: 1000px;
+    /* مسافة إضافية في الأسفل ليعطي مساحة للظل والنص */
+
+    margin-top: 50px;
+
+    padding-bottom: 50px;
+}
+
+
+.floating-cuttlefish {
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    filter: brightness(1.1) contrast(1.1);
+    
+    /* التعديل السحري: نزيد نسبة الـ transparent لمنع ظهور الجسم كاملاً مرة أخرى */
+    -webkit-box-reflect: below 1px linear-gradient(
+        transparent 70%, 
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    
+    animation: floatAndRotate 12s ease-in-out infinite alternate;
+
+    padding-bottom: 50px;
+}
+
+/* --- الظل الذهبي (المشع) --- */
+.cuttlefish-glow {
+    content: '';
+    position: absolute;
+    bottom: 10px; /* المسافة بين الصورة والظل */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;  /* عرض الظل مقارنة بالصورة */
+    height: 50px; /* ارتفاع الظل */
+    background: radial-gradient(ellipse at center, 
+        #d69d2b 0%, 
+        #daaa4b 40%, 
+        #bf943f69 80%
+    );
+    filter: blur(10px); /* تنعيم الحواف */
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+    
+    /* جعل الظل يتحرك مع أنيميشن الطفو لزيادة الواقعية */
+    animation: shadowPulse 7s ease-in-out infinite;
+}
+
+/* --- الأنميشنات المصححة --- */
+@keyframes floatAndRotate {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(15px, -20px) rotate(2deg); }
+    66% { transform: translate(-10px, 10px) rotate(-2deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes glowFollow {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+    33% { transform: translate(-48%, -40%) scale(1.2); opacity: 0.7; }
+    66% { transform: translate(-52%, -60%) scale(0.8); opacity: 0.2; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- سكشن فيديو الأمواج المطور (The Abyss Masterpiece) --- */
+.about-ocean-motion {
+    position: relative;
+    width: 100%;
+    height: 110vh; 
+    background-color: #080808;
+    overflow: hidden;
+    /* التمركز يعتمد الآن على الحاوية المطلقة بالأسفل لضمان الظهور */
+}
+
+.video-wrapper {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    z-index: 1;
+}
+
+.background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4) contrast(1.3);
+}
+
+/* 1. الظل الداخلي العلوي والسفلي */
+.video-inner-shadow {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 5;
+    box-shadow: 
+        inset 0 180px 120px -50px #080808, 
+        inset 0 -180px 120px -50px #080808;
+    background: radial-gradient(circle, transparent 20%, rgba(8, 8, 8, 0.4) 100%);
+    pointer-events: none;
+}
+
+/* 2. الخطوط الذهبية النحيفة */
+.frame-line {
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, #C5A059, transparent);
+    z-index: 10;
+    opacity: 0.4;
+}
+
+.line-top { top: 12%; }
+.line-bottom { bottom: 12%; }
+
+/* 3. النصوص الجانبية */
+.side-detail {
+    position: absolute;
+    z-index: 15;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: #ffe7ba;
+    letter-spacing: 5px;
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+
+.detail-left { left: 4%; top: 50%; transform: translateY(-50%); }
+.detail-right { right: 4%; top: 50%; transform: translateY(-50%) rotate(180deg); }
+
+/* 4. الحاوية المركزية للنص - تم تعديلها لتكون فوق كل شيء */
+.video-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99; /* رفع القيمة لضمان التفوق */
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+    /* أنميشن الطفو */
+    animation: abyssFloat 8s ease-in-out infinite alternate;
+}
+
+.video-text-overlay h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.2rem, 8vw, 5.8rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 1.1;
+
+    /* التدرج الذهبي القوي */
+    background: linear-gradient(to bottom, #ffffff 15%, #C5A059 50%, #ffdb99 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* ظل لزيادة الوضوح فوق الماء */
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.9));
+  
+}
+
+.sub-reveal {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #ffe7ba;
+    font-size: clamp(0.9rem, 1.8vw, 1.4rem);
+    letter-spacing: 6px;
+    margin-top: 25px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    display: block;
+}
+
+/* أنميشن التنفس */
+@keyframes abyssFloat {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    100% { transform: translate(-50%, -52%) scale(1.02); }
+}
+.video-text-overlay{
+
+    max-width: 88%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Section 4: Craft Cards */
+/* --- سكشن مهارة الحرفة (The Craft Grid) --- */
+/* --- سكشن مهارة الحرفة المطور (The Silver & Obsidian Layout) --- */
+.about-craft {
+    padding: 120px 8%;
+    background-color: #050505; /* سواد أعمق */
+    position: relative;
+}
+
+.craft-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 50px;
+}
+
+.craft-card {
+    background: #0a0a0a; 
+    padding: 50px 30px;
+    text-align: center;
+    border-radius: 2px; /* حواف حادة جداً مع كسر بسيط جداً للزاوية لإعطاء فخامة */
+    
+    /* 1. بوردر ذهبي واضح ونحيف (Solid Golden Border) */
+    /* استخدمنا لوناً ذهبياً صريحاً ولكن بلمسة مطفية */
+    border: 1px solid #C5A059; 
+    
+    /* 2. ظل أبيض ناعم (Lunar Shadow) ليعطي عمقاً خلف الإطار الذهبي */
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.8), 
+        0 0 10px rgba(255, 255, 255, 0.05); /* توهج أبيض خفيف جداً يبرز حدود الذهب */
+    
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* تأثير التمرير (Hover) لجعل البوردر "يشع" ذهباً */
+.craft-card:hover {
+    transform: translateY(-10px);
+    background: #0d0d0d;
+    
+    /* 3. تحديث البوردر عند التمرير ليكون أكثر سطوعاً */
+    border-color: #E6C27A; /* درجة ذهبي أفتح وأكثر لمعاناً */
+    
+    /* 4. إضافة توهج ذهبي خفيف "خلف" البوردر لإبرازه */
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.9), 
+        0 0 20px rgba(197, 160, 89, 0.2); /* لمسة ذهبية خفيفة جداً في الظل عند التفاعل */
+}
+
+/* إضافة زوايا ذهبية إضافية (اختياري - لمسة فنية) */
+.craft-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 20px; height: 20px;
+    border-top: 2px solid #ffffff; /* زاوية بيضاء صغيرة لكسر حدة الذهب */
+    border-left: 2px solid #ffffff;
+    opacity: 0.1;
+    z-index: 2;
+}
+/* تأثير التمرير المعدل */
+.craft-card:hover {
+    transform: translateY(-10px);
+    background: #0f0f0f;
+    /* زيادة التوهج الأبيض عند التمرير */
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+/* --- تنسيق الصور الفخم مع بوردر ذهبي صريح --- */
+.craft-card img {
+    width: 320px; /* تقليل الحجم قليلاً لإعطاء مساحة للإطار */
+    height: 320px;
+    object-fit: cover; /* تغيير لـ cover لملء الإطار بشكل أجمل */
+    margin-bottom: 35px;
+    
+    /* 1. البوردر الذهبي الواضح */
+    border: 2px solid #C5A059; 
+    padding: 10px; /* مسافة بين الإطار والصورة لخلق عمق */
+    background: rgba(197, 160, 89, 0.05); /* لمحة لونية خلف الصورة */
+    
+    /* 2. الحواف الناعمة (تعديل النسبة لتبدو متناسقة مع الإطار) */
+    -webkit-mask-image: radial-gradient(circle, black 50%, transparent 95%);
+    mask-image: radial-gradient(circle, black 50%, transparent 95%);
+    
+    /* 3. الإضاءة البيضاء (White Aura) - كما طلبت لكسر حدة الذهب */
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 1)) 
+            drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
+    
+    /* 4. تنعيم زوايا الإطار والصورة */
+    border-radius: 15px; 
+    
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.craft-card:hover img {
+    /* حركة التكبير مع دوران خفيف جداً */
+    transform: scale(1.05) ; 
+    
+    /* جعل البوردر يلمع أكثر عند التمرير */
+    border-color: #E6C27A;
+    background: rgba(197, 160, 89, 0.1);
+    
+    /* زيادة سطوع التوهج الأبيض */
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 1)) 
+            drop-shadow(0 0 30px rgba(255, 255, 255, 0.25));
+}
+
+/* --- النصوص الذهبية (بقيت كما هي لأنها أعجبتك) --- */
+.craft-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    
+    background: linear-gradient(to bottom, #ffffff 10%, #C5A059 50%, #856a3c 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+    display: block;
+}
+
+.craft-card p {
+    font-family: 'Playfair Display', serif;
+    color: #fff5e1;; /* لون أفتح قليلاً للوضوح */
+    font-size: 1.05rem;
+    line-height: 1.7;
+    opacity: 0.9;
+    padding: 0 10px;
+}
+
+/* إضافة خط ديكور صغير تحت النص */
+.craft-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #C5A059;
+    transition: width 0.5s ease;
+}
+
+.craft-card:hover::after {
+    width: 60%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Section 5: Invitation */
+/* --- سكشن الدعوة النهائية (Final CTA Majesty) --- */
+.about-footer-cta {
+    position: relative;
+    padding: 300px 0 180px 0;
+    text-align: center;
+    background-color: #050505; /* سواد أعمق كخلفية أساسية */
+    overflow: hidden;
+    z-index: 1;
+    width: 100vw; /* ضمان ملء عرض الشاشة بالكامل */
+    margin-left: 50%; /* تقنية للتمركز عند ملء الشاشة */
+    transform: translateX(-50%);
+}
+
+/* --- تنسيق حاوية الصورة الخلفية (BG Wrapper) --- */
+.cta-bg-wrapper {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2; /* خلف المحتوى */
+    pointer-events: none; /* للسماح بالتفاعل مع النصوص */
+}
+
+/* تنسيق الصورة نفسها (The Img Element) */
+.cta-background-artifact {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* لملء السكشن دون تمطيط */
+    object-position: center; /* تمركز الصورة */
+    
+    /* تعديل: زيادة الوضوح لتكون "نصف باينة" (Half-Visible) */
+    opacity: 0.35; /* الشفافية الأساسية أعلى الآن */
+    
+    /* أنميشن دخول ناعم جداً عند ظهور السكشن */
+    transition: opacity 1.8s ease-out, transform 2s ease-out, filter 1.8s ease-out;
+    filter: blur(2px); /* تمويه خفيف جداً للحفاظ على النعومة */
+}
+
+/* طبقة السواد العلوية لدمج الصورة ببطء مع السكشن السابق */
+.top-merge-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 300px; /* مسافة الدمج */
+    background: linear-gradient(to bottom, #050505 0%, rgba(5, 5, 5, 0) 100%);
+    z-index: 3; /* فوق الصورة، خلف النصوص */
+}
+
+/* تأثير ظهور الصورة عند الـ Scroll (عبر كلاس .reveal من الـ JS) */
+.about-footer-cta.reveal .cta-background-artifact {
+    opacity: 0.5; /* تزداد الشفافية لتصبح نصف باينة تماماً عند الظهور */
+    transform: scale(1.02); /* تكبير خفيف جداً يعطي حيوية */
+    filter: blur(0px); /* يختفي التمويه ببطء */
+}
+
+/* 2. طبقة الضباب البارد (Silver Fog Overlay) */
+.fog-overlay {
+    position: absolute;
+    bottom: -100px; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at bottom, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 4; /* خلف المحتوى */
+}
+
+/* --- حاوية المحتوى الأساسية --- */
+.cta-content {
+    position: relative;
+    z-index: 10; /* فوق كل طبقات الخلفية */
+    padding: 0 10%; /* إعادة الـ padding الأفقي للمحتوى داخل السكشن */
+    max-width: 1200px; /* تحديد عرض المحتوى الأقصى لجمال التصميم */
+    margin: 0 auto; /* تمركز المحتوى */
+}
+
+.cta-content .line-divider {
+    width: 2px;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, #C5A059);
+    
+    /* زيادة الرفعة للأعلى ليدخل في السكشن السابق */
+    margin-top: -380px; /* جرب -300px أو -400px حسب المسافة التي تريدها */
+    
+    /* زيادة المسافة السفلية لتعويض الرفعة ومنع النصوص من الصعود معه */
+    margin-bottom: 120px; 
+    
+    margin-left: auto;
+    margin-right: auto;
+
+    filter: drop-shadow(0 0 8px rgba(197, 160, 89, 0.6));
+    position: relative;
+    z-index: 15;
+}
+
+/* الخط العرضي يبقى في مكانه أسفل الخط الطولي */
+.cta-content .line-divider::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; /* يبقى منسدلاً من نهاية الخط الطولي */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #C5A059 50%, transparent);
+    filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.7));
+}
+
+
+/* النصوص الفرعية والذهبية (بقيت كما هي لفخامتها) */
+.cta-pre-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #b0b0b0;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+
+.cta-content h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin-bottom: 80px;
+    
+    background: linear-gradient(to bottom, #ffffff 0%, #C5A059 50%, #856a3c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
+    display: inline-block;
+    width: 100%;
+}
+
+/* الزر الأثيري المهيب */
+.majestic-action-btn {
+    position: relative;
+    display: inline-block;
+    padding: 20px 55px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: 500;
+    
+    /* خلفية زجاجية معتمة جداً لكسر حدة الصور البيضاء خلفه */
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+/* الإطار المتحرك العلوي والسفلي */
+.majestic-action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-top: 1px solid #C5A059;
+    border-bottom: 1px solid #C5A059;
+    transform: scaleX(0.3); /* يبدأ الإطار صغيراً في المنتصف */
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* الإطار المتحرك الأيمن والأيسر */
+.majestic-action-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-left: 1px solid #C5A059;
+    border-right: 1px solid #C5A059;
+    transform: scaleY(0.3);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* الخط الذهبي الثابت خلف النص (اختياري للفخامة) */
+.majestic-action-btn .btn-line {
+    position: absolute;
+    bottom: 15px;
+    left: 20%;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C5A059, transparent);
+    transition: all 0.4s ease;
+}
+
+/* تأثير الهوفر */
+.majestic-action-btn:hover {
+    letter-spacing: 7px; /* تباعد الحروف يعطي شعوراً بالاتساع */
+    color: #C5A059;
+    background: rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0 0 20px rgba(197, 160, 89, 0.2);
+}
+
+.majestic-action-btn:hover::before {
+    transform: scaleX(1); /* الإطار يتمدد ليحيط بالكلمة */
+    opacity: 1;
+}
+
+.majestic-action-btn:hover::after {
+    transform: scaleY(1);
+    opacity: 1;
+}
+
+.majestic-action-btn:hover .btn-line {
+    width: 100%;
+    left: 0;
+    background: #C5A059;
+}
+
+.hover-sparkle {
+    position: absolute;
+    top: 0; left: -100px; width: 50px; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: skewX(-15deg);
+    transition: all 0.7s ease;
+}
+
+.majestic-action-btn:hover .hover-sparkle {
+    left: 100%;
+}
+
+/* الختم السفلي (Location Stamp Muted) */
+.location-stamp {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: #ffe5b7;
+    margin-top: 100px;
+    opacity: 0.7;
+    letter-spacing: 1px;
+}
+
+.location-divider {
+    display: inline-block;
+    color: #C5A059;
+    margin: 0 10px;
+    font-weight: 200;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Media Query for 1024px and below --- */
+@media screen and (max-width: 1024px) {
+    
+    /* تصغير المحتوى العام بنسبة بسيطة للحفاظ على التناسق */
+    .about-page {
+        font-size: 14px; /* تصغير حجم الخط الأساسي */
+    }
+
+    /* Section 1: Hero */
+    .about-hero-title {
+        font-size: clamp(3rem, 10vw, 6rem); /* تصغير العنوان الرئيسي */
+    }
+    
+    .hero-pre-title {
+        letter-spacing: 10px; /* تقليل المسافات العريضة قليلاً */
+        margin-bottom: 15px;
+    }
+
+    .hero-decor-tags {
+        transform: translateY(-50%) scale(0.8); /* تصغير الزينة الجانبية بنسبة 20% */
+    }
+
+    /* Section 2: Philosophy */
+    .philosophy-title {
+        font-size: clamp(2rem, 6vw, 4rem);
+    }
+
+    .philosophy-p {
+        font-size: clamp(1rem, 1.8vw, 1.4rem);
+        max-width: 90%; /* إعطاء مساحة أكبر قليلاً للنص */
+    }
+
+    .floating-cuttlefish {
+        max-width: 500px; /* تصغير حجم صورة الحبار */
+        margin: 0 auto;
+    }
+
+    /* Section 3: Ocean Motion */
+    .video-text-overlay h2 {
+        font-size: clamp(1.8rem, 6vw, 4.5rem);
+    }
+
+    .frame-line {
+        width: 90%; /* تقريب الخطوط الذهبية من الحواف */
+        left: 5%;
+    }
+
+    /* Section 4: Craft Cards */
+    .craft-grid {
+        gap: 30px; /* تقليل المسافات بين الكروت */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .craft-card {
+        padding: 40px 20px;
+    }
+
+    .craft-card img {
+        width: 260px; /* تصغير الصور داخل الكروت */
+        height: 260px;
+    }
+
+    /* Section 5: Final CTA */
+    .about-footer-cta {
+        padding: 200px 0 120px 0;
+    }
+
+    .cta-content h2 {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-bottom: 50px;
+    }
+
+    .majestic-action-btn {
+        padding: 18px 45px;
+        font-size: 1rem;
+    }
+
+    .cta-content .line-divider {
+        height: 150px;
+        margin-top: -280px;
+    }
+}
+
+/* --- Media Query for 700px and below --- */
+@media screen and (max-width: 700px) {
+    
+ /* --- إعادة هيكلة الزينة الجانبية لتصبح فوق وتحت --- */
+.hero-decor-tags {
+    display: flex !important;
+    flex-direction: row !important;
+    /* التوسيط الأفقي للعناصر (الخطوط والنص) */
+    justify-content: center !important; 
+    /* التوسيط الرأسي داخل الحاوية الصغيرة */
+    align-items: center !important; 
+    
+    width: 60% !important; /* الحجم المكبر اللي طلبته */
+    height: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important; 
+    padding: 10px 18px !important;
+    gap: 14px !important; /* مسافة متساوية بين الخطوط والنص */
+}
+
+    /* القطعة اللي كانت على الشمال هتبقى فوق العنوان */
+    .hero-decor-tags.left {
+        top: 15% !important;
+        bottom: auto !important;
+
+    }
+
+    /* القطعة اللي كانت على اليمين هتبقى تحت العنوان */
+    .hero-decor-tags.right {
+        top: auto !important;
+        bottom: 15% !important;
+
+    }
+
+    /* تعديل النصوص داخل الزينة لتكون أفقية */
+.tag-item {
+    writing-mode: horizontal-tb !important;
+    text-align: center !important; /* التأكد من تمركز النص نفسه */
+    font-size: 0.5rem !important; /* الحجم المكبر 30% */
+    flex-shrink: 0; /* منع النص من الانضغاط */
+}
+
+/* لضمان أن الخطوط الذهبية تحيط بالنص بشكل متساوي */
+.tag-line {
+    flex: 0 1 auto; /* السماح للخطوط بالنمو بشكل متوازن */
+    width: 60px !important; /* عرض أكبر قليلاً ليتناسب مع التكبير */
+    height: 1px !important;
+}
+    /* منع الأنميشن من التداخل */
+    .tag-line::after {
+        animation: scanLightHorizontal 3s infinite;
+    }
+
+    @keyframes scanLightHorizontal {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+
+    /* --- تعديل العنوان ليتناسب مع الزينة الجديدة --- */
+    .about-hero-title {
+        font-size: 3.9rem !important; /* صغرناه سنة كمان عشان الزينة تلاقي مكان */
+        margin: 20px 0;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem !important;
+        max-width: 280px;
+        margin: 15px auto 0;
+    }
+
+
+
+
+
+
+
+    /* Section 2: Philosophy */
+    .about-philosophy {
+        padding: 80px 5%;
+        margin-top: -30px;
+    }
+
+    .philosophy-title {
+        font-size: 2.2rem !important;
+        margin-bottom: 20px;
+    }
+
+    .philosophy-p {
+        font-size: 1.1rem !important;
+        max-width: 100%;
+      
+        line-height: 1.6;
+    }
+
+.philosophy-image {
+        margin-top: 30px; /* تقليل المسافة العلوية قليلاً */
+        padding-bottom: 20px; /* مسافة بسيطة جداً قبل النص */
+        perspective: 800px; /* تقليل المنظور ليتناسب مع الحجم الأصغر */
+    }
+
+    .floating-cuttlefish {
+        /* الحجم المكبر بنسبة 30% كما طلبت (420px بدل 320px) */
+        max-width: 360px !important; 
+        width: 100%;
+        height: auto;
+        
+        /* تقليل التوهج الخارجي ليناسب الحجم الجديد */
+        filter: drop-shadow(0 15px 30px rgba(197, 160, 89, 0.3));
+        
+        /* ضبط الانعكاس السفلي ليناسب الحجم الصغير */
+        -webkit-box-reflect: below 1px linear-gradient(
+            transparent 80%, 
+            rgba(255, 255, 255, 0.03) 100%
+        );
+    }
+
+    /* --- ضبط الظل الذهبي (cuttlefish-glow) --- */
+    .cuttlefish-glow {
+        /* تصغير حجم الظل ليتناسب مع الـ 420px */
+        width: 60% !important; /* تقليل عرض الظل مقارنة بالصورة */
+        height: 20px !important; /* تقليل ارتفاع الظل */
+        
+        /* تقريب الظل لأسفل الصورة تماماً */
+        bottom: 5px !important; 
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        
+        /* تنعيم الحواف الذهبية لتكون أهدأ */
+        filter: blur(8px) !important;
+        
+        /* الحفاظ على التدرج الذهبي الدافئ */
+        background: radial-gradient(ellipse at center, 
+            #d69d2b 0%, 
+            #daaa4b 50%, 
+            #bf943f33 90%
+        );
+        
+        /* تقليل شدة النبض (Pulse) ليناسب الحجم الصغير */
+        animation: shadowPulseSmall 7s ease-in-out infinite;
+    }
+    /* --- أنميشن نبض الظل المخصص للموبايل --- */
+@keyframes shadowPulseSmall {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+    50% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+}
+
+
+
+
+
+    /* Section 3: Ocean Motion */
+    .about-ocean-motion {
+        height: 80vh; /* تقليل الارتفاع قليلاً */
+    }
+
+    .video-text-overlay h2 {
+        font-size: 2rem !important;
+        letter-spacing: 2px;
+    }
+
+   /* --- تحويل النصوص الجانبية في سيكشن الفيديو لبرواز أفقي --- */
+    .side-detail {
+        display: block !important; /* التأكد من الظهور */
+        writing-mode: horizontal-tb !important; /* تحويل النص للوضع الأفقي */
+        width: 100% !important;
+        text-align: center !important;
+        left: 0 !important;
+        right: 0 !important;
+        transform: none !important; /* إلغاء الـ translateY السابق */
+        
+        /* تكبير الخط بنسبة 30% ليكون واضحاً وفخماً */
+        font-size: 0.9rem !important; 
+        letter-spacing: 6px !important;
+        opacity: 0.6 !important;
+    }
+
+    /* النص اللي كان على الشمال (Detail Left) هينزل تحت الخط العلوي */
+    .detail-left {
+        top: 100px !important;
+    }
+
+    /* النص اللي كان على اليمين (Detail Right) هيطلع فوق الخط السفلي */
+    .detail-right {
+        top: auto !important;
+        bottom: 100px !important;
+    }
+
+
+
+
+
+
+
+    
+    /* Section 4: Craft Cards */
+    .craft-grid {
+        grid-template-columns: 1fr; /* جعل الكروت تحت بعضها */
+        gap: 40px;
+    }
+
+    .craft-card img {
+        width: 220px;
+        height: 220px;
+    }
+
+    .craft-card h3 {
+        font-size: 1.6rem !important;
+    }
+
+    /* Section 5: Final CTA */
+    .about-footer-cta {
+        padding: 150px 20px 80px 20px;
+    }
+
+    .cta-content h2 {
+        font-size: 1.8rem !important;
+        letter-spacing: 3px;
+    }
+
+    .majestic-action-btn {
+        width: 100%; /* الزر يأخذ العرض كامل لسهولة الضغط على الموبايل */
+        padding: 20px 0;
+        font-size: 0.9rem;
+    }
+
+    .cta-content .line-divider {
+        height: 100px;
+        margin-top: -200px; /* تقليل الرفعة لتناسب المساحة */
+    }
+}
+
+
+
+/* --- Media Query for 480px and below (Mobile Small) --- */
+@media screen and (max-width: 480px) {
+
+    /* Section 1: Hero - تصغير العنوان ليتنفس */
+    .about-hero-title {
+        font-size: 2.8rem !important; /* تقليل الحجم لضمان عدم انكسار الكلمات الطويلة */
+        letter-spacing: 4px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem !important;
+        max-width: 240px; /* تضييق المساحة لزيادة عدد الأسطر وضمان التناظر */
+        
+    }
+
+    .hero-decor-tags {
+        width: 85% !important; /* توسيع الحاوية قليلاً لتقليل التزاحم */
+        gap: 10px !important;
+       
+    }
+
+    .tag-item {
+        font-size: 0.45rem !important; /* تصغير طفيف جداً للكلمات الدقيقة */
+        
+    }
+.hero-pre-title {
+    letter-spacing: 4px;
+    text-align: center !important;
+
+    justify-content: center !important;
+}
+
+
+
+
+
+
+    /* Section 2: Philosophy - تحسين تباعد النصوص */
+.philosophy-bg-pattern{
+    margin-top: -40px;
+}
+
+    /* Section 3: Ocean Motion - البرواز الجانبي */
+.about-ocean-motion{
+    margin-top: -60px;
+}
+
+    /* Section 4: Craft Cards - تعديل الصور */
+
+    .about-craft{
+        margin-top: -60px;
+    }
+    .craft-card img {
+        width: 180px !important; /* تصغير الصور داخل الكروت */
+        height: 180px !important;
+    }
+
+    .craft-card h3 {
+        font-size: 1.4rem !important;
+    }
+
+    /* Section 5: Final CTA - تقليل الحشو */
+    .about-footer-cta {
+        margin-top: -60px;
+    }
+
+
+    .cta-content h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .majestic-action-btn {
+        padding: 15px 0;
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+
+.philosophy-content2{
+    margin-top: -140px;
+ 
+}
+.philosophy-title2 {
+        font-size: 1.9rem !important;
+    }
+
+    .philosophy-p {
+        font-size: 1rem !important;
+        padding: 0 10px;
+    }
+
+    .floating-cuttlefish {
+        max-width: 300px !important; /* تصغير الحبار ليتناسب مع عرض الموبايل الصغير */
+    }
+
+    .cuttlefish-glow {
+        width: 50% !important; /* تقليل عرض الظل ليتناسب مع الـ 280px */
+    }
+}

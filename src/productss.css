@@ -1,0 +1,1121 @@
+/* Productss.css */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap');
+
+:root {
+    --gold: #C6A75C;
+    --gold-bright: #E0C384;
+    --dark-void: #050505;
+}
+
+.products-page-wrapper {
+    background-color: var(--dark-void);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+   margin-top: 125px;
+}
+
+
+
+
+/* --- WELCOME HEADER TOP --- */
+.hero-welcome-header {
+    position: absolute;
+    top: 60px; /* مسافة من أعلى الصفحة */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    z-index: 20;
+    width: 100%;
+}
+
+.welcome-text-top {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 12px; /* مسافات واسعة جداً للفخامة */
+    
+    /* التدرج الذهبي */
+    background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #b8860b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* وهج ذهبي خفيف حول النص */
+    filter: drop-shadow(0 0 10px rgba(198, 167, 92, 0.3));
+    margin: 0;
+}
+
+/* الخطوط الجانبية الرفيعة للعنوان */
+.welcome-line {
+    width: 90px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--gold), 
+        transparent
+    );
+    opacity: 0.6;
+}
+
+
+
+
+
+
+
+.stage-hero-3d {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 0 8%;
+   
+}
+
+.hero-3d-wrapper {
+    position: relative;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+
+     margin-top: -20px;
+}
+
+
+
+
+/* --- MIDDLE DIVIDER DEAD CENTER --- */
+
+.luxe-middle-divider {
+    /* التموضع المطلق يضمن التمركز في منتصف الـ section بالضبط */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 15; /* أعلى من النص والصورة لضمان الظهور */
+    pointer-events: none; /* لضمان عدم إعاقة النقر على الأزرار إذا وجدت */
+}
+
+.luxe-separator-complex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.luxe-separator-complex .line {
+    width: 1px;
+    height: 350px; /* طول الفاصل */
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        var(--gold) 50%, 
+        transparent 100%
+    );
+    opacity: 0.6;
+}
+
+.luxe-separator-complex .dot {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--gold), 0 0 30px var(--gold);
+}
+
+
+
+
+
+
+/* --- الجانب الأيسر (النص) --- */
+.hero-text-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.hero-pre-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.hero-pre-title .line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+}
+
+.gold-label {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.85rem;
+    color: var(--gold);
+}
+
+.hero-title-main {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 25px 0;
+    background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #b8860b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    font-family: 'Cinzel', serif;
+    color: #999;
+    font-size: 1rem;
+    max-width: 420px;
+    line-height: 1.8;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+
+
+
+/* --- الجانب الأيمن (الصورة) --- */
+.hero-3d-container {
+    flex: 1; /* تأخذ مساحة متساوية مع النص لضمان توازن المنتصف */
+    display: flex;
+    /* هذا السطر هو المسؤول عن دفع الصورة لأقصى اليمين */
+    justify-content: flex-end; 
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
+
+.image-relative-box {
+    position: relative;
+    /* تحديد عرض أقصى للصورة لضمان عدم تداخلها مع الفاصل في المنتصف */
+    max-width: 90%; 
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 40px;
+}
+/* إنشاء الظل الأبيض أسفل الصورة */
+.image-relative-box::after {
+    content: '';
+    position: absolute;
+    bottom: 10px; /* المسافة بين الصورة والظل */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;  /* عرض الظل مقارنة بالصورة */
+    height: 20px; /* ارتفاع الظل */
+    background: radial-gradient(ellipse at center, 
+        rgb(255, 255, 255) 0%, 
+        rgb(255, 255, 255) 40%, 
+        transparent 80%
+    );
+    filter: blur(10px); /* تنعيم الحواف */
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+    
+    /* جعل الظل يتحرك مع أنيميشن الطفو لزيادة الواقعية */
+    animation: shadowPulse 7s ease-in-out infinite;
+}
+
+.hero-3d-image {
+    width: 100%;
+ 
+    height: auto;
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.8));
+    will-change: transform;
+    z-index: 2;
+}
+
+/* أنيميشن نبض الظل (يصغر ويكبر مع حركة الصورة) */
+@keyframes shadowPulse {
+    0%, 100% { 
+        transform: translateX(-50%) scale(1); 
+        opacity: 0.3; 
+    }
+    33% { 
+        transform: translateX(-50%) scale(1.2); 
+        opacity: 0.15; /* يقل التركيز عندما ترتفع الصورة */
+    }
+    66% { 
+        transform: translateX(-50%) scale(0.9); 
+        opacity: 0.4; /* يزداد التركيز عندما تقترب الصورة */
+    }
+}
+/* --- الأنيميشن (Floating) --- */
+.floating-element {
+    animation: floatingLuxe 7s ease-in-out infinite;
+}
+
+@keyframes floatingLuxe {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(15px, -25px) rotate(1deg); }
+    66% { transform: translate(-10px, -35px) rotate(-0.5deg); }
+}
+
+/* --- Scroll Hint --- */
+.scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 8%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    opacity: 0.7;
+}
+
+.scroll-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+}
+
+.scroll-line-container {
+    height: 1px;
+    width: 60px;
+    background: rgba(198, 167, 92, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--gold);
+    animation: scrollSlideH 2.5s infinite;
+}
+
+@keyframes scrollSlideH {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- STAGE 2: PHILOSOPHY - LUXE EDITION --- */
+.stage-philosophy {
+    padding: 150px 10%;
+    background: #080808;
+    position: relative;
+    overflow: hidden;
+    /* إضافة البوردر الذهبي الرفيع المحيط بالسيكشن */
+    border: 1px solid rgba(198, 167, 92, 0.1);
+    margin: 40px; /* ترك مسافة بسيطة حول البوردر لتبدو كإطار لوحة */
+   
+}
+
+.philosophy-content {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    position: relative;
+    z-index: 2;
+    
+    width: 100%;
+}
+
+/* --- الجانب النصي --- */
+.text-side {
+    flex: 1;
+}
+
+.philosophy-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    line-height: 1.2;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: start;
+}
+
+.philosophy-title span {
+    background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #b8860b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+      text-align: start;
+     
+}
+
+.philosophy-text {
+    font-size: 1.15rem;
+    line-height: 2;
+    color: #a0a0a0;
+    margin-bottom: 40px;
+    max-width: 550px;
+    position: relative;
+    padding-left: 30px;
+    border-left: 1px solid rgba(198, 167, 92, 0.3); /* خط جانبي رفيع للنص */
+text-align: start;
+margin-left: -40px;
+}
+
+.signature-gold {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.signature-gold::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- الجانب الأيمن (الصورة والظل) --- */
+.image-side {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px; /* مساحة للظل */
+}
+
+/* الظل الآن مربوط بـ .image-side لكي يظهر حتماً */
+.image-side::after {
+    content: '';
+    position: absolute;
+    bottom: 20px; /* التموضع أسفل الصورة */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px; /* عرض الظل */
+    height: 20px;
+    background: radial-gradient(ellipse at center, 
+        rgb(255, 255, 255) 0%, 
+        rgb(255, 255, 255) 40%, 
+        transparent 80%
+    );
+    filter: blur(15px);
+    border-radius: 50%;
+    z-index: 1; 
+    pointer-events: none;
+    /* ربط الظل بالأنيميشن ليتحرك مع الصورة */
+    animation: philosophyShadowPulse 8s ease-in-out infinite;
+}
+
+.philosophy-image {
+    width: 100%;
+   
+    position: relative;
+    z-index: 5; /* فوق الظل */
+    animation: philosophyFloat 8s ease-in-out infinite;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+}
+
+/* الهالة الذهبية الخلفية */
+.glow-aura {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(198, 167, 92, 0.1) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* --- الأنيميشن المحسن --- */
+@keyframes philosophyFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(1deg); }
+}
+
+
+
+
+
+
+
+/* --- STAGE 3: ARCHIVE - THE ROYAL GALLERY --- */
+/* --- STAGE 3: ARCHIVE - THE GOLDEN GALLERY --- */
+.stage-archive {
+    padding: 120px 5%;
+    position: relative;
+}
+
+.archive-intro {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+
+
+
+
+
+
+
+
+/* --- ARCHIVE HEADER - THE ROYAL ETCHING --- */
+
+.archive-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* لتوسيط العنوان والخط تماماً */
+    justify-content: center;
+    text-align: center;
+    padding: 40px 0;
+    gap: 15px; /* المسافة بين الكلمة والخط الذهبي */
+}
+
+.archive-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-weight: 700;
+    margin: 0;
+    /* تأثير الذهب الملكي */
+    background: linear-gradient(to bottom, #fff 20%, #dfc27d 45%, #a68031 55%, #dfc27d 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
+}
+
+/* تحويل السابتايتل إلى الخط الذهبي */
+.archive-subtitle {
+    display: block; /* لكي يقبل العرض والارتفاع */
+    width: 120px;   /* طول الخط الذهبي */
+    height: 2px;    /* سمك الخط */
+    
+    /* التدرج الذهبي المعدني */
+    background: linear-gradient(
+        90deg, 
+        transparent 0%, 
+        #a68031 20%, 
+        #dfc27d 50%, 
+        #a68031 80%, 
+        transparent 100%
+    );
+    
+    /* توهج خفيف للخط */
+    box-shadow: 0 0 15px rgba(198, 167, 92, 0.6);
+
+}
+
+@keyframes goldLineFade {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 120px;
+        opacity: 1;
+    }
+}
+
+
+
+
+
+/* --- الكارت الملكي المطور --- */
+/* --- الحاوية (لا تغيير هنا) --- */
+.products-grid-luxe {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px; /* تقليل المسافة بين الكروت قليلاً لضغط التصميم */
+    width: 100%;
+ 
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* --- الكارت الملكي المطور (الإصدار القصير) --- */
+.product-card-luxe {
+    background: #080808;
+    position: relative;
+    overflow: hidden; 
+    border: 1px solid rgba(198, 167, 92, 0.08);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- حاوية الصورة (تقليل الارتفاع) --- */
+.card-visual {
+    width: 100%;
+    height: 320px; /* تم تقليلها من 420px لضغط الكارت */
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.prod-img-standard {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) contrast(1.1);
+    transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- تفاصيل الكارت (Elite Layout - Slim) --- */
+.card-details {
+    padding: 25px 25px; /* تقليل البادينج من 40px لضغط الطول */
+    position: relative;
+    z-index: 3;
+    background: #080808;
+}
+
+.item-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem; /* تصغير طفيف جداً للحفاظ على التناسب */
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    
+    background: linear-gradient(to bottom, #ffffff, #e0c384, #c6a75c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.item-desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.6;
+    margin-bottom: 20px; /* تقليل المسافة */
+    height: 40px; /* تقليل الارتفاع من 50px */
+    overflow: hidden;
+    font-weight: 300;
+}
+
+/* تذييل الكارت (The Grand Finale) */
+.details-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(198, 167, 92, 0.1);
+    padding-top: 15px; /* تقليل المسافة */
+}
+
+.item-price {
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem; /* حجم متناسق مع الكارت القصير */
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.explore-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* البادج الملكي (أصغر وأرقى) */
+.luxe-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #bf953f, #fcf6ba, #b8860b);
+    color: #000;
+    padding: 4px 12px;
+    font-size: 0.55rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+/* Hover Effects (نفس القوة) */
+.product-card-luxe:hover {
+    transform: translateY(-10px);
+    border-color: rgba(198, 167, 92, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+
+
+
+
+
+
+
+
+
+/* --- RESPONSIVE OPTIMIZATION (1024px & Below) --- */
+@media (max-width: 1024px) {
+    
+    /* 1. تصغير الخطوط العامة للصفحة للهيبة المنتظمة */
+    :root {
+        --hero-font-size: 3.5rem; /* تصغير حجم العنوان الرئيسي */
+    }
+
+    .products-page-wrapper {
+        margin-top: 100px; /* تقليل الهامش العلوي */
+    }
+
+    /* --- STAGE 1: HERO SECTION RESTRUCTURING --- */
+    .hero-welcome-header {
+        top: 40px;
+        flex-direction: column; /* ترتيب عمودي للترحيب العلوي */
+        gap: 10px;
+    }
+
+    .welcome-text-top {
+        font-size: 1.8rem; /* تصغير العنوان العلوي */
+        letter-spacing: 8px;
+    }
+
+    .stage-hero-3d {
+        height: auto;
+        padding: 120px 5% 60px 5%;
+        flex-direction: column;
+    }
+
+    .hero-3d-wrapper {
+        flex-direction: column; /* الترتيب العمودي المطلوب */
+        text-align: center;
+        gap: 50px;
+    }
+
+    /* إخفاء الفاصل العمودي لأنه لا يناسب الترتيب العمودي */
+    .luxe-middle-divider {
+        display: none;
+    }
+
+    .hero-text-content {
+        align-items: center; /* توسيط النص */
+        text-align: center;
+        order: 1; /* العنوان أولاً */
+    }
+
+    .hero-title-main {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+    }
+
+    .hero-3d-container {
+        order: 2; /* الصورة ثانياً */
+        justify-content: center;
+        width: 100%;
+    }
+
+    .image-relative-box {
+        max-width: 70%; /* تصغير عرض الصورة قليلاً لتناسب الموبايل */
+        justify-content: center;
+    }
+
+    .hero-subtitle {
+        order: 3; /* الوصف ثالثاً */
+        margin: 0 auto;
+        font-size: 0.9rem;
+    }
+
+    /* --- STAGE 2: PHILOSOPHY RESTRUCTURING --- */
+    .stage-philosophy {
+        padding: 80px 5%;
+        margin: 20px;
+    }
+
+    .philosophy-content {
+        flex-direction: column; /* ترتيب عمودي لسيكشن 2 */
+        gap: 50px;
+        text-align: center;
+       
+    }
+
+
+
+
+    .philosophy-title {
+        text-align: center;
+    }
+    .philosophy-text {
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid rgba(198, 167, 92, 0.3);
+        padding-top: 20px;
+        margin: 0 auto 30px auto;
+       text-align: center;
+    }
+
+    .signature-gold {
+        justify-content: center;
+       
+    }
+
+    .image-side {
+        width: 100%;
+    }
+
+    .philosophy-image {
+        max-width: 80%;
+    }
+
+    /* --- STAGE 3: ARCHIVE SCALING --- */
+    .archive-title {
+        font-size: 2.8rem; /* تصغير حجم العنوان في سيكشن 3 */
+        letter-spacing: 4px;
+    }
+
+    .products-grid-luxe {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* تصغير عرض الكروت قليلاً */
+        gap: 20px;
+    }
+
+    .item-name {
+        font-size: 1.2rem;
+    }
+
+    .card-visual {
+        height: 280px; /* تقصير الكارت أكثر في العرض المتوسط */
+    }
+}
+
+
+
+/* --- FIXING 3D IMAGES SIZE AT 700PX --- */
+@media (max-width: 700px) {
+    
+    /* تثبيت حجم صورة الهيرو في السيكشن الأول */
+    .image-relative-box {
+        max-width: none ; /* إلغاء التناسب المئوي */
+        width: 450px ;    /* حجم ثابت محدد للهاتف */
+        margin: 0 auto;
+    }
+
+    .hero-3d-image {
+        width: 100% ;
+        height: auto;
+    }
+
+    /* تثبيت حجم صورة سيكشن الفلسفة (السيكشن الثاني) */
+    .philosophy-image {
+        max-width: none ;
+        width: 450px ;    /* حجم ثابت مريح للعين في الشاشات الصغيرة */
+        margin: 0 auto;
+    }
+
+    /* تعديل الظل ليتناسب مع الأحجام الثابتة الجديدة */
+    .image-side::after {
+        width: 250px;
+    }
+    
+    .image-relative-box::after {
+        width: 250px;
+    }
+}
+
+
+
+
+
+
+
+/* --- BALANCED MOBILE OPTIMIZATION (-15% FROM PREVIOUS) (530px & Below) --- */
+@media (max-width: 530px) {
+
+    /* 1. مساحات السيكشنز المتوازنة */
+    .stage-hero-3d, 
+    .stage-philosophy, 
+    .stage-archive {
+        padding: 72px 24px ; /* تقليل طفيف للمساحات */
+        margin: 12px ;
+    }
+
+    /* 2. العناوين الرئيسية */
+    .hero-title-main {
+        font-size: 2.6rem ; /* 3.1 * 0.85 */
+        letter-spacing: 4.5px ;
+    }
+
+    .welcome-text-top {
+       
+        letter-spacing: 6px ;
+        font-size: 1.6rem;
+    }
+
+    .archive-title {
+        font-size: 2.1rem ; /* 2.5 * 0.85 */
+        letter-spacing: 3.5px ;
+    }
+
+    /* 3. الصور الـ 3D (حجم مثالي للهواتف) */
+    /* 406px * 0.85 = 345px تقريباً */
+    .image-relative-box,
+    .philosophy-image {
+        width: 390px ; 
+        max-width: 90vw;
+    }
+
+    /* 4. نصوص سيكشن الفلسفة */
+    .philosophy-title {
+        font-size: 1.85rem ; /* 2.2 * 0.85 */
+    }
+
+    .philosophy-text {
+        font-size: 1.05rem; /* 1.25 * 0.85 */
+        line-height: 1.7 ;
+    }
+
+    /* 5. كروت المنتجات */
+    .card-visual {
+        height: 285px ; /* 335 * 0.85 */
+    }
+
+    .item-name {
+        font-size: 1.25rem ; /* 1.5 * 0.85 */
+    }
+
+    .item-price {
+        font-size: 1.6rem ; /* 1.9 * 0.85 */
+    }
+
+    /* 6. الهيدر العلوي والتفاصيل الصغيرة */
+    .hero-welcome-header {
+        top: 30px ;
+        gap: 15px ;
+    }
+    
+    .gold-label {
+        font-size: 1rem ; /* 1.2 * 0.85 */
+    }
+    /* 5. كروت المنتجات في الـ Archive */
+    /* تأكد أن الشبكة (Grid) تأخذ كامل عرض السيكشن (الـ 90%) */
+    .products-page-wrapper .products-grid-luxe {
+        width: 100%;
+        padding: 10px 0;
+        grid-template-columns: 1fr;
+    }
+
+    .products-page-wrapper .card-visual {
+        height: 260px;
+    }
+
+    .products-page-wrapper .item-name {
+        font-size: 1.15rem;
+    }
+
+    .products-page-wrapper .item-price {
+        font-size: 1.45rem;
+    }
+}
+
+
+/* --- PRECISE ADJUSTMENT FOR SMALL DEVICES (480px & Below) --- */
+@media (max-width: 480px) {
+
+    /* 1. تقليل الهوامش قليلاً لزيادة مساحة العرض */
+    .products-page-wrapper .stage-hero-3d, 
+    .products-page-wrapper .stage-philosophy, 
+    .products-page-wrapper .stage-archive {
+        padding: 65px 20px;
+        margin: 8px;
+    }
+
+    /* 2. ضبط العناوين */
+    .products-page-wrapper .hero-title-main {
+        font-size: 2.35rem;
+        letter-spacing: 3.5px;
+    }
+
+    .products-page-wrapper .welcome-text-top {
+        font-size: 1.3rem;
+        letter-spacing: 5px;
+    }
+
+    .products-page-wrapper .archive-title {
+        font-size: 1.9rem;
+        letter-spacing: 3px;
+    }
+
+    /* 3. حجم الصور */
+    .products-page-wrapper .image-relative-box,
+    .products-page-wrapper .philosophy-image {
+        width: 360px;
+        max-width: 85vw;
+    }
+
+    /* 4. نصوص سيكشن الفلسفة */
+    .products-page-wrapper .philosophy-title {
+        font-size: 1.7rem;
+    }
+
+    .products-page-wrapper .philosophy-text {
+        font-size: 0.98rem;
+        line-height: 1.6;
+    }
+
+    /* 5. كروت المنتجات في الـ Archive */
+    .products-page-wrapper .card-visual {
+        height: 260px;
+    }
+
+    .products-page-wrapper .item-name {
+        font-size: 1.15rem;
+    }
+
+    .products-page-wrapper .item-price {
+        font-size: 1.45rem;
+    }
+
+    /* 6. الهيدر العلوي */
+    .products-page-wrapper .hero-welcome-header {
+        top: 25px;
+        gap: 12px;
+    }
+    
+    .products-page-wrapper .gold-label {
+        font-size: 0.9rem;
+    }
+
+    /* ضبط الفواصل الذهبية */
+    .products-page-wrapper .luxe-separator-complex .line {
+        height: 250px;
+    }
+}
+
+
+
+
+/* --- OPTIMIZED FOR COMPACT DEVICES (416px & Below) --- */
+@media (max-width: 416px) {
+
+    /* السيكشن الثالث: توسيع العرض إلى 95% وتوسيطه */
+    .products-page-wrapper .stage-archive {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 50px 0; /* تقليل البادينج الجانبي لزيادة مساحة العرض */
+    }
+
+    /* تقليص مساحات السيكشنز الأخرى للحفاظ على التناسق */
+    .products-page-wrapper .stage-hero-3d, 
+    .products-page-wrapper .stage-philosophy {
+        padding: 50px 15px;
+        margin: 5px;
+    }
+
+    /* تصغير العناوين لتناسب الشاشة الضيقة */
+    .products-page-wrapper .hero-title-main {
+        font-size: 2.1rem;
+        letter-spacing: 2.5px;
+    }
+
+    .products-page-wrapper .welcome-text-top {
+        
+        letter-spacing: 4px;
+    }
+
+    .products-page-wrapper .archive-title {
+        font-size: 1.75rem;
+        letter-spacing: 2.5px;
+    }
+
+    /* ضبط أحجام الصور الـ 3D لتناسب العرض الجديد */
+    .products-page-wrapper .image-relative-box,
+    .products-page-wrapper .philosophy-image {
+        width: 310px; 
+        max-width: 85vw;
+    }
+
+    /* نصوص سيكشن الفلسفة */
+    .products-page-wrapper .philosophy-title {
+        font-size: 1.5rem;
+    }
+
+    .products-page-wrapper .philosophy-text {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* كروت المنتجات في السيكشن الثالث */
+    .products-page-wrapper .products-grid-luxe {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .products-page-wrapper .card-visual {
+        height: 240px; /* تقصير ارتفاع الكارت ليناسب الشاشات الصغيرة */
+    }
+
+    .products-page-wrapper .item-name {
+        font-size: 1.05rem;
+    }
+
+    .products-page-wrapper .item-price {
+        font-size: 1.35rem;
+    }
+
+    /* الهيدر العلوي */
+    .products-page-wrapper .hero-welcome-header {
+        top: 20px;
+        gap: 8px;
+    }
+    
+    .products-page-wrapper .gold-label {
+        font-size: 0.8rem;
+    }
+
+    /* الفواصل الذهبية */
+    .products-page-wrapper .luxe-separator-complex .line {
+        height: 180px;
+    }
+}

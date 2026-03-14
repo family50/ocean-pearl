@@ -1,0 +1,622 @@
+/* الحاوية الرئيسية للصفحة */
+.booking-page-container {
+    min-height: 100vh;
+    background-color: #050505; /* أسود عميق للفخامة */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Playfair Display', serif; /* خط سيريف كلاسيكي */
+    overflow: hidden;
+    padding: 80px 20px;
+}
+
+/* طبقة الخلفية والصورة */
+.booking-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35; /* تعتيم خفيف لإبراز المحتوى */
+    filter: brightness(0.4) blur(4px); /* تمويه خفيف لزيادة التركيز على الكارت */
+}
+
+/* غلاف المحتوى الرئيسي */
+.booking-content-wrapper {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+     margin-top: 60px;
+}
+
+/* العنوان الرئيسي بتأثير التدرج الذهبي */
+.booking-main-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728); /* تدرج ذهبي معدني */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 5px;
+    margin-bottom: 5px;
+}
+
+.booking-subtitle {
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+/* كارت الحجز بتأثير الزجاج (Glassmorphism) */
+.booking-card {
+    background: rgba(255, 255, 255, 0.02); /* خلفية شفافة جداً */
+    backdrop-filter: blur(20px); /* تأثير الضبابية الزجاجي */
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(191, 149, 63, 0.2); /* حدود ذهبية باهتة */
+    padding: 50px 40px;
+    border-radius: 2px; /* زوايا حادة لتعزيز طابع الـ Minimalist Luxury */
+    margin-top: 40px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7); /* ظل عميق لتعزيز البعد */
+}
+
+/* شريط التقدم */
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.progress-dot {
+    width: 45px;
+    height: 45px;
+    border: 1px solid rgba(191, 149, 63, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #bf953f;
+    transition: all 0.5s ease;
+    
+}
+
+.progress-dot.active {
+    background: #bf953f;
+    color: #000;
+    box-shadow: 0 0 20px rgba(191, 149, 63, 0.5); /* وهج ذهبي للنقطة النشطة */
+}
+
+.progress-line {
+    width: 50px;
+    height: 1px;
+    background: rgba(191, 149, 63, 0.2);
+    margin: 0 10px;
+}
+
+.progress-line.active {
+    background: #bf953f;
+}
+
+/* شبكة اختيار المقاعد (Step 2) */
+.seating-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 30px 0;
+    
+}
+
+.seat-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 10px;
+    cursor: pointer;
+    transition: 0.4s;
+    background: rgba(255, 255, 255, 0.03);
+   
+}
+
+.seat-card h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: #bf953f;
+    margin-bottom: 8px;
+}
+
+.seat-card p {
+    font-size: 1.1rem;
+    margin: 0;
+  
+}
+
+.seat-card p span {
+    font-size: 0.65rem;
+    opacity: 0.6;
+}
+
+.seat-card.selected {
+    background: rgba(191, 149, 63, 0.15); /* خلفية ذهبية شفافة عند الاختيار */
+    border-color: #bf953f;
+   
+    
+}
+
+/* تفاصيل التكلفة */
+.total-badge, .price-estimation {
+    margin: 25px 0;
+    font-size: 0.95rem;
+    color: #bf953f;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(191, 149, 63, 0.1);
+    padding-top: 20px;
+    
+}
+
+/* صندوق الملخص النهائي (Step 3) */
+.summary-box {
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 2px solid #bf953f;
+    padding: 20px;
+    margin: 25px 0;
+    text-align: left;
+}
+
+.summary-box p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.total-text {
+    font-size: 1.4rem !important;
+    color: #bf953f;
+    font-weight: bold;
+    opacity: 1 !important;
+    
+}
+
+/* المدخلات والقوائم المنسدلة */
+.luxury-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 15px 5px;
+    font-size: 1rem;
+    margin-bottom: 25px;
+    outline: none;
+    transition: 0.4s;
+    box-sizing: border-box;
+
+}
+
+.luxury-input:focus {
+    border-bottom: 1px solid #bf953f;
+}
+/* الحاوية الخاصة بمدخل التاريخ لضمان الوضوح */
+.luxury-input.quick {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    color: #bf953f; /* النص باللون الذهبي ليكون واضحاً */
+    background: rgba(255, 255, 255, 0.02); /* خلفية خفيفة جداً */
+    padding: 15px 15px;
+    border: 1px solid rgba(191, 149, 63, 0.2);
+    border-radius: 4px;
+    transition: all 0.4s ease;
+  
+}
+
+/* تخصيص أيقونة التقويم (Calendar Picker Indicator) */
+.luxury-input.quick::-webkit-calendar-picker-indicator {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23bf953f" class="bi bi-calendar3" viewBox="0 0 16 16"><path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/></svg>');
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 5px rgba(191, 149, 63, 0.5)); /* وهج ذهبي للأيقونة */
+}
+
+/* تأثير عند التركيز (Focus) */
+.luxury-input.quick:focus {
+    background: rgba(191, 149, 63, 0.05);
+    border-color: #bf953f;
+    box-shadow: 0 0 15px rgba(191, 149, 63, 0.2);
+    outline: none;
+}
+
+/* إضافة تسمية توضيحية (Label) فوق المدخل لجعله عملياً */
+.date-input-wrapper {
+    position: relative;
+    margin-bottom: 30px;
+    text-align: left;
+     margin-top: 40px;
+}
+
+.date-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+select.luxury-input option {
+    background: #0a0a0a;
+    color: #fff;
+}
+
+
+
+
+
+
+
+/* الأزرار */
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.gold-action-btn {
+    flex: 2; /* تأخذ مساحة أكبر من زر الرجوع */
+    padding: 18px;
+    background: transparent;
+    border: 1px solid #bf953f;
+    color: #bf953f;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.gold-action-btn:hover {
+    background: #bf953f;
+    color: #000;
+    box-shadow: 0 0 20px rgba(191, 149, 63, 0.4);
+}
+
+.back-btn {
+    flex: 1;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.back-btn:hover {
+    border-color: #fff;
+}
+
+/* تنبيه كود الملابس */
+.dress-code-notice {
+    margin-top: 40px;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    opacity: 0.6;
+}
+
+.dress-code-notice span {
+    color: #bf953f;
+}
+
+/* أنميشن ظهور العناصر */
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* رسائل الخطأ */
+.error-msg {
+    display: block;
+    color: #ff4d4d;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    text-align: left;
+    animation: fadeInError 0.3s ease;
+}
+
+.input-error {
+    border-color: #ff4d4d !important;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.2) !important;
+}
+
+@keyframes fadeInError {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* تنسيق الحاوية لضمان ترتيب العناصر */
+.date-input-wrapper {
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+
+.success-message-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 450px;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid #bf953f;
+    padding: 60px 40px;
+    text-align: center;
+    z-index: 100;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+.success-icon-gold {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #bf953f;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.success-icon-gold svg {
+    width: 100%;
+    height: 100%;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawCheck 0.8s ease forwards 0.5s;
+}
+
+.success-message-overlay h2 {
+    font-family: 'Cinzel', serif;
+    color: #bf953f;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.success-message-overlay p {
+    color: #fff;
+    opacity: 0.8;
+    font-weight: 200;
+    margin-bottom: 30px;
+}
+
+@keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Media Query for screens 700px and below */
+@media screen and (max-width: 700px) {
+    
+    /* 1. تقليل الحشوات العامة والحواف */
+    .booking-page-container {
+        padding: 40px 15px;
+    }
+
+    .booking-card {
+        padding: 30px 20px; /* تقليل المسافة الداخلية للكارت */
+        margin-top: 25px;
+    }
+
+    /* 2. تصغير الخطوط الرئيسية */
+    .booking-main-title {
+        font-size: 2rem; /* تصغير العنوان */
+        letter-spacing: 3px;
+    }
+
+    .booking-subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+    }
+
+    /* 3. شريط التقدم (Progress Bar) */
+    .progress-bar {
+        margin-bottom: 35px;
+    }
+
+    .progress-dot {
+        width: 35px; /* تصغير الدوائر */
+        height: 35px;
+        font-size: 0.7rem;
+    }
+
+    .progress-line {
+        width: 30px; /* تقصير الخطوط الواصلة */
+    }
+
+    /* 4. شبكة المقاعد (الأهم في الاستجابة) */
+    .seating-grid {
+        grid-template-columns: 1fr; /* تغيير من 3 أعمدة لعمود واحد لسهولة الضغط */
+        gap: 10px;
+    }
+
+    .seat-card {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+
+    .seat-card h4 {
+        margin-bottom: 0;
+        font-size: 0.8rem;
+    }
+
+    .seat-card p {
+        font-size: 0.95rem;
+    }
+
+    /* 5. المدخلات والأزرار */
+    .luxury-input {
+        padding: 12px 5px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .gold-action-btn, .back-btn {
+        padding: 15px;
+        font-size: 0.8rem;
+    }
+
+    /* 6. رسالة النجاح (Success Overlay) */
+    .success-message-overlay {
+        width: 85%;
+        padding: 40px 20px;
+    }
+
+    .success-icon-gold {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+
+    .success-message-overlay h2 {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+
+    /* 7. صندوق الملخص النهائي */
+    .total-text {
+        font-size: 1.1rem !important;
+    }
+}
+
+
+
+/* Media Query for mobile devices 470px and below */
+@media screen and (max-width: 470px) {
+
+    /* 1. ضبط الحاوية لتقليل الهوامش الجانبية */
+    .booking-page-container {
+        padding: 20px 10px;
+    }
+
+    /* 2. تصغير كارت الحجز والحشوات الداخلية */
+    .booking-card {
+        padding: 25px 15px;
+        margin-top: 20px;
+        border-radius: 0; /* زوايا حادة تماماً تعطي مساحة أكبر قليلاً */
+    }
+
+    /* 3. العناوين - جعلها أكثر تناسباً */
+    .booking-main-title {
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+    }
+
+    .booking-subtitle {
+        font-size: 0.65rem;
+        letter-spacing: 1.5px;
+    }
+
+    /* 4. تصغير شريط التقدم لضمان بقائه على سطر واحد */
+    .progress-bar {
+        margin-bottom: 25px;
+        transform: scale(0.85); /* تصغير الهيكل بالكامل بنسبة 15% */
+    }
+
+    .progress-line {
+        width: 20px; /* تقليل المسافة بين الدوائر */
+    }
+
+    /* 5. ضبط حقول الإدخال لتوفير مساحة */
+    .luxury-input {
+        padding: 10px 2px;
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+
+    .date-label {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+    }
+
+    /* 6. كروت المقاعد (Seating Step) */
+    .seat-card {
+        padding: 12px;
+    }
+
+    .seat-card h4 {
+        font-size: 0.7rem;
+    }
+
+    .seat-card p {
+        font-size: 0.85rem;
+    }
+
+    /* 7. الأزرار - جعلها أصغر قليلاً لتناسب الشاشة */
+    .btn-group {
+        gap: 8px;
+    }
+
+    .gold-action-btn, .back-btn {
+        padding: 12px 10px;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    /* 8. رسالة النجاح في الشاشات الصغيرة جداً */
+    .success-message-overlay {
+        width: 92%;
+        padding: 30px 15px;
+    }
+
+    .success-icon-gold {
+        width: 50px;
+        height: 50px;
+    }
+
+    .success-message-overlay h2 {
+        font-size: 1.1rem;
+    }
+
+    /* 9. صندوق الملخص (Summary Box) */
+    .summary-box {
+        padding: 15px;
+    }
+
+    .summary-box p {
+        font-size: 0.75rem;
+    }
+}

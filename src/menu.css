@@ -1,0 +1,627 @@
+/* 1. استيراد الخطوط الملكية */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* --- الستايل الملكي الجديد: الرخام الأبيضCarrara Pure --- */
+
+/* 2. الحاوية الرئيسية للملصق (White Inversion) */
+.menu-page-container {
+    background-color: #040404; /* أبيض رخامي نقي جداً (White Pearl) */
+    color: #030303; /* النصوص الأساسية تصبح سوداء للمقروئية */
+    min-height: 100vh;
+    padding: 100px 5%;
+    font-family: 'Playfair Display', serif;
+    margin-top: 70px;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+/* 3. خلفية الرخام الأبيض الإبداعية ( Carrara Layering ) */
+.menu-page-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* الطبقة الأولى: عروق رخام Carrara دقيقة (فخامة هادئة) */
+    background-image: url('https://www.transparenttextures.com/patterns/white-marble.png');
+    opacity: 0.15; /* عروق رخامية باهتة لتعطي عمقاً */
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* الطبقة الثانية: التدرج الضوئي الأبيض النقي في المنتصف */
+.menu-page-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* تدرج أبيض نقي يعطي إحساساً بأن الخلفية مضيئة من الخلف */
+    background: radial-gradient(circle at 50% 50%, #898484 0%, rgba(250, 250, 250, 0) 70%);
+    opacity: 0.9;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* 5. الهيدر (العنوان السينمائي الملكي) */
+.menu-header {
+    text-align: center;
+    margin-bottom: 120px;
+    position: relative;
+    z-index: 5;
+}
+
+.royal-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    letter-spacing: 12px;
+    
+    /* ✅ تدرج ذهبي احترافي (Liquid Gold Style) */
+    /* استخدمنا درجات الـ Champagne والـ Bronze لخلق إحساس الانعكاس الضوئي */
+    background: linear-gradient(
+        to right, 
+        #bf953f 0%, 
+        #fcf6ba 20%, 
+        #b38728 40%, 
+        #fbf5b7 60%, 
+        #aa771c 100%
+    );
+    
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    
+    /* إضافة لمسة حدة (Contrast) لبروز النص فوق الأبيض */
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    font-weight: 700;
+}
+
+.title-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.line {
+    height: 1px;
+    width: 150px;
+    /* خط ذهبي متدرج يشبه الخيط المعدني */
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        #b38728 20%, 
+        #fcf6ba 50%, 
+        #b38728 80%, 
+        transparent
+    );
+}
+.gold-icon {
+    /* لون الذهب الصافي */
+    color: #d4af37; 
+    font-size: 1.5rem;
+    /* توهج ذهبي (Glow) خلف الأيقونة */
+    filter: drop-shadow(0 0 10px rgba(184, 134, 11, 0.4));
+}
+
+.menu-subtitle {
+    /* لون ذهبي مطفي (Matte Gold) لراحة العين */
+    color: #b38728; 
+    font-size: 1rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-top: 25px;
+    font-weight: 400;
+    opacity: 0.9;
+}
+/* --- 6. شبكة البطاقات (الهيكل المعماري) --- */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 60px; /* مسافة أوسع تعطي إحساساً بالرفاهية */
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Ocean Pearl - القسم 2: تصميم بطاقة القسم (The Royal Gallery)
+   ========================================================= */
+/* =========================================================
+   Ocean Pearl - القسم 2: تصميم بطاقة القسم (The Royal Gallery)
+   ========================================================= */
+
+/* --- 1. حاوية القسم (The Marble Gallery) --- */
+.category-gallery {
+    padding: 180px 7%;
+    position: relative;
+    background: #ffffff; /* أبيض رخامي ملكي */
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; 
+}
+
+/* --- 2. الـ Stagger/gsap (تدرج الظهور الملكي) --- */
+.category-card {
+    opacity: 0;
+    flex: 1 1 calc(33.333% - 30px); 
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 3. تصميم البطاقة الـ luxury (التصميم القائم على الصورة والشفافية) --- */
+.category-card {
+    position: relative;
+    min-height: 650px; 
+    height: 100%; 
+    background: #ffffff3b; /* خلفية سوداء لتعميق الشفافية */
+    border-radius: 0; 
+    border: 1px solid rgba(212, 175, 55, 0.3); /* إطار ذهبي أوضح قليلاً */
+    overflow: hidden;
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.category-card:hover {
+    transform: translateY(-20px);
+    border-color: rgba(212, 175, 55, 1); /* إطار ذهبي صريح عند الهوفر */
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3), 0 0 30px rgba(212, 175, 55, 0.15);
+}
+
+/* --- 4. تصميم الصورة الـ luxury (الوضوح التفاعلي) --- */
+.category-img {
+    position: absolute; 
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    /* ✅ الحالة العادية: نصف شفافة لتبرز النصوص الذهبية */
+    opacity: 0.4; 
+    filter: grayscale(1) brightness(0.7) contrast(1.2); /* تعزيز الطابع الأسود الفخم */
+    
+    will-change: transform, filter, opacity;
+    image-rendering: -webkit-optimize-contrast; 
+    transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                filter 1.2s ease,
+                opacity 1.2s ease;
+    z-index: 1;
+}
+
+.category-card:hover .category-img {
+    transform: scale(1.08); 
+    filter: grayscale(0.5) brightness(1) contrast(1.1); /* استعادة بعض الألوان والوضوح عند الهوفر */
+    opacity: 0.85; /* الصورة تصبح واضحة جداً عند الهوفر */
+}
+
+/* ✅ الـ Overlay: تدرج أعمق للأسفل لضمان قراءة النصوص الذهبية */
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, 
+        rgba(0, 0, 0, 0.9) 0%, 
+        rgba(0, 0, 0, 0.5) 40%, 
+        rgba(0, 0, 0, 0.2) 100%);
+    z-index: 2;
+}
+
+/* --- 5. تفاصيل الكارت (الذهب الخالص) --- */
+.category-info {
+    position: relative; 
+    margin-top: auto; 
+    width: 100%;
+    padding: 70px 50px; 
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    justify-content: flex-end; /* دفع العناصر لتبدأ من الأسفل */
+     height: 100%;
+}
+
+/* --- 6. الأيقونات (الوهج الذهبي) --- */
+.icon-box i {
+    font-size: 2.8rem; 
+    color: #d4af37; 
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));
+    margin-bottom: 25px;
+     height: 80px; 
+      display: flex;
+      align-items: center;
+}
+
+
+/* --- 7. العنوان (Solid Gold Gradient) --- */
+.category-info h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.4rem; 
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #f9f295 0%, #e0aa3e 25%, #b8860b 50%, #e0aa3e 75%, #f9f295 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+      margin-bottom: 20px;
+ height: 160px;
+   
+    display: flex;
+       
+    align-items: center; 
+    overflow: hidden;
+  
+
+}
+
+
+/* --- 8. الوصف (النص الذهبي) --- */
+.tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem; 
+    color: #d4af37; 
+    line-height: 1.6;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+
+    /* ✅ السر الثالث: توحيد ارتفاع منطقة الوصف لضمان توازي الأزرار */
+    margin-top: 5px; 
+ 
+      margin-bottom: 40px; 
+    min-height: 80px; /* يحجز مساحة لـ 3 أسطر مثلاً لضمان توازي الأزرار */
+    display: flex;
+    align-items: flex-start;
+    height: 120px; /* مساحة ثابتة تكفي لـ 3 أو 4 أسطر */
+     overflow: hidden;
+}
+
+/* --- 9. زر الاستكشاف (The Royal Seal) --- */
+.explore-btn {
+
+
+    position: relative;
+    display: inline-block;
+    padding: 18px 50px; 
+    color: #d4af37; 
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem; 
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    border: 1px solid #d4af37; 
+    background: transparent;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+    /* ✅ يضمن بقاء الزر في الأسفل دائماً */
+    margin-top: auto; 
+      /* لا تغير التنسيقات، فقط تأكد من الـ margin-top */
+   
+    width: fit-content;
+}
+
+.explore-btn:hover {
+    background: #d4af37;
+    color: #000; 
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); 
+}
+
+
+
+/* --- تعديلات الشاشات المتوسطة (1042px) - توازن الفخامة --- */
+@media (max-width: 1042px) {
+    
+    /* 1. الشبكة: كارتين في الصف مع مساحة تنفس جيدة */
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px; 
+        padding: 0 30px;
+    }
+
+    /* 2. طول الكارت: صغرناه قليلاً من 650px ليبقى متناسقاً */
+    .category-card {
+        min-height: 580px; 
+    }
+
+    /* 3. حاوية المعلومات: تقليل بسيط للبادينج */
+    .category-info {
+        padding: 50px 40px;
+    }
+
+    /* 4. الأيقونة: حجم متوسط وواضح */
+    .icon-box i {
+        font-size: 2.5rem; 
+        height: 70px;
+    }
+
+    /* 5. العنوان: تكبير الحجم (أكبر من الاقتراح السابق) */
+    .category-info h3 {
+        font-size: 2.1rem; /* حجم ملكي مريح */
+        height: 130px; /* مساحة واسعة للعنوان */
+        letter-spacing: 8px;
+        margin-bottom: 15px;
+    }
+
+    /* 6. الوصف: حجم مقروء وفخم */
+    .tagline {
+        font-size: 1.1rem;
+        height: 110px; /* مساحة تسمح بأسطر كافية */
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+
+    /* 7. الزر: حافظنا على ضخامته */
+    .explore-btn {
+        padding: 18px 45px;
+        font-size: 0.85rem;
+        letter-spacing: 3px;
+    }
+}
+/* --- تعديلات دقيقة لشاشات 945px (تحسين الطول والأحجام) --- */
+@media (max-width: 945px) {
+    
+
+.menu-page-container{
+    margin-top: 20px;
+}
+
+
+    /* 1. تقليل المسافة بين الكروت */
+    .categories-grid {
+        gap: 25px;
+        padding: 0 20px;
+    }
+
+    /* 2. تقليل طول الكارت ليكون أكثر تناسقاً */
+    .category-card {
+        min-height: 480px; 
+    }
+
+    /* 3. ضغط المسافات الداخلية */
+    .category-info {
+        padding: 40px 30px;
+    }
+
+    /* 4. تصغير الأيقونة قليلاً */
+    .icon-box i {
+        font-size: 2.2rem;
+        height: 60px;
+        margin-bottom: 10px;
+    }
+
+    /* 5. العنوان: تصغير الحجم والـ Slot الخاص به */
+    .category-info h3 {
+        font-size: 1.8rem;
+        height: 110px; /* تقليل الارتفاع الثابت ليتناسب مع قصر الكارت */
+        letter-spacing: 5px;
+        margin-bottom: 10px;
+    }
+
+    /* 6. الوصف: تصغير الخط والـ Slot */
+    .tagline {
+        font-size: 1rem;
+        height: 90px; /* مساحة محكمة تكفي لسطرين أو ثلاثة */
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+
+    /* 7. الزر: حجم أصغر ليتناسب مع كادر الكارت الجديد */
+    .explore-btn {
+        padding: 14px 35px;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+
+
+}
+@media (max-width: 835px) {
+  /* 8. الهيدر العلوي: تصغير حجم عنوان الصفحة */
+    .royal-title {
+        font-size: 3.6rem;
+        letter-spacing: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .menu-header {
+        margin-bottom: 80px; /* تقليل الفراغ تحت الهيدر */
+    }
+}
+
+/* --- تحويل الكروت لصف واحد عند 680px مع استعادة الضخامة --- */
+@media (max-width: 773px) {
+
+
+
+.title-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+
+
+    /* 1. زيادة المسافة بين الكروت لتعطي هيبة لكل قسم */
+    .categories-grid {
+        grid-template-columns: 1fr; 
+        gap: 60px; 
+        padding: 0 20px;
+    }
+
+    /* 2. زيادة طول الكارت ليتناسب مع ضخامة الخطوط الجديدة */
+    .category-card {
+        min-height: 650px; /* زيادة كبيرة ليعطي إحساس الـ Poster */
+    }
+
+    /* 3. تكبير البادينج الداخلي */
+    .category-info {
+        padding: 70px 45px;
+    }
+
+    /* 4. الأيقونة: عملاقة وواضحة (+50%) */
+    .icon-box i {
+        font-size: 3.6rem; /* كانت 2.4rem */
+        height: 100px;
+        margin-bottom: 25px;
+    }
+
+    /* 5. العنوان: ضخم جداً وملكي (+50%) */
+    .category-info h3 {
+        font-size: 3rem; /* كانت 2rem */
+        line-height: 1.2;
+        letter-spacing: 8px;
+        margin-bottom: 20px;
+        min-height: 100px;
+    }
+
+    /* 6. الوصف: حجم خط كبير وواضح جداً (+50%) */
+    .tagline {
+        font-size: 1.6rem; /* كانت 1.1rem */
+        line-height: 1.6;
+        margin-bottom: 45px;
+        max-width: 100%;
+        min-height: 75px;
+    }
+
+    /* 7. الزر: ضخم لسهولة الضغط والفخامة (+50%) */
+    .explore-btn {
+        padding: 24px 70px; /* زيادة مساحة الضغط */
+        font-size: 1.2rem; /* كانت 0.85rem */
+        letter-spacing: 5px;
+        border-width: 2px; /* زيادة سمك الإطار ليظهر بوضوح */
+    }
+
+    /* 8. عنوان الصفحة الرئيسي: ليجاري ضخامة الكروت */
+    
+}
+/* --- تعديلات الموبايل (700px): فخامة متزنة (Modern Luxury) --- */
+@media (max-width: 700px) {
+
+    /* 1. الحفاظ على مسافات جيدة لبروز الكارت */
+    .categories-grid {
+        grid-template-columns: 1fr; 
+        gap: 45px; 
+        padding: 0 25px;
+    }
+
+    /* 2. طول الكارت: طويل بما يكفي ليكون سينمائياً (Cinema Portrait) */
+    .category-card {
+        min-height: 600px; 
+    }
+
+    /* 3. بادينج داخلي يعطي مساحة للتنفس */
+    .category-info {
+        padding: 55px 35px;
+    }
+
+    /* 4. الأيقونة: واضحة وفخمة */
+    .icon-box i {
+        font-size: 2.8rem;
+        height: 75px;
+        margin-bottom: 15px;
+    }
+
+    /* 5. العنوان: عريض ومهيب دون تداخل */
+    .category-info h3 {
+        font-size: 2.3rem;
+        line-height: 1.2;
+        letter-spacing: 6px;
+        margin-bottom: 15px;
+        min-height: 80px;
+    }
+
+    /* 6. الوصف: خط "Playfair" واضح جداً ومريح */
+    .tagline {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        margin-bottom: 35px;
+        max-width: 100%;
+        min-height: 60px;
+    }
+
+    /* 7. الزر: عريض وفخم (The Royal Button) */
+    .explore-btn {
+        padding: 20px 55px;
+        font-size: 1rem;
+        letter-spacing: 4px;
+        border-width: 1.5px;
+        width: fit-content; /* الحفاظ على شكل الزر كقطعة منفصلة */
+        display: inline-block;
+    }
+
+    /* 8. الهيدر الرئيسي للصفحة */
+    .royal-title {
+        font-size: 2.4rem;
+        letter-spacing: 7px;
+        margin-bottom: 20px;
+    }
+
+    .title-divider {
+        gap: 20px;
+    }
+
+    .line {
+        width: 100px;
+    }
+}
+
+
+/* --- تعديلات الشاشات الصغيرة جداً (520px): الأناقة المُحكمة --- */
+@media (max-width: 520px) {
+
+    /* 1. تقليل المسافات لضمان عدم خروج العناصر عن الشاشة */
+    .categories-grid {
+        gap: 25px; 
+        padding: 0 10px;
+    }
+
+    /* 2. طول الكارت: تقليل الطول ليتناسب مع عرض الشاشة الصغير */
+    .category-card {
+        min-height: 420px; 
+    }
+
+    /* 3. تقليل البادينج الداخلي (توفير مساحة للنصوص) */
+    .category-info {
+        padding: 30px 20px;
+    }
+
+    /* 4. الأيقونة: حجم متوسط وواضح */
+    .icon-box i {
+        font-size: 2rem;
+        height: 50px;
+        margin-bottom: 8px;
+    }
+
+    /* 5. العنوان: حجم مناسب للموبايل مع الحفاظ على الفخامة */
+    .category-info h3 {
+        font-size: 1.6rem; /* حجم مثالي للشاشات الصغيرة */
+        letter-spacing: 3px;
+        margin-bottom: 10px;
+        min-height: auto; /* ترك الارتفاع مرن */
+    }
+
+    /* 6. الوصف: خط "Playfair" بحجم ناعم ومقروء */
+    .tagline {
+        font-size: 1rem;
+        line-height: 1.4;
+        margin-bottom: 25px;
+        min-height: auto;
+    }
+
+    /* 7. الزر: حجم "Slim" أنيق وسهل اللمس */
+    .explore-btn {
+        padding: 14px 35px;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        border-width: 1px;
+    }
+
+
+}

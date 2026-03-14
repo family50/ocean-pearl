@@ -1,0 +1,1492 @@
+/* ==========================================================================
+   1. المتغيرات الملكية (Luxury CSS Variables)
+   ========================================================================== */
+/* نستخدم هنا تدرجات الذهب (Metallic Gold) والسواد الفحمي (Obsidian) */
+:root {
+    --gold: #C5A059;         /* الذهب الأساسي */
+    --gold-bright: #F9E4B7;  /* انعكاس الضوء الساطع */
+    --gold-dark: #8A6E2F;    /* ظل الذهب النحاسي */
+    --deep-black: #050505;   /* سواد مطلق لزيادة التباين */
+    --soft-black: #0B0B0B;   /* أسود ناعم للأسطح الثانوية */
+    --white: #ffffff;
+    --gray-text: rgba(255, 255, 255, 0.5);
+    --border-gold: rgba(197, 160, 89, 0.3);
+    /* حركة انسيابية بطيئة تليق بالفخامة */
+    --transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ==========================================================================
+   2. التنسيق العام والحاوية (Main Layout)
+   ========================================================================== */
+/* الحاوية الرئيسية تغطي 95% من عرض الشاشة بفضل Padding 2.5% */
+.billing-page-container {
+    background-color: var(--deep-black);
+    color: var(--white);
+    min-height: 100vh;
+    padding: 120px 2.5%; 
+    position: relative;
+       font-family: 'Cinzel', serif;
+    overflow-x: hidden;
+    /* خلفية متدرجة شعاعياً لإعطاء شعور بالعمق */
+    background-image: radial-gradient(circle at 50% -20%, #1a1a1a 0%, var(--deep-black) 80%);
+}
+
+.billing-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+/* طبقة جمالية شفافة تضيف توهجاً ذهبياً في زوايا الصفحة */
+.luxury-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: 
+        radial-gradient(circle at 100% 0%, rgba(197, 160, 89, 0.05), transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(138, 110, 47, 0.03), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ==========================================================================
+   3. قسم العنوان الملكي (The Royal Hero Section)
+   ========================================================================== */
+.billing-hero {
+    margin-bottom: 100px; /* زيادة المسافة لإعطاء فخامة أكبر */
+    z-index: 1;
+    position: relative;
+    text-align: center; /* جعل العنوان في المنتصف يعطي هيبة رسمية أكثر */
+    animation: heroFade 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.gold-tag {
+    /* تدرج ذهبي للنص الصغير */
+    background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    text-transform: uppercase;
+    letter-spacing: 12px; /* زيادة التباعد لتعزيز مظهر البراندات الفاخرة */
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+/* إضافة خطين ذهبيين حول التاج الصغير */
+.gold-tag::before, .gold-tag::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C5A059);
+}
+
+.gold-tag::before { right: 115%; }
+.gold-tag::after { left: 115%; transform: rotate(180deg); }
+
+.luxury-title {
+    font-size: 5.5rem; /* تكبير العنوان */
+    font-weight: 300;
+    margin: 0;
+    letter-spacing: -3px;
+    line-height: 1;
+    color: #ffffff; /* اللون الأساسي أبيض ساطع */
+     font-family: 'Cinzel', serif;
+}
+
+/* تأثير النص الذهبي المتدرج للكلمة المميزة */
+.luxury-title span {
+    font-weight: 800;
+    font-family: 'Cinzel', serif;
+    /* تدرج ذهبي ملكي يتناسب مع الكروت */
+    background: linear-gradient(135deg, #8A6E2F 0%, #F9E4B7 50%, #C5A059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+    padding: 0 15px;
+}
+
+/* زخرفة سفلية ذهبية ناعمة تحت الكلمة المميزة */
+.luxury-title span::after {
+    content: '';
+    position: absolute;
+    bottom: 10px; 
+    left: 0;
+    width: 100%; 
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #F9E4B7, transparent);
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.5);
+}
+
+/* فاصل هيرو جديد (The Platinum Divider) */
+.hero-divider {
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #C5A059, transparent);
+    margin: 40px auto 0;
+    position: relative;
+}
+
+.hero-divider::before {
+    content: '◈';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000; /* نفس لون خلفية الموقع */
+    padding: 0 15px;
+    color: #D4AF37;
+    font-size: 1rem;
+}
+
+
+/* ==========================================================================
+   4. التوزيع الأساسي (The Wide Horizon Flex Grid)
+   ========================================================================== */
+/* نستخدم Flexbox هنا لدفع المنتجات لليسار والملخص لليمين تماماً */
+.billing-main-grid {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    width: 100%;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+/* الجانب الأيسر: قائمة المشتريات */
+.items-list-container {
+    flex-basis: 55%; 
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+
+
+
+/* ==========================================================================
+   5. كروت المنتجات: البياض اللؤلؤي بلمسة ذهبية (The Gold-Tinted Pearl)
+   ========================================================================== */
+.luxe-item-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto; 
+    align-items: center;
+     gap: clamp(15px, 4vw, 50px);
+    padding: clamp(20px, 3vw, 35px) clamp(25px, 4vw, 50px);
+    
+    /* خلفية بيضاء لؤلؤية مشبعة بلمسة ذهبية خفيفة جداً عند الأطراف */
+ background: linear-gradient(135deg, #e8e8e8 0%, #dcdcdc 25%, #f2f2f2 50%, #cfcfcf 75%, #e0e0e0 100%);
+    
+    /* بوردر ذهبي ملكي رفيع وأنيق */
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    
+    /* ظل مزدوج: ظل خارجي للعمق وظل داخلي ذهبي خافت */
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        inset 0 0 15px rgba(197, 160, 89, 0.05);
+        
+    transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+    margin-top: 16px;
+}
+
+/* تأثير التوهج الذهبي عند تمرير الماوس (Hover) */
+.luxe-item-card:hover {
+    transform: translateY(-10px) scale(1.01);
+    /* تعميق البوردر الذهبي عند الهافر */
+    border: 1px solid rgba(197, 160, 89, 0.8);
+    /* خلفية مشعة أكثر */
+    background: linear-gradient(135deg, #ffffff 0%, #fff9e6 100%);
+    /* ظل ذهبي خارجي ناعم (Glow Effect) */
+    box-shadow: 
+        0 35px 70px rgba(0, 0, 0, 0.15),
+        0 0 20px rgba(197, 160, 89, 0.2);
+}
+
+/* إضافة خط جانبي ذهبي سميك لزيادة الهيبة */
+.luxe-item-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, #8A6E2F, #F9E4B7, #C5A059);
+    opacity: 0.7;
+}
+
+/* زر الحذف أعلى الكارت */
+.delete-icon, .text-remove {
+    position: absolute;
+    top: 20px; right: 25px;
+    background: none !important;
+    border: none !important;
+    color: rgba(138, 110, 47, 0.4) !important; /* لون ذهبي باهت */
+    font-size: 0.7rem !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    z-index: 5;
+      color: #8b0000 !important; 
+}
+
+.delete-icon:hover { 
+    color: rgba(139, 0, 0, 0.2) !important; 
+    transform: scale(1.4);
+    text-shadow: 0 0 10px rgba(139, 0, 0, 0.2);
+}
+
+/* تنسيق صورة المنتج */
+.item-img-wrapper {
+    width: 110px; height: 110px;
+    border-radius: 16px;
+    overflow: hidden;
+    /* إطار ذهبي مزدوج للصورة */
+    border: 2px solid #F9E4B7;
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.1);
+}
+
+.item-img-wrapper img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.luxe-item-card:hover .item-img-wrapper img { 
+    transform: scale(1.15); 
+}
+
+/* --- النصوص الذهبية الملكية (Golden Typography) --- */
+/* تعديل أحجام النصوص لتصغر تدريجياً */
+.item-meta h3 {
+    /* clamp(الحد الأدنى، الحجم المفضل، الحد الأقصى) */
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.unit-price {
+    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+    color: #8A6E2F;
+    display: block;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+/* العداد (The Stepper) بتصميم ذهبي متناغم */
+.luxe-stepper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(197, 160, 89, 0.08); /* خلفية بلمسة ذهبية */
+    padding: 10px 22px;
+    border-radius: 100px;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+}
+
+.luxe-stepper button {
+    background: none; border: none;
+    color: #8A6E2F; 
+    font-size: 1.5rem;
+    cursor: pointer; 
+    transition: 0.3s;
+}
+
+.luxe-stepper button:hover {
+    color: #C5A059;
+    transform: scale(1.3);
+}
+
+.qty-val { 
+    font-size: 1.2rem; 
+    font-weight: 700; 
+    color: #4a3b1a; 
+}
+
+/* السعر النهائي (تدرج ذهبي عريض) */
+.price, .total-item-price {
+    font-size: 2.3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    min-width: 150px;
+    text-align: right;
+       font-family: 'Cinzel', serif;
+    filter: drop-shadow(0 2px 4px rgba(197, 160, 89, 0.1));
+}
+
+
+.type-label ,.reservation-info{
+     background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* تنسيق الصورة المستجيب */
+.item-img-wrapper {
+    /* الصورة تصغر مع الشاشة حتى حد معين */
+    width: clamp(70px, 10vw, 110px);
+    height: clamp(70px, 10vw, 110px);
+    border-radius: 16px;
+    border: 2px solid #F9E4B7;
+}
+/* العداد (The Stepper) */
+.luxe-stepper {
+    gap: clamp(10px, 2vw, 20px);
+    padding: clamp(5px, 1vw, 10px) clamp(12px, 2vw, 22px);
+}
+
+.luxe-stepper button {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+}
+
+.qty-val { 
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+}
+
+/* السعر النهائي */
+.price, .total-item-price {
+    font-size: clamp(1.4rem, 3vw, 2.3rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    min-width: clamp(100px, 12vw, 150px);
+    text-align: right;
+    font-family: 'Cinzel', serif;
+}
+/* ==========================================================================
+   6. الجانب الأيمن (The Platinum Pearl & Gold Summary)
+   ========================================================================== */
+.summary-sticky-card {
+    flex-basis: 35%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    position: sticky;
+    top: 50px;
+    
+    /* تدرج البياض البلاتيني ليتطابق تماماً مع الكروت اليسرى */
+    background: linear-gradient(135deg, #e8e8e8 0%, #dcdcdc 25%, #f2f2f2 50%, #cfcfcf 75%, #e0e0e0 100%);
+    
+    /* بوردر ذهبي ملكي صريح */
+    border: 1px solid rgba(197, 160, 89, 0.6);
+    border-radius: 30px;
+    padding: 50px 60px;
+    
+    /* ظل ناعم يتناسب مع الخلفية الفاتحة مع لمسة ذهبية داخلية */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), inset 0 0 20px rgba(197, 160, 89, 0.05);
+    z-index: 10;
+    transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.summary-sticky-card:hover {
+    transform: translateY(-5px);
+    border: 1px solid rgba(197, 160, 89, 0.9);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2), 0 0 30px rgba(197, 160, 89, 0.15);
+}
+
+.summary-heading {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    /* تدرج ذهبي ملكي للعنوان فوق الخلفية الفاتحة */
+    background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    padding-bottom: 25px;
+    margin-bottom: 35px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    /* لون داكن للنصوص لضمان التباين مع الخلفية الفاتحة */
+     /* تدرج ذهبي ملكي للعنوان فوق الخلفية الفاتحة */
+    background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.detail-row span:last-child { 
+    /* القيم الرقمية بالذهب الداكن المصقول */
+    color: #8A6E2F;   /* تدرج ذهبي ملكي للعنوان فوق الخلفية الفاتحة */
+    background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* قسم المجموع الكلي النهائي */
+.total-grand-section {
+    margin-top: 40px;
+    padding-top: 35px;
+    border-top: 1px dotted rgba(197, 160, 89, 0.5);
+    text-align: center;
+    position: relative;
+     background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.total-grand-section::before {
+    content: 'TOTAL AMOUNT';
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+      /* تدرج ذهبي ملكي للعنوان فوق الخلفية الفاتحة */
+    background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.total-grand-section .amount {
+    display: block;
+    font-size: 4.8rem;
+    font-weight: 700;
+    /* تدرج الذهب القوي للمبلغ النهائي */
+      /* تدرج ذهبي ملكي للعنوان فوق الخلفية الفاتحة */
+    background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+    
+    margin-top: 10px;
+    letter-spacing: -3px;
+    font-family: 'Playfair Display', serif;
+    /* ظل خفيف للنص ليرز فوق البياض */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* ==========================================================================
+   7. زر الدفع النهائي (The Royal Liquid Gold Button)
+   ========================================================================== */
+.confirm-payment-btn {
+    width: 100%;             /* يملأ عرض الحاوية بالكامل */
+    max-width: none;         /* يضمن عدم وجود سقف للعرض */
+    padding: 26px 65px;      /* زيادة البادينج الجانبي ليعطي إحساساً بالضخامة */
+    
+    /* تدرج ذهبي سائل ومتحرك */
+    background: linear-gradient(90deg, #8A6E2F, #C5A059, #F9E4B7, #C5A059, #8A6E2F);
+    background-size: 200% auto;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    margin-top: 45px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1rem;         /* تكبير الخط قليلاً ليتناسب مع العرض الجديد */
+    letter-spacing: 2px;     /* زيادة تباعد الحروف لمظهر أكثر ملكية */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;        /* لضمان عدم خروج لمعان الزر عن الحدود */
+    transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    box-shadow: 0 15px 30px rgba(138, 110, 47, 0.3);
+}
+
+.confirm-payment-btn:hover {
+    background-position: right center;
+    transform: translateY(-3px) scale(1.02); /* رفعه وتكبيره قليلاً عند التمرير */
+    box-shadow: 0 25px 50px rgba(197, 160, 89, 0.4);
+}
+.confirm-payment-btn:active {
+    transform: translateY(-2px);
+}
+
+/* ملاحظة الأمان أسفل الزر */
+.secure-note {
+    text-align: center;
+    font-size: 0.65rem;
+    /* لون متناسق مع التدرج البلاتيني */
+     background: linear-gradient(135deg, #8A6E2F 0%, #C5A059 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; 
+    margin-top: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+
+
+/* ==========================================================================
+   8. التأثيرات الحركية (Keyframes)
+   ========================================================================== */
+@keyframes goldPulse {
+    0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(197, 160, 89, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+}
+
+
+
+/* ==========================================================================
+   9. التوافق مع الشاشات (Responsive Design)
+   ========================================================================== */
+/* ==========================================================================
+   9. التوافق مع الشاشات (Responsive Design - 1400px Optimization)
+   ========================================================================== */
+
+@media (max-width: 1400px) {
+    /* 1. تقليل المسافات العامة في الصفحة */
+    .billing-page-container {
+        padding: 80px 3%;
+    }
+
+    .billing-wrapper {
+        margin-top: 50px;
+    }
+
+    /* 2. تصغير قسم الـ Hero */
+    .luxury-title {
+        font-size: 4rem; /* بدلاً من 5.5rem */
+    }
+
+    .gold-tag {
+        letter-spacing: 8px; /* تقليل التباعد قليلاً */
+        font-size: 0.65rem;
+    }
+
+    .hero-divider {
+        width: 100px;
+        margin: 30px auto 0;
+    }
+
+    /* 3. تعديل شبكة التوزيع (Grid) */
+    .billing-main-grid {
+        gap: 30px;
+    }
+
+    .items-list-container {
+        flex-basis: 60%; /* إعطاء مساحة أكبر قليلاً للمنتجات */
+    }
+
+    .summary-sticky-card {
+        flex-basis: 38%;
+        padding: 40px 45px; /* تقليل البادينج الداخلي للملخص */
+    }
+
+    /* 4. تصغير كروت المنتجات */
+    .luxe-item-card {
+        padding: 25px 35px;
+        gap: 30px;
+    }
+
+    .item-img-wrapper {
+        width: 90px;
+        height: 90px;
+    }
+
+    .item-meta h3 {
+        font-size: 1.3rem; /* تصغير عنوان المنتج */
+    }
+
+    .price, .total-item-price {
+        font-size: 1.8rem; /* تصغير السعر */
+        min-width: 120px;
+    }
+
+    /* 5. تصغير قسم الملخص (Summary Section) */
+    .total-grand-section .amount {
+        font-size: 3.5rem; /* تصغير المبلع الإجمالي الكبير */
+        letter-spacing: -2px;
+    }
+
+    .summary-heading {
+        font-size: 1rem;
+        letter-spacing: 4px;
+        margin-bottom: 25px;
+    }
+
+    .detail-row {
+        margin-bottom: 18px;
+        font-size: 0.85rem;
+    }
+
+    /* 6. تصغير أزرار التحكم والدفع */
+    .luxe-stepper {
+        padding: 8px 18px;
+    }
+
+    .confirm-payment-btn {
+        padding: 20px 40px;
+        font-size: 0.85rem;
+      
+        margin-top: 30px;
+    }
+
+    .secure-note {
+        font-size: 0.6rem;
+        margin-top: 20px;
+    }
+}
+
+/* ==========================================================================
+   9. التوافق مع الشاشات (Optimization for 1220px)
+   ========================================================================== */
+
+@media (max-width: 1220px) {
+    /* 1. تقليل الحواف الخارجية والمسافات */
+    .billing-page-container {
+        padding: 60px 2%; /* تقليل المسافة الجانبية لتوفير مساحة للمحتوى */
+     
+    }
+
+    .summary-sticky-card {
+       
+        padding: 40px 55px; /* تقليل البادينج الداخلي للملخص */
+    }
+ 
+
+    /* 2. تصغير قسم الـ Hero (العنوان العلوي) */
+    .luxury-title {
+        font-size: 3.2rem; /* تصغير ملحوظ للعنوان */
+        letter-spacing: -1px;
+    }
+
+    .gold-tag {
+        letter-spacing: 6px;
+        font-size: 0.6rem;
+        margin-bottom: 15px;
+    }
+
+    .hero-divider {
+        width: 80px;
+        margin: 25px auto 0;
+    }
+
+    /* 3. تعديل توزيع الشبكة (Grid Layout) */
+    .billing-main-grid {
+        gap: 20px; /* تقليل الفراغ بين القائمة والملخص */
+    }
+
+    .items-list-container {
+        flex-basis: 62%; /* زيادة طفيفة في مساحة قائمة المنتجات */
+    }
+
+    .summary-sticky-card {
+        flex-basis: 36%;
+        padding: 35px 30px; /* تصغير المسافات الداخلية للملخص */
+    }
+
+    /* 4. كروت المنتجات (Product Cards) */
+    .luxe-item-card {
+        padding: 20px 25px; /* تصغير الحواف الداخلية للكارت */
+        gap: 20px;
+        grid-template-columns: auto 1fr auto auto; /* الحفاظ على الهيكل الأفقي */
+    }
+
+    .item-img-wrapper {
+        width: 75px; /* تصغير حجم صورة المنتج */
+        height: 75px;
+        border-radius: 12px;
+    }
+
+    .item-meta h3 {
+        font-size: 1.15rem; /* تصغير اسم المنتج */
+    }
+
+    .unit-price {
+        font-size: 0.8rem;
+    }
+
+    /* 5. العداد والأسعار (Controls & Prices) */
+    .luxe-stepper {
+        padding: 6px 14px;
+        gap: 12px;
+    }
+
+    .luxe-stepper button {
+        font-size: 1.2rem;
+    }
+
+    .qty-val {
+        font-size: 1rem;
+    }
+
+    .price, .total-item-price {
+        font-size: 1.5rem; /* تصغير السعر النهائي للمنتج */
+        min-width: 100px;
+    }
+
+
+
+
+
+
+
+
+    /* 6. قسم الملخص النهائي (Summary Section) */
+    .summary-heading {
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+       
+    }
+
+    .detail-row {
+        margin-bottom: 15px;
+        font-size: 0.8rem;
+    }
+
+    .total-grand-section {
+        margin-top: 30px;
+        padding-top: 25px;
+
+    }
+
+    .total-grand-section .amount {
+        font-size: 2.8rem; /* تصغير المبلغ الإجمالي الضخم */
+        letter-spacing: -1px;
+    }
+
+    /* 7. زر التأكيد (Payment Button) */
+    .confirm-payment-btn {
+        padding: 18px;
+        font-size: 0.8rem;
+        
+        margin-top: 25px;
+        border-radius: 10px;
+    }
+
+    .secure-note {
+        font-size: 0.55rem;
+        margin-top: 15px;
+    }
+}
+
+
+
+
+/* ==========================================================================
+   9. التوافق مع الشاشات: واجهة الملخص المستعرضة (The Horizontal Grand Summary)
+   ========================================================================== */
+
+@media (max-width: 1090px) {
+    /* 1. الحاوية الرئيسية */
+    .billing-main-grid {
+        flex-direction:column;
+        
+        gap: 50px;
+    }
+
+/* 1. الحاوية الرئيسية: نضمن أنها تمدد العناصر لملء العرض بالكامل */
+    .billing-main-grid {
+        display: flex;
+        flex-direction:column-reverse;
+        align-items: stretch; /* هذا يضمن أن العناصر ستأخذ العرض المتاح بالكامل */
+        width: 100%;
+        gap: 50px;
+    }
+
+    /* 2. تعديل الملخص ليكون بانر كامل العرض */
+    .summary-sticky-card {
+        order: -1;
+        width: 100%; /* العرض الكامل */
+        max-width: 100% !important; /* إلغاء أي تحديد سابق */
+        min-height: auto; /* ترك الارتفاع يتحدد بالمحتوى أو تحديد رقم ثابت بسيط */
+        max-height: 500px; 
+        
+        display: grid;
+        /* توزيع المساحة: اليسار للبيانات واليمين للمبلغ والزر */
+        grid-template-columns: 1.2fr 1fr; 
+        align-items: center;
+        gap: 30px;
+        
+        padding: 50px 5%; /* بادينج جانبي بنسبة مئوية لضمان التوازن */
+        border-radius: 40px;
+        position: relative;
+        margin-top: -100px; /* تقليل المارجن العلوي قليلاً لضبط المسافات */
+        margin-left: 0;
+        margin-right: 0;
+      
+    }
+
+    /* 3. عناصر العنوان داخل الملخص */
+    .summary-heading {
+        grid-column: 1 / -1; 
+        text-align: center;
+        letter-spacing: clamp(6px, 2vw, 12px);
+        margin-bottom: 30px;
+    }
+
+    /* 4. الجهة اليمنى (المجموع والزر) */
+    .total-grand-section {
+        border-left: 1px solid rgba(197, 160, 89, 0.2);
+        padding-left: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; /* دفع المحتويات لليمين داخل قسمها */
+        text-align: right;
+    }
+
+    /* 5. زر الدفع المبدع */
+    .confirm-payment-btn {
+        width: 100%; /* يأخذ عرض القسم الأيمن بالكامل */
+        max-width: 400px; /* نضع حد أقصى للزر لكي لا يبدو ضخماً بشكل سيء */
+        margin-top: 25px;
+        padding: 22px;
+        font-size: 0.9rem;
+        letter-spacing: 1px; /* رجعت الـ spacing للفخامة */
+    }
+
+    /* 6. كروت المنتجات لتأخذ العرض الكامل أيضاً */
+    .items-list-container {
+        width: 100%;
+        max-width: 100% !important;
+    }
+
+    .luxe-item-card {
+        width: 100%;
+        grid-template-columns: auto 1fr auto auto;
+    }
+
+    /* 7. السيكشن ليبل (العنوان الفاصل) */
+    .section-label {
+        width: 100%;
+        margin-top: 60px;
+        text-align: center;
+        display: block;
+    }
+    /* 6. قائمة المنتجات (أسفل البانر) */
+    .items-list-container {
+        width: 100%;
+        max-width: 100%;
+        gap: 25px;
+    }
+
+    /* تعديل كارت المنتج ليكون أنحف قليلاً ليتناسب مع الترتيب الجديد */
+    .luxe-item-card {
+        padding: 25px 40px;
+        background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%); /* تفتيح بسيط لزيادة التباين */
+       margin-top: 15px;
+    }
+}
+
+@media (max-width: 890px) {
+    .billing-page-container {
+        /* إضافة مسافة كبيرة في الأسفل فقط */
+        padding-bottom: 100px; 
+    }
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   9. تحسين العرض للهواتف الكبيرة والتابلت الصغير (727px)
+   ========================================================================== */
+
+@media (max-width: 727px) {
+    /* 1. تقليل الحواف العامة لتوفير مساحة */
+    .billing-page-container {
+        padding: 40px 15px;
+        
+    }
+
+    /* 2. تصغير الهيرو بشكل كبير ليتناسب مع الشاشة الصغير */
+    .luxury-title {
+        font-size: 2.2rem;
+        letter-spacing: -1px;
+    }
+
+    .gold-tag {
+        letter-spacing: 4px;
+        font-size: 0.55rem;
+    }
+
+    .hero-divider {
+        width: 60px;
+        margin: 20px auto 0;
+    }
+
+    /* 3. تعديل بانر الملخص (Summary Banner) ليصبح عمودياً */
+.summary-sticky-card {
+        grid-template-columns: 1fr;
+        gap: 12px;           /* تقليل الفجوة من 20px إلى 12px */
+        padding: 20px 15px;  /* تقليل البادينج العمودي من 30px إلى 20px */
+        max-height: none;
+        border-radius: 20px; /* حواف أنعم قليلاً لتناسب الحجم الأصغر */
+        text-align: center;
+    }
+
+    .summary-heading {
+        font-size: 0.8rem;   /* تصغير العنوان قليلاً */
+        letter-spacing: 3px; /* تقليل تباعد الحروف */
+        margin-bottom: 10px; /* تقليل المسافة السفلية للعنوان */
+    }
+
+    /* تقليل المسافات في صفوف التفاصيل (الضريبة، المجموع الفرعي) */
+    .detail-row {
+        margin-bottom: 5px; 
+        font-size: 0.8rem;
+    }
+
+    .total-grand-section {
+        border-left: none;
+        border-top: 1px dotted rgba(197, 160, 89, 0.2);
+        padding-left: 0;
+        padding-top: 15px;   /* تقليل المسافة العلوية من 25px إلى 15px */
+        margin-top: 5px;     /* تقليل المارجن */
+        align-items: center;
+        text-align: center;
+    }
+
+    .total-grand-section .amount {
+        font-size: 2.2rem;   /* تصغير المبلغ من 3rem إلى 2.2rem لتوفير مساحة رأسية */
+        line-height: 1;      /* ضغط الارتفاع الخاص بالسطر */
+        margin: 5px 0;       /* تقليل الهوامش حول المبلغ */
+    }
+
+    .confirm-payment-btn {
+        width: 100%;
+        max-width: none;
+        padding: 14px;       /* تصغير ارتفاع الزر قليلاً */
+        font-size: 0.8rem;
+        margin-top: 10px;    /* تقريب الزر من المجموع */
+    }
+
+    .secure-note {
+        font-size: 0.6rem;
+        margin-top: 8px;     /* تقليل مسافة نص الأمان السفلي */
+    }
+
+
+
+
+
+    /* 1. زيادة المسافات العامة للمحتوى */
+    .billing-page-container {
+        padding: 42px 14px; /* زيادة من 30px */
+    }
+
+    /* 2. كارت المنتج: أحجام أكبر بنسبة 40% */
+    .luxe-item-card {
+        padding: 21px; /* زيادة من 15px */
+        gap: 17px;     /* زيادة من 12px */
+        grid-template-columns: auto 1fr auto auto; /* الحفاظ على الترتيب الأفقي */
+        border-radius: 21px;
+        margin-top: 14px;
+    }
+
+    /* 3. تصغير صورة المنتج (أصبحت أوضح الآن) */
+    .item-img-wrapper {
+        width: 77px;  /* زيادة من 55px */
+        height: 77px;
+        border-width: 1.5px; 
+    }
+
+    /* 4. العناوين والأسعار */
+    .item-meta h3 {
+        font-size: 1.25rem; /* زيادة من 0.9rem */
+    }
+
+    .unit-price {
+        font-size: 1rem; /* زيادة من 0.7rem */
+    }
+
+    .price, .total-item-price {
+        font-size: 1.55rem; /* زيادة من 1.1rem */
+        min-width: 98px;    /* زيادة من 70px */
+    }
+
+    /* 5. العداد (Stepper) بأحجام مريحة للمس */
+    .luxe-stepper {
+        padding: 6px 14px; /* زيادة من 4px/10px */
+        gap: 11px;         /* زيادة من 8px */
+    }
+
+    .luxe-stepper button {
+        font-size: 1.4rem; /* زيادة من 1rem */
+    }
+
+    .qty-val {
+        font-size: 1.2rem; /* زيادة من 0.85rem */
+    }
+
+
+
+
+    /* 8. أيقونة الحذف */
+    .delete-icon, .text-remove {
+        top: 11px;
+        right: 17px;
+        font-size: 0.7rem !important; /* زيادة من 0.5rem */
+    }
+}
+
+
+
+
+/* ==========================================================================
+   10. تحسين الهواتف المحمولة الصغيرة (580px)
+   ========================================================================== */
+
+@media (max-width: 580px) {
+    /* 1. تقليص الحواف الجانبية للصفحة */
+    .billing-page-container {
+        padding: 25px 8px;
+    }
+
+    /* 2. تصغير الهيرو ليتناسب مع عرض الموبايل */
+    .luxury-title {
+        font-size: 1.8rem;
+    }
+
+    .gold-tag {
+        letter-spacing: 3px;
+        font-size: 0.5rem;
+    }
+
+    /* 3. تصغير كارت المنتج بنسبة كبيرة (الحفاظ على الترتيب الأفقي) */
+    .luxe-item-card {
+        padding: 12px 10px; /* تقليل الحواف الداخلية لأقصى درجة */
+        gap: 10px;          /* تضييق الفجوات */
+        grid-template-columns: auto 1fr auto auto; 
+        border-radius: 12px;
+        margin-top: 9px;
+    }
+
+    /* 4. تصغير الصورة لتوفير مساحة للنص */
+    .item-img-wrapper {
+        width: 50px; 
+        height: 50px;
+    }
+
+    /* 5. تصغير الخطوط لضمان بقائها في سطر واحد */
+    .item-meta h3 {
+        font-size: 0.85rem;
+        white-space: nowrap; /* منع النص من النزول لسطر جديد */
+        overflow: hidden;    /* إخفاء النص الزائد */
+        text-overflow: ellipsis; /* إضافة نقاط (...) إذا كان الاسم طويلاً */
+        max-width: 80px;     /* تحديد عرض أقصى لاسم المنتج */
+    }
+
+    .unit-price {
+        font-size: 0.65rem;
+    }
+
+    /* 6. تصغير العداد والأسعار */
+    .luxe-stepper {
+        padding: 4px 8px;
+        gap: 6px;
+    }
+
+    .luxe-stepper button {
+        font-size: 1rem;
+    }
+
+    .qty-val {
+        font-size: 0.8rem;
+    }
+
+    .price, .total-item-price {
+        font-size: 1rem;
+        min-width: 65px;
+    }
+
+    /* 7. تصغير بانر الملخص (Summary Banner) */
+/* 7. تصغير طول بانر الملخص (Compact Layout) */
+    .summary-sticky-card {
+        padding: 15px 12px; /* تقليل البادينج العمودي جداً */
+        margin-top: -120px;  /* تقليل الإزاحة */
+        gap: 8px;           /* تقليص الفجوات بين العناصر */
+        min-height: auto;   /* السماح له بالانكماش حسب المحتوى */
+    }
+
+    .summary-heading {
+        font-size: 0.7rem;
+        margin-bottom: 8px;  /* تقليل المسافة تحت العنوان */
+        padding-bottom: 8px; /* تقليل البادينج تحت العنوان */
+    }
+
+    /* تصغير المسافات بين صفوف التفاصيل */
+    .detail-row {
+        margin-bottom: 6px;  /* تقليل المسافة بين سطر الضريبة والمجموع الفرعي */
+        font-size: 0.75rem;
+    }
+
+    /* 8. ضغط قسم المجموع النهائي */
+    .total-grand-section {
+        margin-top: 10px;    /* تقليل المسافة العلوية للقسم */
+        padding-top: 10px;   /* تقليل البادينج العلوي */
+    }
+
+    .total-grand-section::before {
+        font-size: 0.55rem;  /* تصغير نص "TOTAL AMOUNT" */
+        margin-bottom: 2px;
+    }
+
+    .total-grand-section .amount {
+        font-size: 1.8rem;   /* تصغير حجم المبلغ لتقليل الارتفاع */
+        line-height: 1.1;
+    }
+
+    /* 9. زر الدفع: جعل الحواف أنحف */
+    .confirm-payment-btn {
+        margin-top: 12px;    /* تقريب الزر من المجموع */
+        padding: 12px;       /* تصغير ارتفاع الزر */
+        font-size: 0.75rem;
+    }
+
+    .secure-note {
+        margin-top: 8px;     /* تقليل المسافة في الأسفل */
+        font-size: 0.5rem;
+    }
+
+    /* 9. أيقونة الحذف */
+    .delete-icon, .text-remove {
+        top: 5px;
+        right: 8px;
+        font-size: 0.5rem !important;
+    }
+}
+
+
+
+
+
+/* ==========================================================================
+   11. تخصيص تفاصيل الحجز فقط (490px)
+   ========================================================================== */
+
+@media (max-width: 490px) {
+    /* تصغير نصوص الحجز (التاريخ، النوع، أو أي معلومات إضافية) */
+    .reservation-info, 
+    .type-label {
+        font-size: 0.65rem !important; /* تصغير الخط بنسبة ملحوظة */
+        letter-spacing: 0.5px;         /* تضييق المسافات بين الحروف */
+        opacity: 0.8;                  /* جعلها أخف قليلاً لتعطي تباين بصري */
+        margin-top: 2px;               /* تقريبها من العنوان */
+        display: block;                /* ضمان بقائها في سطر مستقل إذا لزم الأمر */
+    }
+
+    /* إذا كان هناك أيقونات صغيرة بجانب الحجز */
+    .reservation-info i {
+        font-size: 0.6rem;
+        margin-right: 3px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Empty Cart Styling --- */
+.empty-cart-display-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px;
+    text-align: center;
+    margin-top: -110px;
+}
+
+.empty-luxe-platter-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    perspective: 1000px;
+}
+
+/* الحاوية الأساسية */
+.empty-luxe-platter-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+/* الطبق الذهبي */
+.empty-luxe-platter {
+    width: 80%;
+    height: auto;
+    z-index: 2;
+    position: relative;
+
+}
+
+/* الظل الأبيض الواقعي */
+.platter-real-shadow {
+    width: 40%;
+    height: 20px;
+    background: rgb(255, 255, 255); /* شفافية بسيطة ليكون واقعي */
+    border-radius: 50%;
+    filter: blur(12px);
+    margin-top: -10px; /* لتقريبه من الطبق */
+    z-index: 1;
+
+}
+
+/* التوهج الخلفي */
+.platter-glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(249, 228, 183, 0.2) 0%, transparent 70%);
+    z-index: 0;
+    filter: blur(40px);
+
+    
+}
+
+
+.empty-selection-heading {
+    /* تكبير الخط */
+    font-size: 2.8rem; 
+    font-family: 'Cinzel', serif;
+    letter-spacing: 6px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    margin-top: 110px;
+
+    /* تدرج ذهبي مائل للأبيض (Pearl Gold) */
+    background: linear-gradient(135deg, #F9E4B7 0%, #FFFFFF 50%, #C5A059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.empty-selection-text {
+    /* تكبير نص الوصف */
+    font-size: 1.3rem; 
+    color: #d1d1d1; /* أبيض رمادي خفيف ليتناسب مع الثيم الجديد */
+    line-height: 1.6;
+    margin-bottom: 50px;
+    font-weight: 300;
+}
+
+.empty-selection-text span {
+    /* تدرج ذهبي لؤلؤي للنص الفرعي */
+    color: #F9E4B7; 
+    font-weight: 600;
+    display: block;
+    margin-top: 15px;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+}
+.start-selection-btn {
+    position: relative; /* ضروري جداً لاحتواء أي عناصر داخلية أو لمعان */
+    padding: 22px 55px;
+    /* تحسين التدرج ليكون مركزياً ولا يسبب تسريب إضاءة */
+    background: linear-gradient(90deg, #C5A059, #F9E4B7, #FFFFFF, #F9E4B7, #C5A059);
+    background-size: 200% auto;
+    background-position: left center;
+    
+    border: none;
+    border-radius: 12px;
+    color: #4A3B1B;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    
+    /* منع أي عنصر داخلي (مثل btn-shine) من الخروج عن حدود الزر */
+    overflow: hidden; 
+    
+    /* تقليل مدى الظل الخارجي لمنع الانتشار الزائد على يسار الشاشة */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+}
+
+.start-selection-btn:hover {
+    background-position: right center;
+    transform: translateY(-7px);
+    /* استبدال الظل الأبيض بظل ذهبي خافت جداً */
+    box-shadow: 0 20px 40px rgba(197, 160, 89, 0.2);
+    color: #000;
+}
+
+/* تأكد من أن الـ Shine لا يسبب المشكلة */
+.btn-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: all 0.6s;
+}
+
+.start-selection-btn:hover .btn-shine {
+    left: 100%;
+}
+
+/* --- Media Query for Screens 830px and below --- */
+@media screen and (max-width: 830px) {
+    
+    .empty-cart-display-wrapper {
+        padding: 60px 15px;
+        margin-top: -50px; /* تقليل الهامش العلوي ليتناسب مع الموبايل */
+    }
+
+    /* تثبيت حجم الصورة */
+    .empty-luxe-platter {
+        width: 550px; /* حجم ثابت للطبق على الشاشات الأصغر */
+
+        height: auto;
+    }
+
+    /* تصغير الظل ليتناسب مع الحجم الجديد للصورة */
+    .platter-real-shadow {
+        width: 350px; /* تقريباً نصف عرض الصورة الثابتة */
+        height: 12px;
+        margin-top: -5px;
+   
+    }
+
+    /* تصغير أحجام النصوص */
+    .empty-selection-heading {
+        font-size: 1.8rem; /* تصغير من 2.8 إلى 1.8 */
+        letter-spacing: 3px;
+        margin-top: 60px;
+        margin-bottom: 15px;
+    }
+
+    .empty-selection-text {
+        font-size: 1.05rem; /* تصغير من 1.3 إلى 1.05 */
+        line-height: 1.5;
+        margin-bottom: 35px;
+        padding: 0 10px;
+    }
+
+    .empty-selection-text span {
+        font-size: 0.95rem;
+        margin-top: 10px;
+    }
+
+    /* ضبط حجم الزر */
+    .start-selection-btn {
+        padding: 16px 35px; /* تصغير البادينج */
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        border-radius: 10px;
+    }
+    
+    /* ضبط حجم التوهج الخلفي ليناسب الصورة الصغيرة */
+    .platter-glow-effect {
+        width: 150%;
+        height: 150%;
+        filter: blur(30px);
+    }
+}
+
+
+
+
+/* --- Media Query for Mobile (600px and below) --- */
+@media screen and (max-width: 600px) {
+    
+    .empty-cart-display-wrapper {
+        padding: 40px 10px;
+        margin-top: -30px; 
+    }
+
+    /* تصغير الطبق الذهبي ليتناسب مع عرض الموبايل */
+    .empty-luxe-platter {
+        width: 410px; /* حجم معقول جداً للموبايل ليبقى فخماً وواضحاً */
+        max-width: 95%; 
+    }
+
+    /* ضبط الظل الأبيض ليكون تحت الطبق الجديد */
+    .platter-real-shadow {
+        width: 200px; 
+        height: 8px;
+        filter: blur(8px);
+        margin-top: -5px;
+    }
+
+    /* تصغير النصوص لتناسب شاشة الموبايل */
+    .empty-selection-heading {
+        font-size: 1.4rem; /* أصغر ليكون مريحاً */
+        letter-spacing: 2px;
+        margin-top: 40px;
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+
+    .empty-selection-text {
+        font-size: 0.95rem; /* حجم خط مثالي للقراءة على الموبايل */
+        margin-bottom: 30px;
+        line-height: 1.4;
+    }
+
+    .empty-selection-text span {
+        font-size: 0.85rem;
+    }
+
+    /* تصغير الزر لسهولة الضغط بالإبهام */
+    .start-selection-btn {
+        padding: 14px 28px;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        width: 80%; /* جعل الزر عريضاً قليلاً لسهولة اللمس */
+        max-width: 250px;
+    }
+
+    /* تقليل شدة التوهج لتوفير أداء أفضل على الموبايلات الضعيفة */
+    .platter-glow-effect {
+        filter: blur(20px);
+        opacity: 0.3;
+    }
+}
+

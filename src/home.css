@@ -1,0 +1,1532 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@100;300;600&display=swap');
+
+
+:root {
+  --gold: #c5a059; /* لون ذهبي مطفي أكثر فخامة */
+  --onyx: #050505;
+  --white: #ffffff;
+  --soft-gray: #1a1a1a;
+   --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  --premium-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--onyx);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
+}
+/* --- التحسينات العامة --- */
+body {
+  background-color: var(--onyx);
+
+}
+
+
+/* --- Section 1: The Ultra-Luxury Split (Final Evolved Version) --- */
+.home-continer-section1 {
+  position: relative;
+  height: 850px;
+  width: 100%;
+  background-color: var(--onyx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+   
+}
+
+/* 1. إضافة ملمس (Grain/Noise) لخلفية السكشن بالكامل */
+.home-continer-section1::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5; /* فوق الخلفية وتحت النص */
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 1;
+}
+
+.left { 
+  flex: 1; 
+  background-color: var(--white); 
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  position: relative;
+}
+
+/* إضافة لمعان خفيف جداً على الحافة المائلة */
+.left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);
+}
+
+.right { 
+  flex: 1; 
+  background-color: var(--onyx); 
+}
+
+.section1-text {
+  position: relative;
+  z-index: 10;
+  mix-blend-mode: difference;
+  text-align: center;
+  width: 100%;
+}
+
+.text-home-section1 {
+  font-family: 'Cinzel', serif;
+  font-size: 12vw;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 0.75;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-home-section1 span:last-child {
+  margin-left: 20%; 
+  -webkit-text-stroke: 1px var(--white);
+  color: transparent;
+  transition: all 0.5s ease;
+}
+
+/* تأثير تحرك النص عند الـ Hover لزيادة الفخامة */
+.text-home-section1:hover span:last-child {
+  margin-left: 22%;
+  -webkit-text-stroke: 1px var(--gold);
+}
+
+.text-gold-p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 0.8vw;
+  letter-spacing: 1.2em; /* تباعد أكبر للفخامة */
+  margin-top: 50px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* 2. عناصر الزينة الجانبية (Decorative Elements) */
+.home-continer-section1::after {
+  content: "EST. 2026 • THE ART OF TASTE";
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-size: 8px;
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  opacity: 0.4;
+  z-index: 10;
+}
+
+/* 3. الطبق وتفاصيله (Dish & Caption) */
+.dish-section1 {
+  position: absolute;
+  right: 8%;
+  bottom: 12%;
+  z-index: 20;
+  width: 28vw; /* حجم أكبر قليلاً */
+  filter: drop-shadow(0 50px 100px rgba(0,0,0,0.9));
+  animation: smoothFloat 10s ease-in-out infinite;
+}
+
+/* وصف الطبق الصغير بجانب الصورة */
+.dish-section1::before {
+  content: "SIGNATURE BLUEFIN TUNA / 24K GOLD LEAF";
+  position: absolute;
+  bottom: -40px;
+  right: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--white);
+  opacity: 0.5;
+  white-space: nowrap;
+}
+
+@keyframes smoothFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate(-15px, -25px) rotate(4deg) scale(1.02); }
+}
+
+/* مؤشر السكرول (Scroll Indicator) */
+.scroll-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.6;
+}
+
+.scroll-hint span {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: var(--white);
+  mix-blend-mode: difference;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+
+
+
+/* --- Section 2: Cinema Autoplay Video --- */
+.home-container-section2 {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  margin: 100px 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.autoplay-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  filter: sepia(15%) contrast(1.1);
+}
+
+.video-overlay-section2 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(2,2,2,0.8) 100%);
+}
+
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.overlay-line {
+  width: 1px;
+  height: 80px;
+  background: var(--gold);
+}
+
+.video-overlay-text-section2 {
+  font-family: 'Cinzel', serif;
+  font-size: 4vw;
+  color: var(--gold);
+  font-style: italic;
+  text-align: center;
+}
+
+.home-container-section2 {
+  padding: 100px 0;
+  background: var(--onyx);
+}
+
+.video-container-section2 {
+  width: 85%; /* جعل الفيديو داخل إطار وليس بعرض الشاشة بالكامل */
+  margin: 0 auto;
+  height: 70vh;
+  border: 1px solid rgba(197, 160, 89, 0.2); /* إطار ذهبي خفيف جداً */
+  position: relative;
+  overflow: hidden;
+}
+
+.autoplay-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1); /* زووم بسيط يعطي عمق */
+}
+
+.video-overlay-section2 {
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.9));
+}
+
+.video-overlay-text-section2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3vw;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+
+
+
+
+
+
+
+/* --- Section 3: The 3D Floating Masterpiece --- */
+.home-container-section3 {
+  background-color: #020202;
+  padding: 150px 5% 200px;
+  position: relative;
+  overflow: hidden;
+  
+}
+
+.text-center-section3 {
+  position: relative;
+  text-align: center;
+  margin-bottom: 80px;
+  z-index: 10;
+ 
+}
+
+.text-center-section3::before {
+  content: "EXPERIENCE THE";
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 0.8em;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.section3-title {
+  font-family: 'Cinzel', serif;
+  font-size: 4vw;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.section3-underline {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 25px auto 0;
+  
+}
+
+
+
+.section3-plates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 120px 40px;
+  position: relative;
+
+
+}
+
+.section3-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1000px;
+
+}
+
+.section3-photo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.section3-img {
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+  z-index: 5;
+  filter: drop-shadow(0 25px 50px rgba(0,0,0,0.9));
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+
+}
+
+.section3-photo-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.1) 0%, transparent 70%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+
+}
+
+.section3-photo-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 15%;
+  width: 50%;
+  height: 15px;
+  /* تغيير اللون ليكون أبيض نقي */
+  /* زيادة قوة اللون الأبيض والشفافية */
+  background: rgba(255, 255, 255, 0.8); 
+  /* تقليل التمويه قليلاً لتركيز الضوء */
+  filter: blur(12px); 
+  border-radius: 50%;
+  transform: scale(0.8);
+  transition: all 0.6s ease;
+  z-index: 2;
+  /* إضافة توهج إضافي خارجي */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.section3-item:hover .section3-img {
+  transform: scale(1.1) translateY(-30px) rotate(3deg);
+  filter: drop-shadow(0 60px 100px rgba(0,0,0,1)) brightness(1.1);
+}
+
+.section3-item:hover .section3-photo-wrapper::before { opacity: 1; }
+.section3-item:hover .section3-photo-wrapper::after {
+ transform: scale(1.1); /* الظل يتمدد */
+  opacity: 0.6; /* يصبح أكثر وضوحاً */
+  bottom: 12%; /* يقترب قليلاً من الأرض ليعطي إحساساً بارتفاع الطبق */
+}
+
+.section3-info {
+  margin-top: -10px;
+  text-align: center;
+  z-index: 10;
+}
+
+.section3-item-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5vw;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.section3-item-ingredients {
+  display: block;
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.6;
+}
+
+.section3-item-price {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--white);
+  font-size: 1.1vw;
+  font-weight: 300;
+  opacity: 0.5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Section 4: Luxury CTA --- */
+.home-container-section4 {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #050505;
+  overflow: hidden;
+  border-top: 1px solid rgba(197, 160, 89, 0.05);
+}
+
+.section4-bg-silk {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.1;
+  filter: contrast(1.2) brightness(0.5);
+  transition: transform 10s linear;
+}
+
+.home-container-section4:hover .section4-bg-silk {
+  transform: scale(1.1);
+}
+
+.section4-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.section4-subtitle {
+  color: var(--gold);
+  letter-spacing: 0.8em;
+  font-size: 10px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.section4-title {
+  font-family: 'Cinzel', serif;
+  color: var(--white);
+  font-size: 5vw;
+
+  line-height: 1.1;
+  margin: 0 auto;
+ 
+}
+
+.section4-buttons {
+  margin-top: 60px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.gold-btn-section4 {
+  padding: 20px 50px;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-btn-section4.btn-dark {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.gold-btn-section4:hover {
+  background: var(--white);
+  color: #000;
+  border-color: var(--white);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.home-footer {
+  padding: 100px 0 50px;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.5em;
+  color: #333;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255,255,255,0.02);
+}
+
+
+
+
+
+
+
+
+/* --- Section 4: The Eternal Luxury CTA --- */
+.home-container-section4 {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #111 0%, #020202 100%);
+  overflow: hidden;
+  border-top: 1px solid rgba(197, 160, 89, 0.05);
+}
+
+/* صورة الخلفية: سنجعلها تتحرك كأنها دخان أو حرير حقيقي */
+.section4-bg-silk {
+  position: absolute;
+  width: 120%; /* أكبر من الشاشة للحركة */
+  height: 120%;
+  object-fit: cover;
+  opacity: 0.12;
+  filter: contrast(1.1) brightness(0.6) sepia(20%);
+  animation: panImage 30s linear infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes panImage {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.1) translate(-5%, -5%); }
+}
+
+/* المحتوى الفخم */
+.section4-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 1200px;
+}
+
+.section4-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--gold);
+  letter-spacing: 1.2em; /* تباعد ضخم للفخامة */
+  font-size: 0.7vw;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  display: block;
+}
+
+.section4-title {
+  font-family: 'Cinzel', serif;
+  color: var(--white);
+  font-size: 5.5vw;
+  font-weight: 400; /* وزن خفيف يعطي رقي أكبر */
+  line-height: 1.1;
+  margin: 0 auto;
+  text-transform: uppercase;
+  /* تأثير انعكاس الضوء على الحروف */
+  background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* حاوية الأزرار */
+.section4-buttons {
+  margin-top: 90px;
+  display: flex;
+  gap: 50px; /* زيادة المسافة لإعطاء السكون والفخامة */
+  justify-content: center;
+  align-items: center;
+}
+
+.gold-btn-section4 {
+  position: relative;
+  padding: 24px 70px; /* حجم أكبر ووقار أكثر */
+  background: rgba(0, 0, 0, 0.4); /* خلفية شبه شفافة لتعطي عمق الزجاج */
+  color: #d4af37; /* لون الذهب الملكي */
+  border: 1px solid rgba(212, 175, 55, 0.3); /* حدود ذهبية خافتة */
+  text-transform: uppercase;
+  letter-spacing: 6px; /* تباعد حروف واسع جداً */
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(15px); /* تأثير الزجاج الفخم */
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* ظل عميق */
+}
+
+/* تأثير "الوهج السائل" عند الـ Hover */
+.gold-btn-section4::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -110%;
+  width: 100%;
+  height: 100%;
+  /* تدرج ذهبي معدني يحاكي انعكاس الضوء */
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(212, 175, 55, 0.4), 
+    rgba(255, 239, 161, 0.8), 
+    rgba(212, 175, 55, 0.4), 
+    transparent
+  );
+  transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 1;
+}
+
+/* تأثير التعبئة الخلفية */
+.gold-btn-section4::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #d4af37;
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: -1;
+}
+
+.gold-btn-section4:hover {
+  color: #000; /* يتحول النص للأسود عند الامتلاء بالذهب */
+  border-color: #d4af37;
+  transform: translateY(-10px) scale(1.02); /* حركة صعود خفيفة */
+  box-shadow: 0 25px 60px rgba(212, 175, 55, 0.25); /* توهج ذهبي */
+}
+
+.gold-btn-section4:hover::before {
+  left: 110%; /* حركة لمعة سريعة تمر عبر الزر */
+}
+
+.gold-btn-section4:hover::after {
+  transform: translateY(0); /* امتلاء الزر بالذهب من الأسفل للأعلى */
+}
+
+/* --- الزر الثاني: النسخة البيضاء اللؤلؤية (Pearl White) --- */
+.gold-btn-section4.btn-dark {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.gold-btn-section4.btn-dark::after {
+  background: #ffffff; /* يمتلئ باللون الأبيض النقي */
+}
+
+.gold-btn-section4.btn-dark:hover {
+  color: #000;
+  border-color: #ffffff;
+  box-shadow: 0 25px 60px rgba(255, 255, 255, 0.15);
+}
+
+/* الخط الديكوري السفلي المتحرك */
+.section4-decor-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 120px;
+  background: linear-gradient(to top, #d4af37, transparent);
+  animation: pulseLine 3s ease-in-out infinite;
+}
+
+@keyframes pulseLine {
+  0%, 100% { height: 100px; opacity: 0.3; }
+  50% { height: 140px; opacity: 1; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Ultra-Luxury Floating Horizon --- */
+.home-footer-container {
+  background-color: #020202;
+  padding: 120px 5% 45px; /* زيادة التباعد الرأسي للفخامة */
+  border-top: 1px solid rgba(197, 160, 89, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* إضافة إضاءة خلفية خافتة جداً في السطح */
+  background: radial-gradient(circle at top, rgba(197, 160, 89, 0.03) 0%, transparent 50%);
+ /* الخلفية الآن تعتمد على الأسود الصريح مع "ومضات" خفيفة جداً */
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 10% 10%, #080808 0%, transparent 30%), /* ومضة زاوية خافتة */
+    radial-gradient(circle at 90% 90%, #050505 0%, transparent 30%),
+    linear-gradient(45deg, var(--marble-vein) 25%, transparent 25%, transparent 75%, var(--marble-vein) 75%, var(--marble-vein));
+  
+  background-size: 100% 100%, 100% 100%, 80px 80px;
+  background-attachment: fixed;
+
+
+
+}
+
+.footer-brand-section {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.footer-logo {
+  width: 90px; /* تكبير قليلاً للبروز */
+  height: auto;
+  margin-bottom: 25px;
+  /* توهج ذهبي ناعم دائم */
+  filter: drop-shadow(0 0 20px rgba(197, 160, 89, 0.25));
+  transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.footer-logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 35px rgba(197, 160, 89, 0.45)) brightness(1.2);
+}
+
+.footer-company-name {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  font-size: 1.8vw; /* تكبير الحجم للفخامة */
+  font-weight: 700;
+  letter-spacing: 0.7em; /* تباعد حروف واسع جداً */
+  text-transform: uppercase;
+  margin: 0;
+  /* تأثير التدرج الذهبي المتحرك */
+  background: linear-gradient(90deg, #8a6d3b, #f1d38a, #8a6d3b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shineGold 6s linear infinite;
+}
+
+@keyframes shineGold {
+  to { background-position: 200% center; }
+}
+
+/* الروابط: ستايل المجوهرات */
+.footer-social-section {
+  display: flex;
+  gap: 60px; /* زيادة التباعد للراحة */
+  margin-bottom: 70px;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 40px;
+  width: 80%;
+}
+
+.social-link-item {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.695); /* تفتيح اللون الأصلي */
+  font-size: 12px; /* تكبير الخط */
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: all 0.6s var(--premium-ease);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-link-item i {
+  font-size: 20px; /* تكبير الأيقونات */
+  color: rgba(197, 160, 89, 0.6); /* أيقونات بلمحة ذهبية مطفأة */
+  transition: all 0.5s ease;
+}
+
+.social-link-item:hover {
+  color: var(--white);
+  transform: translateY(-8px);
+}
+
+.social-link-item:hover i {
+  color: #f1d38a;
+  transform: scale(1.2);
+  text-shadow: 0 0 15px rgba(197, 160, 89, 0.6);
+}
+
+/* الوصف: ستايل هادئ وبليغ */
+.footer-description {
+  max-width: 850px;
+  font-size: 15px; /* تكبير الوصف للقراءة المريحة */
+  line-height: 2;
+  color: rgba(255, 255, 255, 0.695);
+  text-align: center;
+  margin-bottom: 90px;
+  font-style: italic; /* لمسة فنية */
+}
+
+.footer-description span {
+  color: #f1d38a;
+  font-weight: 500;
+  text-shadow: 0 0 5px rgba(197, 160, 89, 0.2);
+}
+
+/* البار السفلي */
+.footer-bottom-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(197, 160, 89, 0.1);
+  padding-top: 35px;
+}
+
+.footer-copyright, .footer-location-tag {
+  font-size: 10px; /* تكبير بسيط */
+  letter-spacing: 0.4em;
+  color: rgba(255, 255, 255, 0.695);
+  text-transform: uppercase;
+}
+
+
+
+
+
+
+/* --- حاوية الأزرار المحدثة --- */
+.section3-scroll-controls {
+    display: none; 
+}
+
+/* --- Responsive Architecture for 1025px (Fixed Horizontal Layout) --- */
+@media screen and (max-width: 1025px) {
+  
+.home-continer-section1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 100px; /* مسافة ثابتة من الأعلى */
+    text-align: center;
+  }
+
+  .text-home-section1 {
+    /* clamp(الحد الأدنى, القيمة المتغيرة, الحد الأقصى) */
+    /* هذا يضمن أن النص لن يصغر أبداً عن 80px مهما كانت الشاشة صغيرة */
+    font-size: 110px; ; 
+    line-height: 0.9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-gold-p {
+    /* جعل حجم الخط ثابت بالبكسل بدلاً من vw لمنع الانكماش */
+    font-size: 14px; 
+    margin-top: 20px;
+    letter-spacing: 0.5em;
+    width: 100%;
+  }
+
+  .section1-text {
+    margin-bottom: 40px; /* زيادة المسافة قليلاً ليعطي وقار */
+    width: 90%; /* منع النص من الالتصاق بحواف الشاشة */
+  }
+
+  .text-home-section1 span:last-child {
+    margin-left: 0 ;
+  }
+  /* تصغير الطبق جداً ووضعه في المنتصف عمودياً */
+/* تصغير الطبق جداً وتوسيطه في منتصف العرض تماماً */
+  .dish-section1 {
+    position: relative; /* لضمان اتباع تدفق العناصر (Flow) */
+    display: block;      /* ليعامل ككتلة مستقلة */
+    margin: 40px auto 0; /* auto من اليمين واليسار هي السر في التوسيط الأفقي */  
+    /* إلغاء أي قيم قديمة كانت تدفعه للجانب */
+    right: auto;
+    left: auto;
+    bottom: auto;
+    min-width: 600px; 
+    max-width: 600px;
+    height: auto;
+     /* إلغاء الأنيميشن من الحاوية الأساسية لضمان ثبات النص */
+    animation: none ; 
+    filter: none ;
+  }
+  @keyframes luxurySway {
+  0% {
+    transform: translateX(-15px) rotate(-2deg);
+  }
+  50% {
+    transform: translateX(15px) rotate(2deg);
+  }
+  100% {
+    transform: translateX(-15px) rotate(-2deg);
+  }
+}
+  
+  .dish-section1-img{
+    width: 100%;
+    height: 100%;
+    /* نقل الأنيميشن والظل للصورة فقط */
+  
+  
+    display: block;
+    /* تطبيق الأنيميشن الجديد يميناً ويساراً */
+    /* جعلنا المدة 10 ثوانٍ ليكون التحرك بطيئاً وانسيابياً */
+    animation: luxurySway 10s ease-in-out infinite ;
+    
+    /* الحفاظ على الظل */
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.8)) ;
+  }
+
+
+/* --- Ultra-Luxury Signature Text Style --- */
+.dish-section1::before {
+  content: "SIGNATURE BLUEFIN TUNA / 24K GOLD LEAF";
+  position: absolute;
+  bottom: -45px; /* زيادة المسافة قليلاً ليعطي راحة بصرية */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* الخط والأبعاد */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px; /* حجم صغير وراقي */
+  font-weight: 400;
+  letter-spacing: 0.5em; /* تباعد حروف واسع جداً للفخامة */
+  text-transform: uppercase;
+  white-space: nowrap;
+  
+  /* الألوان والتدرج الذهبي */
+  background: linear-gradient(
+    to right, 
+    #8a6d3b 0%, 
+    #f1d38a 50%, 
+    #8a6d3b 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* تأثيرات إضافية */
+  opacity: 0.8; /* زيادة الوضوح قليلاً لأنه مذهب */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  border-top: 1px solid rgba(197, 160, 89, 0.2); /* خط نحيف جداً فوق النص يفصله عن الطبق */
+  padding-top: 10px;
+  
+  pointer-events: none;
+  animation: none ; /* ضمان الثبات المطلق */
+}
+
+
+
+/* --- Ultra-Luxury Section 2 Optimization (1025px) --- */
+
+.home-container-section2 {
+    padding: 100px 0 ; 
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+    margin-bottom: -50px;
+}
+
+.video-container-section2 {
+    width: 95%;
+    height: 60vh ;
+    margin: 0 auto;
+    border: 1px solid rgba(197, 160, 89, 0.3); /* إطار ذهبي نحيف جداً */
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.9), 
+                inset 0 0 50px rgba(0, 0, 0, 0.5); /* ظل داخلي يعطي عمق للفيديو */
+    position: relative;
+    border-radius: 2px; /* زوايا حادة تعطي إحساساً رسمياً */
+}
+
+/* إضافة طبقة "Vignette" سينمائية (سواد من الأطراف) */
+.video-container-section2::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.7) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.video-overlay-text-section2 {
+ 
+    font-size: 3.5vw ; /* حجم متزن وليس ضخماً */
+    
+    text-shadow: 0 0 20px rgba(197, 160, 89, 0.5); /* وهج ذهبي خفيف خلف النص */
+    letter-spacing: 0.3em ;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.overlay-line {
+    width: 1px ;
+    height: 100px ;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent) !important;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.autoplay-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) contrast(1.2) sepia(10%); /* فلتر لوني سينمائي */
+    transition: transform 2s ease;
+}
+
+/* تأثير عند المرور بالماوس أو التفاعل */
+.video-container-section2:hover .autoplay-video {
+    transform: scale(1.05); /* حركة زووم بطيئة جداً للفخامة */
+}
+
+  /* 2. السكشن الثالث: بقاء الأطباق الثلاثة بجانب بعضها */
+  .section3-plates-grid {
+    grid-template-columns: repeat(3, 1fr); /* الحفاظ على 3 أعمدة */
+    gap: 20px; /* تقليل الفجوات جداً لتناسب المساحة */
+  }
+
+  .section3-photo-wrapper {
+    height: 250px; /* تقليل الارتفاع لمنع التداخل */
+  }
+
+  .section3-item-name {
+    font-size: 1.8vw; /* تصغير الخط ليتناسب مع العرض الضيق */
+  }
+
+  .section3-item-price {
+    font-size: 1.5vw;
+  }
+
+  /* 3. السكشن الرابع: بقاء الأزرار بجانب بعضها */
+  .section4-buttons {
+    flex-direction: row; /* إجبار الأزرار على البقاء في صف واحد */
+    gap: 15px; /* تقليل المسافة بين الزرين */
+    flex-wrap: nowrap; /* منع النزول لسطر جديد */
+  }
+
+  .gold-btn-section4 {
+    width: auto; /* إلغاء عرض الـ 80% السابق */
+    padding: 18px 35px; /* تصغير الحجم الداخلي للزرار */
+    font-size: 9px; /* تصغير الخط قليلاً */
+    white-space: nowrap; /* منع كسر النص داخل الزر */
+  }
+
+  .section4-title {
+    font-size: 6vw; /* تصغير العنوان قليلاً ليتناسب مع ضيق الشاشة */
+  }
+}
+
+
+
+
+/* --- Ultra-Luxury Responsive Optimization for 750px (Clean Version) --- */
+@media screen and (max-width: 750px) {
+
+    /* 1. السكشن الأول */
+    .home-continer-section1 {
+        height: 750px;
+        padding: 100px 0 80px;
+        flex-direction: column;
+        display: flex;
+    }
+
+    .text-home-section1 {
+        font-size: 90px;
+        line-height: 1.1;
+        text-align: center;
+    }
+
+    .text-gold-p {
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        margin-top: 25px;
+        width: 100%;
+    }
+
+    .dish-section1 {
+        position: relative;
+        margin: 50px auto 0;
+        min-width: 440px;
+        max-width: 440px;
+        right: auto;
+        left: auto;
+        bottom: auto;
+    }
+
+    .dish-section1::before {
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        bottom: -35px;
+    }
+
+    /* 2. سكشن الفيديو */
+    .home-container-section2 {
+        padding: 40px 0;
+        height: auto;
+        margin: 20px 0;
+    }
+
+    .video-container-section2 {
+        width: 92%;
+        height: 60vh;
+    }
+
+
+
+
+
+
+
+    
+    /* 3. سكشن الأطباق */
+/* 3. سكشن الأطباق (تعديلات التموضع) */
+    .home-container-section3 {
+        position: relative; /* ضروري لعمل التموضع المطلق للأزرار */
+        padding-top: 100px; /* مسافة للعنوان */
+        padding-bottom: 60px;
+    }
+
+    /* العنوان والحاوية الخاصة به */
+    .text-center-section3 {
+        position: relative;
+        z-index: 10;
+        margin-bottom: 40px; /* مسافة قبل الكروت */
+    }
+
+    /* حاوية الأزرار المحدثة: مطلق فوق الصور مباشر */
+    .section3-scroll-controls {
+        display: flex; /* إظهار الأزرار */
+        position: absolute;
+        top: 50%; /* تموضع في منتصف الارتفاع عمودياً */
+        transform: translateY(-50%); /* تصحيح التمركز العمودي */
+        width: 100%; /* تمدد بعرض الشاشة */
+        justify-content: space-between; /* دفع الأزرار للأطراف (يسار ويمين) */
+        padding: 0 10px; /* مسافة صغيرة جداً من حافة الشاشة */
+        gap: 0; /* لا حاجة للفجوة الآن */
+        pointer-events: none; /* السماح بالضغط على العناصر خلف الحاوية */
+        z-index: 20; /* فوق الكروت والصور */
+    }
+
+    /* تنسيق الأزرار الصغيرة "كالمجوهرات" على الأطراف */
+    .scroll-btn {
+        pointer-events: auto; /* إعادة تفعيل الضغط على الزر نفسه */
+        flex: none !important;
+        background: rgba(197, 160, 89, 0.1); /* خلفية بلورية أكثر وضوحاً */
+        border: 1px solid rgba(197, 160, 89, 0.4);
+        color: var(--gold);
+        width: 38px !important; /* حجم أكبر قليلاً ليناسب تموضع الأطراف */
+        height: 38px !important;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px; /* سهم أوضح قليلاً */
+        cursor: pointer;
+        transition: all 0.4s var(--premium-ease);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* ظل لإبرازها فوق الصور */
+      
+      }
+
+    .scroll-btn:active {
+        background: var(--gold);
+        color: #000;
+        transform: scale(0.9) translateY(1px);
+    }
+
+    /* شبكة الكروت: Flexbox للسكرول العرضي */
+    .section3-plates-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 40px;
+        padding: 0 60px 80px; /* مسافة جانبية أكبر (60px) لتبدو الكروت في المنتصف تماماً */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        z-index: 5;
+    }
+
+    .section3-plates-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .section3-item {
+        flex: 0 0 320px;
+        scroll-snap-align: center;
+    }
+
+    /* تكبير الأحجام كما طلبت سابقاً */
+    .section3-photo-wrapper {
+        height: 300px;
+    }
+
+    .section3-img {
+        width: 100%;
+    }
+
+    .section3-item-name {
+        font-size: 26px;
+        margin-top: 15px;
+    }
+    /* 4. سكشن الأزرار (ترتيب عمودي لسهولة اللمس) */
+/* التعديلات على قسم الأزرار في سكشن 4 */
+.section4-buttons {
+    display: flex; /* التأكد من تفعيل الفليكس */
+    flex-direction: column;
+    gap: 20px; /* زيادة المسافة بين الأزرار قليلاً */
+    align-items: center;
+    width: 100%;
+}
+
+.gold-btn-section4 {
+    min-width: 280px; /* تحديد عرض أدنى مناسب بدلاً من 100% لإعطاء شكل مستطيل فخم */
+    width: auto;      /* يسمح للزر بالتوسع حسب المحتوى إذا لزم الأمر */
+    
+    /* زيادة الحجم هنا */
+    padding: 18px 45px; 
+    font-size: 14px;      /* حجم مثالي للقراءة (بدلاً من 9px) */
+    letter-spacing: 4px;  /* زيادة التباعد ليعطي طابع البراندات العالمية */
+    font-weight: 600;
+    
+    text-transform: uppercase;
+
+    
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+
+/* تعديل العنوان ليتناسب مع حجم الأزرار الجديد */
+.section4-title {
+    font-size: clamp(32px, 5vw, 48px); /* حجم متجاوب: لا يقل عن 32px ويصل لـ 48px */
+    margin-bottom: 40px;
+
+ 
+    text-align: center;
+}
+   
+
+    /* 5. الفوتر */
+    .footer-company-name {
+        font-size: 20px;
+        letter-spacing: 0.25em;
+    }
+
+    .footer-social-section {
+        gap: 20px;
+        width: 100%;
+     
+    }
+
+    .footer-description {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 25px 0;
+    }
+
+}
+
+
+
+
+/* --- Ultra-Sleek Footer for 540px --- */
+@media screen and (max-width: 540px) {
+    
+    .home-footer-container {
+        padding: 60px 5% 30px ; /* تقليل الحشو العلوي للنصف */
+    }
+
+    /* 1. تصغير اللوجو واسم الشركة */
+    .footer-brand-section {
+        margin-bottom: 80px ;
+    }
+
+    .footer-logo {
+        width: 120px ; /* حجم أصغر وأكثر رشاقة */
+        margin-bottom: 15px;
+    }
+
+    .footer-company-name {
+        font-size: 16px ; /* تصغير حجم الخط */
+        letter-spacing: 0.4em ; /* الحفاظ على اتساع راقي */
+    }
+
+    /* 2. الروابط الاجتماعية */
+ /* 2. الروابط الاجتماعية - تقسيم (3 فوق و 2 تحت) */
+.footer-social-section {
+    display: flex !important;
+    flex-wrap: wrap !important; /* السماح بكسر السطر */
+    justify-content: center !important; /* توسيط المجموعتين */
+    gap: 40px 40px !important; /* الفجوة: 30px عمودياً و 40px أفقياً */
+    margin-bottom: 40px !important;
+    width: 100% !important;
+}
+
+.social-link-item {
+    /* (100% / 3) مع طرح المسافات لضمان ظهور 3 في الصف الأول */
+    flex: 0 0 calc(33.33% - 40px) !important; 
+    min-width: 80px !important;
+    font-size: 9px !important;
+    text-align: center;
+}
+
+/* استهداف آخر أيقونتين لضمان توسطهما في الصف الثاني */
+.social-link-item:nth-child(n+4) {
+    flex: 0 0 calc(20% - 40px) !important; /* يأخذان مساحة أكبر قليلاً ليظهرا في صف مستقل */
+    margin-top: 10px; /* مسافة إضافية بين الصفين */
+}
+
+    .social-link-item i {
+        font-size: 16px !important; /* تصغير الأيقونات قليلاً */
+    }
+
+    /* 3. الوصف (التخلص من الحجم الزائد) */
+    .footer-description {
+        font-size: 14px !important;
+        line-height: 1.8 !important;
+        margin-bottom: 50px !important;
+        padding: 0 10px;
+    }
+
+    /* 4. البار السفلي (Copyright) */
+    .footer-bottom-bar {
+        padding-top: 20px !important;
+        gap: 8px !important;
+    }
+
+    .footer-copyright, 
+    .footer-location-tag {
+        font-size: 10px !important; /* أصغر حجم ممكن للرقي */
+        letter-spacing: 0.2em !important;
+        text-align: center;
+    }
+    .home-container-section4{
+      margin-top: -110px;
+    }
+}
+
+
+
+
+
+/* --- Ultra-Compact Luxury Footer (422px) --- */
+@media screen and (max-width: 422px) {
+    
+    .home-footer-container {
+        padding: 40px 5% 25px; /* تقليل المسافات العلوية والسفلية */
+    }
+
+    .footer-brand-section {
+        margin-bottom: 40px; /* تقليل الفجوة تحت اللوجو */
+    }
+
+    .footer-logo {
+        width: 110px; /* تصغير اللوجو ليناسب المساحة */
+        margin-bottom: 10px;
+    }
+
+    .footer-company-name {
+        font-size: 18px; /* تصغير اسم الشركة */
+        letter-spacing: 0.3em;
+    }
+
+    /* الروابط الاجتماعية - تصغير المسافات */
+    .footer-social-section {
+        gap: 25px 20px ; /* تقليل المسافة بين الأيقونات */
+        margin-bottom: 30px ;
+        padding-bottom: 25px ;
+    }
+
+    .social-link-item {
+        font-size: 8px ; /* أصغر خط ممكن للروابط */
+    }
+
+    .social-link-item i {
+        font-size: 14px ; /* تصغير الأيقونات */
+    }
+
+    /* الوصف - جعل النص أكثر إحكاماً */
+    .footer-description {
+        font-size: 11px ;
+        line-height: 1.6 ;
+        margin-bottom: 40px ;
+        padding: 0 5px;
+        opacity: 0.8;
+    }
+
+    /* البار السفلي */
+    .footer-bottom-bar {
+        padding-top: 15px !important;
+        gap: 5px ;
+    }
+
+    .footer-copyright, 
+    .footer-location-tag {
+        font-size: 8px ; /* تصغير حقوق الملكية */
+        letter-spacing: 0.15em ;
+        opacity: 0.5;
+    }
+        .home-container-section4{
+      margin-top: -220px;
+    }
+    .section4-content{
+     margin-top: 80px;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    /* 1. السكشن الأول - تقليص بنسبة 17% */
+    .home-continer-section1 {
+        height: 700px; /* 750 * 0.83 ≈ 622.5 */
+        padding: 83px 0 66px; /* 100 -> 83, 80 -> 66.4 */
+        flex-direction: column;
+        display: flex;
+    }
+
+    .text-home-section1 {
+        font-size: 75px; /* 90 * 0.83 ≈ 74.7 */
+        line-height: 1.1;
+        text-align: center;
+    }
+
+    .text-gold-p {
+        font-size: 8.3px; /* 10 * 0.83 */
+        letter-spacing: 0.25em; /* 0.3 * 0.83 ≈ 0.249 */
+        margin-top: 21px; /* 25 * 0.83 ≈ 20.75 */
+        width: 100%;
+    }
+
+    .dish-section1 {
+        position: relative;
+        margin: 41.5px auto 0; /* 50 * 0.83 */
+        /* تصغير الطبق ليتناسب مع عرض الشاشة (415px) */
+        min-width: 390px; /* 440 * 0.83 ≈ 365.2 */
+        max-width: 390px; 
+        right: auto;
+        left: auto;
+        bottom: auto;
+    }
+
+    .dish-section1::before {
+        font-size: 7.5px; /* 9 * 0.83 ≈ 7.47 */
+        letter-spacing: 0.16em; /* 0.2 * 0.83 ≈ 0.166 */
+        bottom: -29px; /* 35 * 0.83 ≈ 29.05 */
+    }
+}
+
+

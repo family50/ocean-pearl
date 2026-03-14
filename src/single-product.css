@@ -1,0 +1,566 @@
+.single-product-wrapper {
+    min-height: 100vh;
+    background: #050505;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    font-family: 'Playfair Display', serif;
+
+}
+
+.back-arrow-gold {
+    align-self: flex-start;
+    margin-left: 5%;
+    background: none;
+    border: none;
+    color: #C6A75C;
+    cursor: pointer;
+    font-size: 1.1rem;
+ 
+    transition: 0.3s;
+}
+
+.main-product-card {
+    width: 95%;
+
+    background: #0a0a0a;
+    border: 1px solid #C6A75C44;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row; /* التأكد من أنهم بجانب بعض */
+    align-items: stretch; /* يضمن تساوي ارتفاع الجانبين */
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    margin-top: 100px;
+}
+/* محتوى اليسار */
+.product-content-side {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.luxe-category-label {
+    color: #C6A75C;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+.product-main-title {
+    color: #fff;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.product-main-desc {
+    color: #aaa;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.ingredients-section h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #C6A75C22;
+    padding-bottom: 10px;
+}
+
+.ingredients-list-gold {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.ingredients-list-gold li {
+    color: #C6A75C;
+    font-size: 0.95rem;
+    position: relative;
+    padding-left: 15px;
+}
+
+.ingredients-list-gold li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+}
+
+.price-action-area {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+.price-tag-luxe {
+    display: flex;
+    align-items: baseline;
+    font-family: 'Playfair Display', serif; /* تأكد من استدعاء خط سيريف فخم */
+    color: #C6A75C; /* لونك الذهبي المفضل */
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    padding: 10px 0;
+}
+
+.currency-symbol {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-right: 4px;
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+.price-number {
+    font-size: 3.5rem; /* حجم كبير وواضح */
+    font-weight: 700;
+    letter-spacing: -2px;
+    background: linear-gradient(180deg, #C6A75C 0%, #D4AF37 50%, #B8860B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.price-decimal {
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-left: 2px;
+}
+
+/* إضافة خط زخرفي تحت السعر */
+.price-tag-luxe::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, #C6A75C, transparent);
+}
+.buy-btn-luxe {
+    background: #C6A75C;
+    color: #000;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.buy-btn-luxe:hover {
+    background: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(198, 167, 92, 0.3);
+}
+
+/* جانب اليمين (الصورة) */
+.product-visual-side {
+    flex: 1;
+    background: #0f0f0f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.image-gold-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px; /* زوايا ناعمة للصورة */
+    overflow: hidden;
+    position: relative;
+}
+
+.product-primary-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 1s ease;
+}
+
+.main-product-card:hover .product-primary-img {
+    transform: scale(1.05);
+}
+
+.floating-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgb(106, 81, 4); /* Deep Burgundy */
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    border: 1px solid #C6A75C;
+}
+.buy-btn-luxe {
+    transition: background-color 0.4s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 220px; /* ثبات العرض لمنع اهتزاز الزر عند تغيير النص */
+}
+
+.buy-btn-luxe.success {
+    background-color: #28a745 !important; /* اللون الأخضر */
+    color: white;
+}
+.buy-btn-luxe {
+    position: relative;
+    background: #C6A75C;
+    color: #000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 18px 45px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden; /* ضروري لإخفاء ومضة الضوء خارج الزر */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 15px rgba(198, 167, 92, 0.2);
+}
+
+/* تأثير الومضة الذهبية (The Shine) */
+.buy-btn-luxe::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transition: all 0.6s ease;
+}
+
+/* حالة الـ Hover الفخمة */
+.buy-btn-luxe:hover {
+    background: #d4af37; /* ذهبي أفتح قليلاً */
+    color: #000;
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(198, 167, 92, 0.4), 
+                0 0 15px rgba(198, 167, 92, 0.2);
+    letter-spacing: 3px; /* تباعد الحروف يعطي شعوراً بالاتساع */
+}
+
+/* تحريك الومضة عند الـ Hover */
+.buy-btn-luxe:hover::before {
+    left: 100%;
+}
+
+/* تأثير النبض الخفيف جداً لجذب الانتباه */
+.buy-btn-luxe:active {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 1300px) {
+    /* تصغير مساحات الكارت الرئيسي */
+    .main-product-card {
+        width: 95%;
+        margin-top: 60px;
+    }
+
+    /* تقليل البادينج في جانب المحتوى */
+    .product-content-side {
+        padding: 40px;
+    }
+
+    /* تصغير العنوان الرئيسي */
+    .product-main-title {
+        font-size: 2.8rem;
+        margin-bottom: 15px;
+    }
+
+    /* تصغير الوصف ليكون أكثر إحكاماً */
+    .product-main-desc {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    /* تصغير السعر (Price Tag) */
+    .price-number {
+        font-size: 2.8rem; /* تصغير من 3.5 */
+        letter-spacing: -1px;
+    }
+
+    .currency-symbol {
+        font-size: 1rem;
+    }
+
+    /* تعديل قائمة المكونات لتأخذ مساحة أقل */
+    .ingredients-list-gold {
+        gap: 8px;
+    }
+
+    .ingredients-list-gold li {
+        font-size: 0.85rem;
+    }
+
+    /* تصغير الزر ليتناسب مع السعر الجديد */
+    .buy-btn-luxe {
+        padding: 15px 30px;
+        font-size: 0.9rem;
+    }
+
+    /* تقليل مساحة الصورة */
+    .product-visual-side {
+        padding: 20px;
+    }
+}
+@media (max-width: 1088px) {
+    .main-product-card {
+        flex-direction: column;
+        width: 92%;
+        margin: 40px auto;
+        border-radius: 35px;
+        overflow: hidden; /* لمنع أي عنصر من الخروج عن الحدود */
+        background: #080808;
+        margin-top: 100px;
+    }
+
+    /* 1. الصورة في الأعلى بكامل قوتها */
+    .product-visual-side {
+        order: -1; 
+        width: 100%;
+        height: 450px; /* ارتفاع ثابت ومحترم للصورة */
+        padding: 0;
+    }
+
+    .image-gold-frame {
+        border-radius: 0; /* لتبدو الصورة مدمجة مع الكارت */
+    }
+
+    /* 2. ترتيب المحتوى بذكاء (Content Flow) */
+    .product-content-side {
+        padding: 40px 25px;
+        align-items: flex-start; /* العودة للمحاذاة اليسرى لتعطي طابع أفخم من التوسيط */
+    }
+
+    .product-main-title {
+        font-size: clamp(2.2rem, 5vw, 3rem); /* حجم مرن يقل مع تصغير الشاشة */
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
+
+    /* 3. المكونات: ترتيب شبكي مرن (Responsive Grid) */
+    .ingredients-section {
+        width: 100%;
+        margin: 25px 0;
+    }
+
+    .ingredients-list-gold {
+        display: flex;
+        flex-wrap: wrap; /* هذا هو السر: العناصر تنزل سطر جديد بدلاً من الخروج من الشاشة */
+        gap: 12px;
+    }
+
+    .ingredients-list-gold li {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+        background: rgba(198, 167, 92, 0.05);
+        border: 1px solid rgba(198, 167, 92, 0.2);
+        border-radius: 12px;
+        white-space: normal; /* السماح للنص الطويل بالالتفاف داخل الـ li */
+    }
+
+    /* 4. منطقة السعر والزر: ترتيب تفاعلي */
+    .price-action-area {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap; /* لضمان عدم خروج السعر أو الزر */
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .price-tag-luxe {
+        padding: 0;
+    }
+
+    .price-number {
+        font-size: 2.8rem;
+    }
+
+    .buy-btn-luxe {
+        flex-grow: 1; /* الزر يتمدد ليملأ المساحة المتبقية */
+        min-width: 200px; /* لا يصغر عن حجم معين */
+        text-align: center;
+        padding: 16px 25px;
+    }
+}
+
+@media (max-width: 500px) {
+    .single-product-wrapper {
+        padding: 20px 0; /* تقليل الفراغ العلوي والسفلي */
+    }
+
+    .main-product-card {
+        width: 95%; /* أخذ مساحة أكبر من الشاشة */
+        margin-top: 60px;
+        border-radius: 25px; /* زوايا أصغر لتناسب الحجم */
+    }
+
+    /* تصغير ارتفاع الصورة لترك مساحة للنص */
+    .product-visual-side {
+        height: 300px;
+    }
+
+    .product-content-side {
+        padding: 30px 20px; /* تقليل البادينج الداخلي */
+    }
+
+    /* تصغير العنوان ليناسب شاشة الموبايل */
+    .product-main-title {
+        font-size: 1.8rem; 
+        margin-bottom: 12px;
+        letter-spacing: -1px;
+    }
+
+    .product-main-desc {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    /* جعل المكونات تأخذ مساحة أقل */
+    .ingredients-list-gold {
+        gap: 8px;
+    }
+
+    .ingredients-list-gold li {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+        border-radius: 8px;
+    }
+
+    /* منطقة السعر والزر: ترتيب عمودي للموبايل */
+    .price-action-area {
+        flex-direction: column;
+        align-items: flex-start; /* محاذاة لليسار */
+        gap: 15px;
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+
+    .price-number {
+        font-size: 2.2rem;
+    }
+
+    .currency-symbol {
+        font-size: 0.9rem;
+    }
+
+    .buy-btn-luxe {
+        width: 100%; /* الزر يأخذ العرض الكامل لسهولة الضغط بالإبهام */
+        padding: 14px;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    /* تصغير سهم العودة */
+    .back-arrow-gold {
+        font-size: 0.9rem;
+        margin-left: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .floating-badge {
+        font-size: 0.7rem;
+        padding: 5px 12px;
+        top: 15px;
+        right: 15px;
+    }
+}
+
+
+@media (max-width: 450px) {
+    /* 1. تقليل الحواف الخارجية للكارت */
+    .main-product-card {
+        width: 98%; /* استغلال عرض الشاشة شبه كاملاً */
+      
+        border-radius: 20px;
+    }
+
+    /* 2. التحكم في الصورة لتجنب السكرول الطويل */
+    .product-visual-side {
+        height: 240px; /* تقليل الارتفاع */
+    }
+
+    /* 3. ضغط مسافات المحتوى */
+    .product-content-side {
+        padding: 20px 15px; /* بادينج ضيق جداً */
+    }
+
+    /* 4. تصغير التيبوجرافي (الخطوط) */
+    .product-main-title {
+        font-size: 1.5rem; /* تصغير العنوان */
+        margin-bottom: 8px;
+    }
+
+    .luxe-category-label {
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+    }
+
+    .product-main-desc {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+
+    /* 5. تحويل المكونات لشبكة أكثر كثافة */
+    .ingredients-list-gold {
+        grid-template-columns: 1fr; /* جعل المكونات تحت بعضها لسهولة القراءة */
+        gap: 6px;
+    }
+
+    .ingredients-list-gold li {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+
+    /* 6. منطقة السعر والزر */
+    .price-number {
+        font-size: 1.8rem;
+    }
+
+    .buy-btn-luxe {
+        padding: 12px;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        border-radius: 12px; /* زوايا أقل حدة لتناسب الحجم الصغير */
+    }
+
+    /* تصغير العناصر العائمة */
+    .floating-badge {
+        font-size: 0.6rem;
+        padding: 4px 10px;
+    }
+}

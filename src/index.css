@@ -1,0 +1,100 @@
+/* index.css - The Ultra-Dark Obsidian Marble */
+:root {
+  --bg-primary: #020202; /* أسود شبه مطلق - أعمق درجة ممكنة */
+  --text-main: #E0E0E0;  /* أبيض خافت لراحة العين فوق الأسود */
+  --gold-accent: #D4AF37; /* ذهبي ملكي ساطع للتباين */
+  --marble-vein: rgba(255, 255, 255, 0.015); /* عروق خفيفة جداً كأنها خيال */
+}
+
+body {
+  margin: 0;
+  /* الخلفية الآن تعتمد على الأسود الصريح مع "ومضات" خفيفة جداً */
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 10% 10%, #080808 0%, transparent 30%), /* ومضة زاوية خافتة */
+    radial-gradient(circle at 90% 90%, #050505 0%, transparent 30%),
+    linear-gradient(45deg, var(--marble-vein) 25%, transparent 25%, transparent 75%, var(--marble-vein) 75%, var(--marble-vein));
+  
+  background-size: 100% 100%, 100% 100%, 80px 80px;
+  background-attachment: fixed;
+
+
+  letter-spacing: 0.02em;
+     font-family: 'Cinzel', serif !important;
+}
+
+/* طبقة اللمعان "Deep Mirror" */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  /* لمعة "زجاجية" حادة جداً وشفافة في زاوية واحدة فقط لتعطي إحساس الصقل */
+  background: linear-gradient(150deg, rgba(255,255,255,0.03) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* السكرول بار ذهبي نحيف جداً ليبرز فوق الأسود الداكن */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-accent);
+  border-radius: 10px;
+}
+
+
+/* إخفاء الـ Tap Highlight في الموبايل لضمان السلاسة */
+* {
+  -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2);
+}
+
+
+
+
+/* --- التحديد الذهبي الشامل لجميع عناصر الموقع بلا استثناء --- */
+
+/* نستخدم الـ Asterisk (*) مع الـ Selection لضمان الوصول لكل العناصر حتى داخل الـ Spans */
+*::selection {
+    background-color: #d4af37 !important; /* اللون الذهبي الملكي */
+    color: #000000 !important;           /* النص الأسود الفاحم */
+    text-shadow: none !important;        /* إلغاء أي ظل ليكون النص حاداً */
+    -webkit-text-fill-color: #000000 !important; /* لضمان تغيير لون النص المفرغ */
+}
+
+/* لمتصفح فايرفوكس */
+*::-moz-selection {
+    background-color: #d4af37 !important;
+    color: #000000 !important;
+    text-shadow: none !important;
+}
+
+/* خصيصاً لنص Section 1 الذي يحتوي على Stroke (الكلمة المفرغة) */
+.text-home-section1 span::selection {
+    -webkit-text-stroke: 0px !important; /* إزالة الإطار المفرغ ليمتلئ بالذهب والأسود */
+}
+
+
+
+/* --- تأمين مساحة للمحتوى في الموبايل --- */
+@media screen and (max-width: 750px) {
+    /* نطبق الـ padding على الـ body لضمان دفع كل محتوى الموقع للأعلى */
+    body {
+        /* 75px هو ارتفاع الهيدر + 15px مساحة إضافية للتنفس (Breathable space) */
+        padding-bottom: 50px !important; 
+    }
+
+    /* إذا كنت تستخدم وسم main كحاوية أساسية، يفضل تطبيقه عليه أيضاً لزيادة التأكيد */
+    main {
+        padding-bottom: 20px;
+    }
+}
+
+
+/* ابحث عن هذا السطر واحذفه أو حوله لـ auto */
+html {
+    scroll-behavior: auto !important; 
+}
