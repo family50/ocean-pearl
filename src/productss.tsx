@@ -244,11 +244,11 @@ const Products: React.FC = () => {
                 </div>
 
                 <div className="footer-social-section">
-                    <a href="#" className="social-link-item"><i className="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
-                    <a href="#" className="social-link-item"><i className="fab fa-x-twitter"></i><span>X-Platform</span></a>
-                    <a href="#" className="social-link-item"><i className="fab fa-github"></i><span>GitHub</span></a>
-                    <a href="#" className="social-link-item"><i className="fab fa-tiktok"></i><span>Journal</span></a>
-                    <a href="mailto:office@familygroup.com" className="social-link-item"><i className="fas fa-envelope"></i><span>Contact</span></a>
+                   <a href="https://www.linkedin.com/in/family-group-69a419395" className="social-link-item"><i className="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
+          <a href="https://x.com/FamilyGroup8320" className="social-link-item"><i className="fab fa-x-twitter"></i><span>X-Platform</span></a>
+          <a href="https://github.com/family50" className="social-link-item"><i className="fab fa-github"></i><span>GitHub</span></a>
+          <a href="https://www.tiktok.com/@familygroup974" className="social-link-item"><i className="fab fa-tiktok"></i><span>Journal</span></a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=familygroup832005@gmail.com" className="social-link-item"><i className="fas fa-envelope"></i><span>Contact</span></a>
                 </div>
 
                 <p className="footer-description">
