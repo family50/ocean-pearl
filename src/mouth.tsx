@@ -5,6 +5,9 @@ const CustomCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
+    // التحقق إذا كان الجهاز يدعم الماوس (وليس لمس فقط)
+  const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+  if (isTouchDevice) return; // توقف هنا ولا تشغل أي Listeners
     // 1. حركة الماوس السلسة
     const moveCursor = (e: MouseEvent) => {
       if (cursorRef.current) {
@@ -42,6 +45,24 @@ const CustomCursor = () => {
     <>
       {/* التنسيقات مدمجة في نفس الصفحة */}
       <style>{`
+
+       @media (pointer: fine) {
+  html, body, a, button, input {
+    cursor: none !important;
+  }
+}
+
+/* إخفاء مكونات الماوس تماماً على الموبايل والتابلت */
+@media (pointer: coarse) {
+  .velvet-trail, 
+  .velvet-core, 
+  .velvet-outer-container {
+    display: none !important;
+  }
+}
+
+
+
         body {
           cursor: none !important; /* إخفاء الماوس الأصلي من كامل الموقع */
         }

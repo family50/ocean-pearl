@@ -1325,6 +1325,7 @@
     align-items: center;
     z-index: 9999;
     padding: 40px; /* زيادة الهامش الخارجي */
+   
 }
 
 .invoice-card {
@@ -1337,6 +1338,28 @@
     border-radius: 8px; /* تنعيم الحواف قليلاً */
     box-shadow: 0 40px 100px rgba(0,0,0,0.9);
     overflow: hidden;
+   /* --- الإضافات الجديدة لفتح السكرول --- */
+    max-height: 80vh; /* يضمن أن الكارت لا يتعدى 80% من طول الشاشة */
+    overflow-y: auto; /* يظهر السكرول فقط عندما يكون المحتوى أطول من الكارت */
+    scrollbar-width: thin; /* لجعل السكرول نحيف في متصفح فيرفوكس */
+    scrollbar-color: #C5A059 #0d0d0d; /* تلوين السكرول بالذهبي ليناسب البراند */
+}
+/* --- تخصيص شكل السكرول لمتصفحات Chrome و Edge و Safari --- */
+.invoice-card::-webkit-scrollbar {
+    width: 5px; /* عرض السكرول بار */
+}
+
+.invoice-card::-webkit-scrollbar-track {
+    background: #0d0d0d; /* لون خلفية مسار السكرول */
+}
+
+.invoice-card::-webkit-scrollbar-thumb {
+    background: #C5A059; /* لون المقبض (الذهبي) */
+    border-radius: 10px;
+}
+
+.invoice-card::-webkit-scrollbar-thumb:hover {
+    background: #e2ba73; /* لون أفتح قليلاً عند الوقوف عليه */
 }
 
 /* شعار مائي في الخلفية كعلامة تجارية */
@@ -1548,6 +1571,7 @@
         padding: 30px 20px; /* تقليل الحشو الداخلي (الجانبي خاصة) */
         margin-top: 0; /* إلغاء الإزاحة العلوية لتجنب الاختفاء */
         border-radius: 4px;
+        height: 60vh;
     }
 
     .invoice-seal {

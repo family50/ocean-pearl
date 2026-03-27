@@ -33,6 +33,9 @@ const Products: React.FC = () => {
     const [curationNumber] = React.useState(() => Math.floor(Math.random() * 100));
 
     useLayoutEffect(() => {
+        const timer = setTimeout(() => {
+        ScrollTrigger.refresh();
+    }, 1000);
         
        const ctx = gsap.context(() => {
             // --- STAGE 1: HERO ANIMATION (Timeline) ---
@@ -117,8 +120,11 @@ const Products: React.FC = () => {
         });
     }, containerRef);
 
-        return () => ctx.revert();
-    }, []);
+  return () => {
+        ctx.revert();
+        clearTimeout(timer);
+    };
+}, [categoryName]);
 
     if (!currentCategory) return <div className="error-msg">Royal Archive Not Found</div>;
 
