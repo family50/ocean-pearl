@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { menuData } from './Products';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import './Productss.css';
+import './productss.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
