@@ -44,7 +44,10 @@ function App() {
 
   return (
     <>
-   <SkeletonTheme baseColor="#0a0a0a" highlightColor="#1a140a">
+  <SkeletonTheme 
+  baseColor="#0f1115"       /* لون الخلفية الثابتة (مثلاً كحلي غامق جداً أو أسود ملكي) */
+  highlightColor="#1a1d23"  /* لون اللمعة اللي بتتحرك (لازم يكون أفتح سيكة من الأساسي) */
+>
     <LoadingProvider isLoading={isLoading}>
       {isLoading ? (
         <>
