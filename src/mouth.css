@@ -1,0 +1,42 @@
+/* إخفاء الماوس الأصلي من كامل الموقع للأجهزة التي تدعم الماوس فقط */
+@media (pointer: fine) {
+  html, body, a, button, input, select, textarea {
+    cursor: none !important;
+  }
+}
+
+/* إخفاء مكونات الماوس تماماً على الموبايل والتابلت */
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+.custom-cursor {
+  width: 12px;
+  height: 12px;
+  background-color: #ddad0e; /* الذهبي الملكي */
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  left: 0;
+  top: 0;
+  mix-blend-mode: difference;
+  transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1), 
+              height 0.3s cubic-bezier(0.23, 1, 0.32, 1), 
+              background-color 0.4s ease, 
+              box-shadow 0.4s ease;
+  box-shadow: 0 0 10px rgba(221, 173, 14, 0.5);
+}
+
+/* الحالة عند الوقوف على عنصر تفاعلي */
+.custom-cursor.hovered {
+  width: 40px; /* بيكبر شوية لما يقف على زرار */
+  height: 40px;
+  background-color: #ffffff; /* أبيض نقي */
+  mix-blend-mode: normal;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 
+              0 0 40px rgba(255, 255, 255, 0.4);
+}
