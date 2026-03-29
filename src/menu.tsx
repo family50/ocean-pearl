@@ -4,6 +4,7 @@ import { menuData } from './Products';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useNavigate } from 'react-router-dom'; // استيراد Navigate
+import LuxeMedia from './LuxeMedia';
 // تسجيل الـ Plugin الخاص بالتمرير
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,7 +84,7 @@ cardsRef.current.forEach((card) => {
                 {menuData.map((category, index) => (
                   <div className="category-card" key={index} ref={(el) => { cardsRef.current[index] = el; }}>
                         <div className="card-image-wrapper">
-                            <img 
+                            <LuxeMedia 
                                 src={category.categoryImage} 
                                 alt={category.categoryName} 
                                 className="category-img" 

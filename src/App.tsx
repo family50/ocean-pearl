@@ -1,7 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+// --- إضافة استيرادات المكتبة هنا ---
+import 'react-loading-skeleton/dist/skeleton.css';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import { LoadingProvider } from './LoadingProvider';
 // استيراد المكونات
 import ScrollToTop from './ScrollToTop';
 import Home from './home.tsx';
@@ -41,13 +44,15 @@ function App() {
 
   return (
     <>
+   <SkeletonTheme baseColor="#0a0a0a" highlightColor="#1a140a">
+    <LoadingProvider isLoading={isLoading}>
       {isLoading ? (
         <>
           {/* المكون الجديد: بنمرر له صور الصفحة الرئيسية فقط للسرعة */}
           <AssetPreloader 
             assets={PAGE_ASSETS.HOME} 
             onComplete={handleLoadingComplete} 
-            minWaitTime={3500} // وقت عرض شاشة الـ Loading بالفخامة المطلوبة
+            minWaitTime={3000} // وقت عرض شاشة الـ Loading بالفخامة المطلوبة
           />
           {/* صفحة الـ Loading اللي المستخدم بيشوفها */}
           <Loading />
@@ -68,7 +73,10 @@ function App() {
             <Route path="/payment" element={<Payment />} />
           </Routes>
         </Router>
+        
       )}
+      </LoadingProvider>
+      </SkeletonTheme>
     </>
   );
 }

@@ -98,3 +98,35 @@ body::after {
 html {
     scroll-behavior: auto !important; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.react-loading-skeleton {
+    --pseudo-element-display: block; /* لضمان ظهور اللمعة في كل المتصفحات */
+    line-height: 1;
+    z-index: 1;
+}
+
+/* حركة دخول ناعمة للصورة لما تظهر */
+.fade-in-image {
+    animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

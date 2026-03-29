@@ -193,11 +193,12 @@ const Billing: React.FC = () => {
                                 <br />
                                 <span>Treasures from the Ocean Pearl are just a selection away.</span>
                             </p>
-                            
-                            <button className="start-selection-btn" onClick={() => window.location.href = '/menu'}>
+                            <Link to="/menu">
+                            <button className="start-selection-btn" >
                                 Explore Our Collection Now
                                 <div className="btn-shine"></div>
                             </button>
+                            </Link>
                         </div>
                     </section>
                     /* --- نهاية تصميم العربة الفارغة --- */

@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './home.css';
 import { Link } from 'react-router-dom';
+import LuxeMedia from './LuxeMedia';
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
@@ -171,7 +172,7 @@ tl1.fromTo(leftBgRef.current,
     <div className="home-container">
 
       {/* Section 1: Hero */}
-      <section ref={section1Ref} className="home-continer-section1">
+      <section ref={section1Ref} className="home-continer-section1"  >
         <div className="background">
           <div ref={rightBgRef} className="right"></div>
           <div ref={leftBgRef} className="left"></div>
@@ -184,19 +185,19 @@ tl1.fromTo(leftBgRef.current,
           <p className="text-gold-p">Authentic Artistry</p>
         </div>
         <div ref={heroPlateRef} className="dish-section1">
-          <img src="/dish.png" alt="Signature Sushi" className="dish-section1-img" />
+          <LuxeMedia src="/dish.png" alt="Signature Sushi" className="dish-section1-img" />
         </div>
       </section>
 
       {/* Section 2: Video */}
       <section ref={section2Ref} className="home-container-section2">
         <div className="video-container-section2">
-          <video 
+          <LuxeMedia 
             ref={videoRef}
             src="/02177287268058700000000000000000000ffffc0a8ac5dabe60f.mp4" 
             muted autoPlay loop playsInline 
             className="autoplay-video"
-          ></video>
+          ></LuxeMedia>
           <div className="video-overlay-section2">
             <div className="overlay-content">
                <span className="overlay-line"></span>
@@ -226,7 +227,7 @@ tl1.fromTo(leftBgRef.current,
         <div  ref={scrollContainerRef} className="section3-plates-grid">
           <div className="section3-item">
             <div className="section3-photo-wrapper">
-              <img src="/dish1.png" alt="Dish 1" className="section3-img" />
+              <LuxeMedia src="/dish1.png" alt="Dish 1" className="section3-img" />
             </div>
             <div className="section3-info">
               <h4 className="section3-item-name">Oarfish Sashimi</h4>
@@ -237,7 +238,7 @@ tl1.fromTo(leftBgRef.current,
 
           <div className="section3-item">
             <div className="section3-photo-wrapper">
-              <img src="/dish2.png" alt="Dish 2" className="section3-img" />
+              <LuxeMedia src="/dish2.png" alt="Dish 2" className="section3-img" />
             </div>
             <div className="section3-info">
               <h4 className="section3-item-name">Black Pearl Risotto</h4>
@@ -248,7 +249,7 @@ tl1.fromTo(leftBgRef.current,
 
           <div className="section3-item">
             <div className="section3-photo-wrapper">
-              <img src="/dish3.png" alt="Dish 3" className="section3-img" />
+              <LuxeMedia src="/dish3.png" alt="Dish 3" className="section3-img" />
             </div>
             <div className="section3-info">
               <h4 className="section3-item-name">Imperial Wagyu</h4>
@@ -261,7 +262,7 @@ tl1.fromTo(leftBgRef.current,
 
       {/* Section 4: Luxury CTA - الأنميشن المضاف هنا */}
       <div ref={section4Ref} className="home-container-section4">
-        <img 
+        <LuxeMedia 
           ref={section4ImageRef}
           src="/Gemini_Generated_Image_6iqxc86iqxc86iqx_no_bg.png" 
           className="section4-bg-silk" 
@@ -284,7 +285,7 @@ tl1.fromTo(leftBgRef.current,
       {/* Footer */}
       <footer className="home-footer-container">
         <div className="footer-brand-section">
-          <img src="/family-group.png" className="footer-logo" alt="Family-Group" />
+          <LuxeMedia src="/family-group.png" className="footer-logo" alt="Family-Group" />
           <h2 className="footer-company-name">FAMILY-GROUP</h2>
         </div>
 
