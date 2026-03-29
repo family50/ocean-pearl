@@ -2,6 +2,9 @@ import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import './taple.css';
 import { useLayoutEffect } from 'react'; // تأكد من استيرادها
+import LuxeMedia from './LuxeMedia';
+
+
 const Taple = () => {
     const [step, setStep] = useState(1);
     const [guests, setGuests] = useState("2");
@@ -120,7 +123,7 @@ const cardRef = useRef(null);
     return (
         <div className="booking-page-container">
             <div className="booking-bg-overlay">
-                <img src="/Japanese-Ambience.png" alt="Restaurant" className="bg-img" />
+                <LuxeMedia src="/Japanese-Ambience.png" alt="Restaurant" className="bg-img" />
             </div>
 
             <div className="booking-content-wrapper">

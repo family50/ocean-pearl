@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { gsap } from 'gsap';
 import './billing.css';
 import { Link } from 'react-router-dom';
-
+import LuxeMedia from './LuxeMedia';
 // 1. تعريف الأنواع لراحة TypeScript
 interface CartItem {
     id: number;
@@ -178,7 +178,7 @@ const Billing: React.FC = () => {
                     /* --- بداية تصميم العربة الفارغة --- */
                     <section className="empty-cart-display-wrapper" ref={emptyCartRef}>
                         <div className="empty-luxe-platter-container">
-                            <img 
+                            <LuxeMedia 
                                 src="./The-Cart-is-empty .png" 
                                 alt="Imperial Golden Platter" 
                                 className="empty-luxe-platter" 
@@ -238,7 +238,7 @@ const Billing: React.FC = () => {
                                             <button className="text-remove" onClick={() => removeItem(item.id)}>Remove</button>
                                             
                                             <div className="item-img-wrapper">
-                                                <img src={item.image} alt={item.name} />
+                                                <LuxeMedia src={item.image} alt={item.name} />
                                             </div>
                                             
                                             <div className="item-meta">

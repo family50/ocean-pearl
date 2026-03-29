@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './apout.css';
 import { useEffect, useRef } from 'react';
-
+import LuxeMedia from './LuxeMedia';
 gsap.registerPlugin(ScrollTrigger);
 
 function About() {
@@ -183,7 +183,7 @@ if (craft) {
             <section className="about-hero about-section" ref={(el) => { sectionRefs.current[0] = el; }}>
                 <div className="hero-bg-overlay"></div>
                 <div className="hero-image-wrapper">
-                    <img src="./apout-img.png" alt="Ocean Pearl Restaurant Ambience" className="hero-bg-img" />
+                    <LuxeMedia src="./apout-img.png" alt="Ocean Pearl Restaurant Ambience" className="hero-bg-img" />
                     <div className="hero-overlay"></div>
                 </div>
 
@@ -234,7 +234,7 @@ if (craft) {
                 </div>
 
                 <div className="philosophy-image reveal-text">
-                    <img src="./philosophy.png" alt="Mystical Cuttlefish" className="floating-cuttlefish" />
+                    <LuxeMedia src="./philosophy.png" alt="Mystical Cuttlefish" className="floating-cuttlefish" />
                     <div className="cuttlefish-glow"></div>
                 </div>
             </section>
@@ -242,7 +242,8 @@ if (craft) {
             {/* Section 3: The Ocean's Heart (Video/Motion Section) */}
             <section className="about-ocean-motion about-section" ref={(el) => { sectionRefs.current[2] = el; }}>
                 <div className="video-wrapper">
-                    <video 
+                    <LuxeMedia
+                        type="video" 
                         src="./02177332750425500000000000000000000ffffc0a8ac5dd01040.mp4" 
                         autoPlay loop muted playsInline 
                         className="background-video" 
@@ -266,13 +267,13 @@ if (craft) {
             <section className="about-craft about-section" ref={(el) => { sectionRefs.current[3] = el; }}>
                 <div className="craft-grid">
                     <div className="craft-card">
-                        <img src="./Rare-Abyssal-Treasures.png" alt="Black Pearl" /> 
+                        <LuxeMedia src="./Rare-Abyssal-Treasures.png" alt="Black Pearl" /> 
                         <h3>Rare Abyssal Treasures</h3>
                         <p>From the elusive Bluefin Tuna to the world’s finest Beluga Caviar, we hunt for the ocean’s most guarded secrets.</p>
                     </div>
 
                     <div className="craft-card">
-                        <img src="./Artisanal-Gold.png" alt="Gold Leaf Detail" /> 
+                        <LuxeMedia src="./Artisanal-Gold.png" alt="Gold Leaf Detail" /> 
                         <h3>Artisanal Gold</h3>
                         <p>Every slice of Sashimi is a masterstroke, adorned with 24k gold leaf to honor the purity of the deep blue.</p>
                     </div>
@@ -282,12 +283,12 @@ if (craft) {
             {/* Section 5: The Invitation (Final CTA) */}
             <section className="about-footer-cta about-section" ref={(el) => { sectionRefs.current[4] = el; }}>
                 <div className="cta-bg-wrapper">
-                    <img 
+                    <LuxeMedia 
                         ref={ctaImageRef}
                         src="./cta-bg.png" 
                         alt="Ocean Pearl Crystal Conch Shell" 
                         className="cta-background-artifact"
-                        loading="lazy" 
+                        
                     />
                     <div className="top-merge-overlay"></div>
                 </div>
@@ -315,7 +316,7 @@ if (craft) {
             {/* Footer */}
             <footer className="home-footer-container">
                 <div className="footer-brand-section">
-                    <img src="/family-group.png" className="footer-logo" alt="Family-Group" />
+                    <LuxeMedia src="/family-group.png" className="footer-logo" alt="Family-Group" />
                     <h2 className="footer-company-name">FAMILY-GROUP</h2>
                 </div>
 

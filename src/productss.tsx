@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { menuData } from './Products'; 
 import gsap from 'gsap';
 import './roductss.css';
+import LuxeMedia from './LuxeMedia';
 
 const Products: React.FC = () => {
     const { categoryName } = useParams<{ categoryName: string }>();
@@ -94,7 +95,7 @@ const Products: React.FC = () => {
 
                     <div className="hero-3d-container" ref={heroImageRef}>
                         <div className="image-relative-box">
-                            <img 
+                            <LuxeMedia 
                                 src={currentCategory.image3d} 
                                 alt="Royal Centerpiece" 
                                 className="hero-3d-image floating-element" 
@@ -128,7 +129,7 @@ const Products: React.FC = () => {
                     </div>
                     <div className="image-side">
                         <div className="glow-aura"></div>
-                        <img 
+                        <LuxeMedia 
                             src={currentCategory.image3d2} 
                             alt="3D Art Piece" 
                             className="philosophy-image" 
@@ -151,7 +152,7 @@ const Products: React.FC = () => {
                             onClick={() => navigate(`/single-product/${item.id}`)}
                         >
                             <div className="card-visual">
-                                <img src={item.image} alt={item.name} className="prod-img-standard" />
+                                <LuxeMedia src={item.image} alt={item.name} className="prod-img-standard" />
                                 {item.highlight && <div className="luxe-badge">{item.highlight}</div>}
                             </div>
                             
@@ -173,7 +174,7 @@ const Products: React.FC = () => {
             {/* Footer */}
             <footer className="home-footer-container">
                 <div className="footer-brand-section">
-                    <img src="/family-group.png" className="footer-logo" alt="Family-Group" />
+                    <LuxeMedia src="/family-group.png" className="footer-logo" alt="Family-Group" />
                     <h2 className="footer-company-name">FAMILY-GROUP</h2>
                 </div>
 

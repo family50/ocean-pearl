@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import gsap from 'gsap';
 import './Payment.css';
 import { Link } from 'react-router-dom';
-
+import LuxeMedia from './LuxeMedia';
 interface CartItem {
     id: number;
     name: string;
@@ -191,7 +191,7 @@ if (isPaid) {
         
         {/* 1. الكارت ثابت وضخم في البداية */}
         <div className="static-hero-card">
-            <img src="visa-card.png" alt="Luxury Card" className="grand-card-img" />
+            <LuxeMedia src="visa-card.png" alt="Luxury Card" className="grand-card-img" />
             <div className="card-shadow-under"></div>
         </div>
 
@@ -247,7 +247,7 @@ if (isPaid) {
                         <div className="side-header"><h3>Secure Checkout</h3></div>
                         <div className="card-visual-wrapper">
         <div className="card-glow-effect"></div>
-        <img 
+        <LuxeMedia 
             src="visa-card.png" 
             alt="Premium Card" 
             className="user-visa-card" 

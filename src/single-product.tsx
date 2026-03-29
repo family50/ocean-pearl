@@ -5,6 +5,8 @@ import { menuData } from './Products';
 import gsap from 'gsap';
 import './single-product.css';
 import { useLayoutEffect } from 'react'; // تأكد من استيرادها
+import LuxeMedia from './LuxeMedia';
+
 const SingleProduct: React.FC = () => {
     const { productId } = useParams<{ productId: string }>();
 const [isAdded, setIsAdded] = React.useState(false);
@@ -134,7 +136,7 @@ const handleAddToCart = () => {
                 {/* الجانب الأيمن: الصورة */}
                 <div className="product-visual-side">
                     <div className="image-gold-frame">
-                        <img src={product.image} alt={product.name} className="product-primary-img" />
+                        <LuxeMedia src={product.image} alt={product.name} className="product-primary-img" />
                         {product.highlight && <div className="floating-badge">{product.highlight}</div>}
                     </div>
                 </div>
