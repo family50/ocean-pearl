@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import ScrollToTop from './ScrollToTop'; // 1. استيراد المكون الذي أنشأته
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// استيراد المكونات
+import ScrollToTop from './ScrollToTop';
 import Home from './home.tsx';
 import Header from './header.tsx';
 import Menu from './menu';
@@ -9,52 +12,38 @@ import Taple from './taple';
 import Billing from './billing';
 import Products from './productss';
 import SingleProduct from './single-product';
-import CustomCursor from './mouth'; // حسب مسار الملف عندك
-import Payment from './Payment'
+import CustomCursor from './mouth'; 
+import Payment from './Payment';
 import Loading from './loding';
+import AssetPreloader from './dateloding'; // المكون الجديد اللي أنشأناه
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
+  // تحديث ScrollTrigger بمجرد انتهاء التحميل لضمان حساب المسافات صح
   useEffect(() => {
-    // نحدد الحد الأدنى للوقت (مثلاً 2 ثانية)
-    const minTime = new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // نحدد وقت انتهاء تحميل موارد الصفحة بالكامل
-    const pageLoaded = new Promise(resolve => {
-      if (document.readyState === 'complete') {
-        resolve(true);
-      } else {
-        window.addEventListener('load', resolve);
-      }
-    });
+    if (!isLoading) {
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 500);
+    }
+  }, [isLoading]);
 
-    // عندما ينتهي الاثنان معاً (التحميل + مرور الوقت)
-    Promise.all([minTime, pageLoaded]).then(() => {
-      setIsLoading(false);
-    });
-
-    return () => window.removeEventListener('load', () => {});
-  }, []);
-// في ملف App.tsx
-useEffect(() => {
-  if (!isLoading) {
-    // ننتظر قليلاً للتأكد من أن الـ DOM قد استقر
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 500);
-  }
-}, [isLoading]);
   return (
     <>
       {isLoading ? (
-        <Loading />
+        <>
+          {/* المكون ده بيحمل الصور والفيديوهات في الخلفية */}
+          <AssetPreloader onComplete={() => setIsLoading(false)} />
+          {/* صفحة الـ Loading اللي المستخدم بيشوفها */}
+          <Loading />
+        </>
       ) : (
         <Router>
           <ScrollToTop />
           <CustomCursor />
           <Header /> 
           <Routes>
-            {/* مساراتك هنا */}
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/productss/:categoryName" element={<Products />} />
@@ -69,4 +58,5 @@ useEffect(() => {
     </>
   );
 }
+
 export default App;

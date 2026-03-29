@@ -184,7 +184,7 @@ tl1.fromTo(leftBgRef.current,
           <p className="text-gold-p">Authentic Artistry</p>
         </div>
         <div ref={heroPlateRef} className="dish-section1">
-          <img src="/public/dish.png" alt="Signature Sushi" className="dish-section1-img" />
+          <img src="/dish.png" alt="Signature Sushi" className="dish-section1-img" />
         </div>
       </section>
 
@@ -193,7 +193,7 @@ tl1.fromTo(leftBgRef.current,
         <div className="video-container-section2">
           <video 
             ref={videoRef}
-            src="/public/02177287268058700000000000000000000ffffc0a8ac5dabe60f.mp4" 
+            src="/02177287268058700000000000000000000ffffc0a8ac5dabe60f.mp4" 
             muted autoPlay loop playsInline 
             className="autoplay-video"
           ></video>
@@ -226,7 +226,7 @@ tl1.fromTo(leftBgRef.current,
         <div  ref={scrollContainerRef} className="section3-plates-grid">
           <div className="section3-item">
             <div className="section3-photo-wrapper">
-              <img src="/public/dish1.png" alt="Dish 1" className="section3-img" />
+              <img src="/dish1.png" alt="Dish 1" className="section3-img" />
             </div>
             <div className="section3-info">
               <h4 className="section3-item-name">Oarfish Sashimi</h4>
@@ -237,7 +237,7 @@ tl1.fromTo(leftBgRef.current,
 
           <div className="section3-item">
             <div className="section3-photo-wrapper">
-              <img src="/public/dish2.png" alt="Dish 2" className="section3-img" />
+              <img src="/dish2.png" alt="Dish 2" className="section3-img" />
             </div>
             <div className="section3-info">
               <h4 className="section3-item-name">Black Pearl Risotto</h4>
@@ -248,7 +248,7 @@ tl1.fromTo(leftBgRef.current,
 
           <div className="section3-item">
             <div className="section3-photo-wrapper">
-              <img src="/public/dish3.png" alt="Dish 3" className="section3-img" />
+              <img src="/dish3.png" alt="Dish 3" className="section3-img" />
             </div>
             <div className="section3-info">
               <h4 className="section3-item-name">Imperial Wagyu</h4>
@@ -263,7 +263,7 @@ tl1.fromTo(leftBgRef.current,
       <div ref={section4Ref} className="home-container-section4">
         <img 
           ref={section4ImageRef}
-          src="/public/Gemini_Generated_Image_6iqxc86iqxc86iqx_no_bg.png" 
+          src="/Gemini_Generated_Image_6iqxc86iqxc86iqx_no_bg.png" 
           className="section4-bg-silk" 
           alt="Luxury Texture" 
         />
@@ -284,7 +284,7 @@ tl1.fromTo(leftBgRef.current,
       {/* Footer */}
       <footer className="home-footer-container">
         <div className="footer-brand-section">
-          <img src="/public/family-group.png" className="footer-logo" alt="Family-Group" />
+          <img src="/family-group.png" className="footer-logo" alt="Family-Group" />
           <h2 className="footer-company-name">FAMILY-GROUP</h2>
         </div>
 

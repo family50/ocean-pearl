@@ -315,7 +315,7 @@ if (craft) {
             {/* Footer */}
             <footer className="home-footer-container">
                 <div className="footer-brand-section">
-                    <img src="/public/family-group.png" className="footer-logo" alt="Family-Group" />
+                    <img src="/family-group.png" className="footer-logo" alt="Family-Group" />
                     <h2 className="footer-company-name">FAMILY-GROUP</h2>
                 </div>
 
