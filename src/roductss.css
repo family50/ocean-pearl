@@ -1119,3 +1119,48 @@ margin-left: -40px;
         height: 180px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* تأكد أن الصفحة ليست مقصوصة */
+.products-page-wrapper {
+    width: 100vw;
+    position: relative;
+  
+}
+
+/* كل سيكشن يجب أن يأخذ مساحته كاملة */
+.stage-screen {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: block; /* تجنب التداخل */
+    clear: both;
+}
+
+/* تجنب استخدام position: fixed للعناصر التي تريد عمل سكرول لها */
+.stage-hero-3d {
+    z-index: 10;
+}
+
+.stage-philosophy {
+    z-index: 9;
+   
+}
+
+/* الكروت يجب أن تكون مرئية افتراضياً في حالة فشل JS */
+.product-card-luxe {
+    will-change: transform, opacity;
+}
