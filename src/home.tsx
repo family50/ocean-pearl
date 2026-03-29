@@ -193,9 +193,13 @@ tl1.fromTo(leftBgRef.current,
       <section ref={section2Ref} className="home-container-section2">
         <div className="video-container-section2">
           <LuxeMedia 
+          type="video"  /* السطر ده هو "مفتاح الحل" */
             ref={videoRef}
             src="/02177287268058700000000000000000000ffffc0a8ac5dabe60f.mp4" 
-            muted autoPlay loop playsInline 
+           muted 
+  autoPlay 
+  loop 
+  playsInline
             className="autoplay-video"
           ></LuxeMedia>
           <div className="video-overlay-section2">
