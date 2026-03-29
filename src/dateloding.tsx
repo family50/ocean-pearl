@@ -1,52 +1,29 @@
-import { useEffect } from 'react';
-import { menuData } from './Products'; // قاعدة بياناتك
+import React, { useEffect } from 'react';
 
-const staticAssets = [
-  // --- الرئيسية ---
-  '/dish.png', '/dish1.png', '/dish2.png', '/dish3.png',
-  '/Gemini_Generated_Image_6iqxc86iqxc86iqx_no_bg.png',
-  '/02177287268058700000000000000000000ffffc0a8ac5dabe60f.mp4',
+interface PreloaderProps {
+  assets: string[];
+  onComplete?: () => void;
+  minWaitTime?: number;
+}
 
-  // --- ABOUT ---
-  '/apout-img.png', '/philosophy.png', '/Rare-Abyssal-Treasures.png',
-  '/Artisanal-Gold.png', '/cta-bg.png', '/family-group.png',
-  '/02177332750425500000000000000000000ffffc0a8ac5dd01040.mp4',
-
-  // --- BILLING & PAYMENT (الصور الجديدة) ---
-  './The-Cart-is-empty .png', // صورة الطبق الذهبي الفارغ
-  'visa-card.png',
-  '/Japanese-Ambience.png', // خلفية صفحة الحجز التي استخدمتها في Taple
-  '/dish.png',
-];
-
-// --- العبقرية هنا: استخراج ديناميكي شامل لكل صور صفحة Products ---
-const dynamicAssets = menuData.flatMap(category => [
-  category.categoryImage,   // صورة الكارت في صفحة المنيو الرئيسية
-  category.image3d,         // الصورة الـ 3D الأولى في صفحة القسم
-  category.image3d2,        // الصورة الـ 3D الثانية (Philosophy section)
-  ...category.items.map(item => item.image) // صور جميع الأطباق داخل هذا القسم
-]);
-
-// دمج الموارد وحذف المتكرر لضمان كفاءة التحميل
-const assetsToPreload = Array.from(new Set([...staticAssets, ...dynamicAssets]));
-
-const AssetPreloader = ({ onComplete }: { onComplete: () => void }) => {
+const AssetPreloader: React.FC<PreloaderProps> = ({ 
+  assets, 
+  onComplete, 
+  minWaitTime = 0 
+}) => {
   useEffect(() => {
     const preload = async () => {
-      const promises = assetsToPreload.map((url) => {
-        if (!url) return Promise.resolve(true);
-
+      const uniqueAssets = Array.from(new Set(assets)).filter(url => !!url);
+      
+      const promises = uniqueAssets.map((url) => {
         return new Promise((resolve) => {
-          // تحميل الفيديو
           if (url.endsWith('.mp4')) {
             const video = document.createElement('video');
             video.src = url;
             video.preload = 'auto';
             video.oncanplaythrough = () => resolve(true);
             video.onerror = () => resolve(true);
-          } 
-          // تحميل الصور
-          else {
+          } else {
             const img = new Image();
             img.src = url;
             img.onload = () => resolve(true);
@@ -55,15 +32,19 @@ const AssetPreloader = ({ onComplete }: { onComplete: () => void }) => {
         });
       });
 
-      // وقت انتظار (3.5 ثانية) ليظهر الـ Loading Animation الخاص بك بشكل فخم
-      const minTime = new Promise((res) => setTimeout(res, 3500));
+      // انتظار الوقت المحدد
+      const minTimePromise = new Promise((res) => setTimeout(res, minWaitTime));
 
-      await Promise.all([...promises, minTime]);
-      onComplete(); // إخفاء صفحة التحميل
+      await Promise.all([...promises, minTimePromise]);
+
+      if (onComplete) {
+        onComplete();
+      }
     };
 
     preload();
-  }, [onComplete]);
+    // أضفنا كل المتغيرات التي تُستخدم بالداخل لضمان دقة التنفيذ
+  }, [assets, onComplete, minWaitTime]); 
 
   return null;
 };

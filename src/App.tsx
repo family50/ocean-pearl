@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // استيراد المكونات
@@ -15,17 +15,27 @@ import SingleProduct from './single-product';
 import CustomCursor from './mouth'; 
 import Payment from './Payment';
 import Loading from './loding';
-import AssetPreloader from './dateloding'; // المكون الجديد اللي أنشأناه
+
+// استيراد المكون الجديد وملف البيانات
+import AssetPreloader from './dateloding'; // تأكد من أن الاسم يطابق اسم الملف الجديد
+import { PAGE_ASSETS } from './assetsData';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // تحديث ScrollTrigger بمجرد انتهاء التحميل لضمان حساب المسافات صح
+  // 1. استخدام useCallback لمنع إعادة إنشاء الدالة في كل رندر
+  // ده بيحل مشكلة الـ ESLint Warning وبيمنع الـ Preloader من إعادة التشغيل
+  const handleLoadingComplete = useCallback(() => {
+    setIsLoading(false);
+  }, []);
+
+  // 2. تحديث ScrollTrigger بمجرد انتهاء التحميل
   useEffect(() => {
     if (!isLoading) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         ScrollTrigger.refresh();
       }, 500);
+      return () => clearTimeout(timer);
     }
   }, [isLoading]);
 
@@ -33,8 +43,12 @@ function App() {
     <>
       {isLoading ? (
         <>
-          {/* المكون ده بيحمل الصور والفيديوهات في الخلفية */}
-          <AssetPreloader onComplete={() => setIsLoading(false)} />
+          {/* المكون الجديد: بنمرر له صور الصفحة الرئيسية فقط للسرعة */}
+          <AssetPreloader 
+            assets={PAGE_ASSETS.HOME} 
+            onComplete={handleLoadingComplete} 
+            minWaitTime={3500} // وقت عرض شاشة الـ Loading بالفخامة المطلوبة
+          />
           {/* صفحة الـ Loading اللي المستخدم بيشوفها */}
           <Loading />
         </>
