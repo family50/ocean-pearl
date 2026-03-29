@@ -1,6 +1,6 @@
-import React, { useRef, useLayoutEffect, useState } from 'react';
+import React, { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { menuData } from './Products'; // تأكد من صحة مسار بياناتك
+import { menuData } from './Products'; 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './roductss.css';
@@ -11,7 +11,7 @@ const Products: React.FC = () => {
     const { categoryName } = useParams<{ categoryName: string }>();
     const navigate = useNavigate();
     
-    // المراجع (Refs) للأقسام والعناصر
+    // المراجع (Refs)
     const containerRef = useRef<HTMLDivElement>(null);
     const welcomeRef = useRef<HTMLHeadingElement>(null);
     const heroTitleRef = useRef<HTMLHeadingElement>(null);
@@ -32,86 +32,99 @@ const Products: React.FC = () => {
     const currentCategory = menuData.find(cat => cat.categoryName === categoryName);
     const [curationNumber] = useState(() => Math.floor(Math.random() * 100));
 
-useLayoutEffect(() => {
-    if (!currentCategory) return;
+    // 1. ضمان بدء الصفحة من الأعلى تماماً عند تغيير التصنيف
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [categoryName]);
 
-    // دالة لتحديث حسابات ScrollTrigger بعد استقرار الصفحة
-    const refreshTrigger = () => {
-        ScrollTrigger.refresh();
-    };
+    useLayoutEffect(() => {
+        if (!currentCategory) return;
 
-    // مراقبة تحميل الصور 
-    window.addEventListener('load', refreshTrigger);
+        // دالة تحديث الحسابات
+        const refreshTrigger = () => {
+            ScrollTrigger.refresh();
+        };
 
-    const ctx = gsap.context(() => {
-        // --- STAGE 1: HERO ANIMATION ---
-        const tlHero = gsap.timeline({ 
-            defaults: { ease: "power3.out", duration: 1.5 } 
-        });
+        // تحديث عند تحميل الصور أونلاين
+        window.addEventListener('load', refreshTrigger);
 
-        tlHero.from(welcomeRef.current, { y: -50, opacity: 0 })
-            .from(heroImageRef.current, { x: 100, opacity: 0, scale: 0.9 }, "-=0.5")
-            .from(heroTextRef.current, { x: -100, opacity: 0 }, "<")
-            .from(heroDividerRef.current, { scaleY: 0, opacity: 0 }, "<");
+        const ctx = gsap.context(() => {
+            // --- STAGE 1: HERO ANIMATION ---
+            const tlHero = gsap.timeline({ 
+                defaults: { ease: "power3.out", duration: 1.5 } 
+            });
 
-        // --- STAGE 2: PHILOSOPHY ---
-        const tlPhil = gsap.timeline({
-            scrollTrigger: {
-                trigger: philSectionRef.current,
-                start: "top 85%", 
-                toggleActions: "play none none none",
-                invalidateOnRefresh: true
-            }
-        });
+            tlHero.fromTo(welcomeRef.current, { y: -50, opacity: 0 }, { y: 0, opacity: 1 })
+                .fromTo(heroImageRef.current, { x: 100, opacity: 0, scale: 0.9 }, { x: 0, opacity: 1, scale: 1 }, "-=0.5")
+                .fromTo(heroTextRef.current, { x: -100, opacity: 0 }, { x: 0, opacity: 1 }, "<")
+                .fromTo(heroDividerRef.current, { scaleY: 0, opacity: 0 }, { scaleY: 1, opacity: 1 }, "<");
 
-        tlPhil.from(philImageRef.current, { scale: 0.8, filter: "blur(15px)", opacity: 0, duration: 1.5 })
-            .from(philTitleRef.current, { y: 40, opacity: 0 }, "-=1")
-            .from(philTextRef.current, { y: 30, opacity: 0 }, "-=0.8")
-            .from(philSignRef.current, { opacity: 0 }, "-=0.5");
-
-        // --- STAGE 3: ARCHIVE ---
-        gsap.from(archiveTitleRef.current, { 
-            y: 40, 
-            opacity: 0, 
-            scrollTrigger: {
-                trigger: archiveTitleRef.current,
-                start: "top 95%",
-            }
-        });
-
-        const validCards = productsRef.current.filter(card => card !== null);
-        if (validCards.length > 0) {
-            gsap.from(validCards, { 
-                y: 60, 
-                opacity: 0, 
-                stagger: 0.15, 
-                duration: 1,
-                ease: "power2.out",
+            // --- STAGE 2: PHILOSOPHY ---
+            const tlPhil = gsap.timeline({
                 scrollTrigger: {
-                    trigger: archiveSectionRef.current,
-                    start: "top 75%", 
+                    trigger: philSectionRef.current,
+                    start: "top 85%", // يبدأ مبكراً لضمان الانسيابية
+                    toggleActions: "play none none none",
+                    invalidateOnRefresh: true // لإعادة الحساب عند تغير حجم الصور
                 }
             });
-        }
 
-    }, containerRef);
+            tlPhil.fromTo(philImageRef.current, { scale: 0.8, filter: "blur(15px)", opacity: 0 }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.5 })
+                .fromTo(philTitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1 }, "-=1")
+                .fromTo(philTextRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.8")
+                .fromTo(philSignRef.current, { opacity: 0 }, { opacity: 1 }, "-=0.5");
 
-    // تحديث الحسابات يدوياً بعد رندر الـ DOM
-    const timer = setTimeout(refreshTrigger, 1000);
+            // --- STAGE 3: ARCHIVE ---
+            gsap.fromTo(archiveTitleRef.current, 
+                { y: 40, opacity: 0 }, 
+                { 
+                    y: 0, opacity: 1, 
+                    scrollTrigger: {
+                        trigger: archiveTitleRef.current,
+                        start: "top 90%",
+                    }
+                }
+            );
 
-    return () => {
-        ctx.revert();
-        clearTimeout(timer);
-        window.removeEventListener('load', refreshTrigger);
-    };
-}, [categoryName, currentCategory]);
+            const validCards = productsRef.current.filter(card => card !== null);
+            if (validCards.length > 0) {
+                gsap.fromTo(validCards, 
+                    { y: 60, opacity: 0 }, 
+                    { 
+                        y: 0, 
+                        opacity: 1, 
+                        stagger: 0.15, 
+                        duration: 1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: archiveSectionRef.current,
+                            start: "top 75%",
+                        }
+                    }
+                );
+            }
+
+        }, containerRef);
+
+        // تحديث مكرر لضمان استقرار الـ Layout أونلاين
+        const timer1 = setTimeout(refreshTrigger, 500);
+        const timer2 = setTimeout(refreshTrigger, 1500);
+
+        return () => {
+            ctx.revert();
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            window.removeEventListener('load', refreshTrigger);
+        };
+    }, [categoryName, currentCategory]);
+
     if (!currentCategory) return <div className="error-msg">Royal Archive Not Found</div>;
 
     return (
-        <div className="products-page-wrapper" ref={containerRef}>
+        <div className="products-page-wrapper" ref={containerRef} style={{ overflow: 'hidden' }}>
             
-            {/* STAGE 1: THE GRAND ENTRANCE */}
-            <section className="stage-screen stage-hero-3d">
+            {/* STAGE 1: HERO WRAPPER - حجز مساحة الشاشة بالكامل */}
+            <section className="stage-screen stage-hero-3d" style={{ minHeight: '100vh', position: 'relative' }}>
                 <div className="hero-welcome-header">
                     <h2 className="welcome-text-top" ref={welcomeRef}>Grand Curation</h2>
                 </div>
@@ -140,7 +153,7 @@ useLayoutEffect(() => {
                         </div>
                     </div>
 
-                    <div className="hero-3d-container" ref={heroImageRef}>
+                    <div className="hero-3d-container" ref={heroImageRef} style={{ minHeight: '400px' }}>
                         <div className="image-relative-box">
                             <img 
                                 src={currentCategory.image3d} 
@@ -159,8 +172,8 @@ useLayoutEffect(() => {
                 </div>
             </section>
 
-            {/* STAGE 2: THE PHILOSOPHY */}
-            <section className="stage-screen stage-philosophy" ref={philSectionRef}>
+            {/* STAGE 2: PHILOSOPHY WRAPPER - منع القفز عبر minHeight */}
+            <section className="stage-screen stage-philosophy" ref={philSectionRef} style={{ minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
                 <div className="philosophy-content">
                     <div className="text-side">
                         <h2 className="philosophy-title" ref={philTitleRef}>
@@ -174,7 +187,7 @@ useLayoutEffect(() => {
                         </p>
                         <div className="signature-gold" ref={philSignRef}>Authentic & Refined</div>
                     </div>
-                    <div className="image-side" ref={philImageRef}>
+                    <div className="image-side" ref={philImageRef} style={{ minHeight: '450px' }}>
                         <div className="glow-aura"></div>
                         <img 
                             src={currentCategory.image3d2} 
@@ -185,8 +198,8 @@ useLayoutEffect(() => {
                 </div>
             </section>
 
-            {/* STAGE 3: THE ROYAL ARCHIVE */}
-            <section className="stage-screen stage-archive" ref={archiveSectionRef}>
+            {/* STAGE 3: ROYAL ARCHIVE WRAPPER */}
+            <section className="stage-screen stage-archive" ref={archiveSectionRef} style={{ minHeight: '100vh' }}>
                 <div className="archive-intro">
                     <h2 className="archive-title" ref={archiveTitleRef}>Selected Masterpieces</h2>
                 </div>
@@ -198,8 +211,9 @@ useLayoutEffect(() => {
                             key={item.id} 
                             ref={(el) => { productsRef.current[index] = el; }}
                             onClick={() => navigate(`/single-product/${item.id}`)}
+                            style={{ minHeight: '400px' }} // حجز مساحة الكارت
                         >
-                            <div className="card-visual">
+                            <div className="card-visual" style={{ height: '280px', background: 'rgba(255,255,255,0.03)' }}>
                                 <img src={item.image} alt={item.name} className="prod-img-standard" />
                                 {item.highlight && <div className="luxe-badge">{item.highlight}</div>}
                             </div>
