@@ -1,6 +1,6 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { menuData } from './Products';
+import { menuData } from './Products'; // تأكد من صحة مسار بياناتك
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './roductss.css';
@@ -11,7 +11,7 @@ const Products: React.FC = () => {
     const { categoryName } = useParams<{ categoryName: string }>();
     const navigate = useNavigate();
     
-    // المراجع (Refs)
+    // المراجع (Refs) للأقسام والعناصر
     const containerRef = useRef<HTMLDivElement>(null);
     const welcomeRef = useRef<HTMLHeadingElement>(null);
     const heroTitleRef = useRef<HTMLHeadingElement>(null);
@@ -30,34 +30,42 @@ const Products: React.FC = () => {
     const productsRef = useRef<(HTMLDivElement | null)[]>([]);
 
     const currentCategory = menuData.find(cat => cat.categoryName === categoryName);
-    const [curationNumber] = React.useState(() => Math.floor(Math.random() * 100));
+    const [curationNumber] = useState(() => Math.floor(Math.random() * 100));
 
     useLayoutEffect(() => {
-        const timer = setTimeout(() => {
-        ScrollTrigger.refresh();
-    }, 1000);
-        
-       const ctx = gsap.context(() => {
-            // --- STAGE 1: HERO ANIMATION (Timeline) ---
-            const tlHero = gsap.timeline({ defaults: { ease: "power3.out", duration: 1.5 } });
+        if (!currentCategory) return;
+
+        // دالة لتحديث حسابات ScrollTrigger بعد استقرار الصفحة
+        const refreshTrigger = () => {
+            ScrollTrigger.refresh();
+        };
+
+        // نراقب تحميل الصور لضمان عدم تداخل الأبعاد
+        window.addEventListener('load', refreshTrigger);
+
+        const ctx = gsap.context(() => {
+            // --- STAGE 1: HERO ANIMATION (الظهور الفوري) ---
+            const tlHero = gsap.timeline({ 
+                defaults: { ease: "power3.out", duration: 1.5 } 
+            });
 
             tlHero.fromTo(welcomeRef.current, 
                 { y: -50, opacity: 0 }, 
-                { y: 0, opacity: 1, }
+                { y: 0, opacity: 1 }
             )
             .fromTo(heroImageRef.current, 
                 { x: 100, opacity: 0, scale: 0.9 }, 
-                { x: 0, opacity: 1, scale: 1,}, 
-                "-=0.5" // يبدأ قبل نهاية اللي قبله بنصف ثانية
+                { x: 0, opacity: 1, scale: 1 }, 
+                "-=0.5"
             )
             .fromTo(heroTextRef.current, 
                 { x: -100, opacity: 0 }, 
-                { x: 0, opacity: 1}, 
-                "<" // يبدأ في نفس لحظة الصورة
+                { x: 0, opacity: 1 }, 
+                "<"
             )
             .fromTo(heroDividerRef.current, 
                 { scaleY: 0, opacity: 0 }, 
-                { scaleY: 1, opacity: 1 , }, 
+                { scaleY: 1, opacity: 1 }, 
                 "<"
             );
 
@@ -65,14 +73,14 @@ const Products: React.FC = () => {
             const tlPhil = gsap.timeline({
                 scrollTrigger: {
                     trigger: philSectionRef.current,
-                    start: "top 50%", // يبدأ لما السيكشن يوصل لـ 50% من الشاشة
+                    start: "top 75%", // جعلناه يبدأ أبكر قليلاً لضمان الرؤية
                     toggleActions: "play none none none"
                 }
             });
 
             tlPhil.fromTo(philImageRef.current, 
-                { scale: 0.3,filter: "blur(20px)", opacity: 0, }, 
-                { opacity: 1,scale: 1,filter: "blur(0px)", duration: 1.8, ease: "power3.out" }
+                { scale: 0.3, filter: "blur(20px)", opacity: 0 }, 
+                { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.8, ease: "power3.out" }
             )
             .fromTo(philTitleRef.current, 
                 { y: 40, opacity: 0 }, 
@@ -90,41 +98,45 @@ const Products: React.FC = () => {
                 "-=0.5"
             );
 
-            // --- STAGE 3: ARCHIVE (ScrollTrigger) ---
-            // أنميشن العنوان أولاً
+            // --- STAGE 3: ARCHIVE ---
             gsap.fromTo(archiveTitleRef.current, 
                 { y: 30, opacity: 0 }, 
                 { 
                     y: 0, opacity: 1, 
                     scrollTrigger: {
                         trigger: archiveTitleRef.current,
-                        start: "top 80%",
+                        start: "top 85%",
                     }
                 }
             );
 
-          // عند تحريك الكروت، تأكد من إزالة index إذا لم تستخدمه، أو استخدامه في الـ delay
-        productsRef.current.forEach((card) => { // حذفنا index لأنه لم يكن مستخدماً
-            if (card) {
-                gsap.fromTo(card, 
-                    { y: 60, opacity: 0 }, 
-                    { 
-                        y: 0, opacity: 1,
-                        scrollTrigger: {
-                            trigger: card,
-                            start: "top 85%",
+            // أنميشن الكروت باستخدام stagger أفضل للأداء
+            productsRef.current.forEach((card) => {
+                if (card) {
+                    gsap.fromTo(card, 
+                        { y: 60, opacity: 0 }, 
+                        { 
+                            y: 0, opacity: 1,
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top 90%", // يبدأ عند اقترابه من أسفل الشاشة
+                            }
                         }
-                    }
-                );
-            }
-        });
-    }, containerRef);
+                    );
+                }
+            });
 
-  return () => {
-        ctx.revert();
-        clearTimeout(timer);
-    };
-}, [categoryName]);
+        }, containerRef);
+
+        // تحديث الحسابات بعد ثانية لضمان أن الـ DOM قد تم رسمه بالكامل
+        const timer = setTimeout(refreshTrigger, 1000);
+
+        return () => {
+            ctx.revert();
+            clearTimeout(timer);
+            window.removeEventListener('load', refreshTrigger);
+        };
+    }, [categoryName, currentCategory]);
 
     if (!currentCategory) return <div className="error-msg">Royal Archive Not Found</div>;
 
@@ -218,7 +230,7 @@ const Products: React.FC = () => {
                             className="product-card-luxe" 
                             key={item.id} 
                             ref={(el) => { productsRef.current[index] = el; }}
-                            onClick={() => navigate(`/single-product/${item.id}`)} // نرسل الـ ID هنا
+                            onClick={() => navigate(`/single-product/${item.id}`)}
                         >
                             <div className="card-visual">
                                 <img src={item.image} alt={item.name} className="prod-img-standard" />
@@ -230,9 +242,7 @@ const Products: React.FC = () => {
                                 <p className="item-desc">{item.description}</p>
                                 <div className="details-footer">
                                     <span className="item-price">{item.price}</span>
-                                    <button className="explore-link"
-                                     style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                                     >
+                                    <button className="explore-link" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                                         Details <span className="arrow">→</span>
                                     </button>
                                 </div>
@@ -245,16 +255,16 @@ const Products: React.FC = () => {
             {/* Footer */}
             <footer className="home-footer-container">
                 <div className="footer-brand-section">
-                    <img src="/public/family-group.png" className="footer-logo" alt="Family-Group" />
+                    <img src="/family-group.png" className="footer-logo" alt="Family-Group" />
                     <h2 className="footer-company-name">FAMILY-GROUP</h2>
                 </div>
 
                 <div className="footer-social-section">
                    <a href="https://www.linkedin.com/in/family-group-69a419395" className="social-link-item"><i className="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
-          <a href="https://x.com/FamilyGroup8320" className="social-link-item"><i className="fab fa-x-twitter"></i><span>X-Platform</span></a>
-          <a href="https://github.com/family50" className="social-link-item"><i className="fab fa-github"></i><span>GitHub</span></a>
-          <a href="https://www.tiktok.com/@familygroup974" className="social-link-item"><i className="fab fa-tiktok"></i><span>Journal</span></a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=familygroup832005@gmail.com" className="social-link-item"><i className="fas fa-envelope"></i><span>Contact</span></a>
+                   <a href="https://x.com/FamilyGroup8320" className="social-link-item"><i className="fab fa-x-twitter"></i><span>X-Platform</span></a>
+                   <a href="https://github.com/family50" className="social-link-item"><i className="fab fa-github"></i><span>GitHub</span></a>
+                   <a href="https://www.tiktok.com/@familygroup974" className="social-link-item"><i className="fab fa-tiktok"></i><span>Journal</span></a>
+                   <a href="https://mail.google.com/mail/?view=cm&fs=1&to=familygroup832005@gmail.com" className="social-link-item"><i className="fas fa-envelope"></i><span>Contact</span></a>
                 </div>
 
                 <p className="footer-description">
