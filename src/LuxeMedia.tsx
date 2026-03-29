@@ -5,7 +5,8 @@ import { useGlobalLoading } from './useGlobalLoading';
 interface LuxeMediaProps {
   src: string;
   alt?: string;
-  className?: string;
+  className?: string; // كلاس الصورة أو الفيديو
+  wrapperClassName?: string; // كلاس إضافي للحاوية الخارجية لو احتجت
   type?: 'img' | 'video';
   muted?: boolean;
   autoPlay?: boolean;
@@ -13,34 +14,41 @@ interface LuxeMediaProps {
   playsInline?: boolean;
   poster?: string;
   controls?: boolean;
-  style?: React.CSSProperties; // لدعم الستايلات الممررة يدويًا
+  style?: React.CSSProperties; 
 }
 
 const LuxeMedia = forwardRef<HTMLElement, LuxeMediaProps>((props, ref) => {
-  const { src, alt, className, type = 'img', style, ...rest } = props;
+  const { src, alt, className, wrapperClassName, type = 'img', style, ...rest } = props;
   const { isReady: globalReady } = useGlobalLoading();
   
-  // حالة التأكد من تحميل الملف بالكامل (Buffer/Download)
+  // حالة التأكد من اكتمال تحميل الملف تماماً
   const [isAssetLoaded, setIsAssetLoaded] = useState(false);
 
-  // لا يظهر العنصر إلا بشرطين: انتهاء عداد الـ Loading واكتمال تحميل الصورة/الفيديو
+  // الشرط المزدوج للظهور: العداد العالمي خلص + الملف نزل بالكامل
   const shouldShow = globalReady && isAssetLoaded;
 
   return (
-    <div className="luxe-media-wrapper" style={{ position: 'relative', width: '100%', height: '100%' }}>
-      
-      {/* 1. السكيلتون الذهبي: يختفي فوراً عند جاهزية الميديا */}
+    <div 
+      className={`luxe-media-wrapper ${wrapperClassName || ''}`} 
+      style={{ 
+        display: 'contents', // تجعل الـ div "شفاف" ولا يؤثر على الـ Flex/Grid Layout
+        position: 'relative' 
+      }}
+    >
+      {/* 1. السكيلتون: يظهر فقط في مكان العنصر قبل التحميل */}
       {!shouldShow && (
-        <Skeleton 
-          className={className} 
-          containerClassName="skeleton-wrapper" 
-          height="100%" 
-          width="100%"
-          style={{ position: 'absolute', top: 0, left: 0, zIndex: 2 }}
-        />
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+           <Skeleton 
+            className={className} 
+            containerClassName="skeleton-wrapper" 
+            height="100%" 
+            width="100%"
+            style={{ position: 'absolute', top: 0, left: 0, zIndex: 2 }}
+          />
+        </div>
       )}
 
-      {/* 2. عرض الميديا (صورة أو فيديو) */}
+      {/* 2. الميديا */}
       {type === 'img' ? (
         <img 
           src={src} 
@@ -49,9 +57,10 @@ const LuxeMedia = forwardRef<HTMLElement, LuxeMediaProps>((props, ref) => {
           ref={ref as React.Ref<HTMLImageElement>}
           onLoad={() => setIsAssetLoaded(true)}
           style={{ 
-            ...style, // نحافظ على أي ستايل خارجي (بما فيه الـ opacity الأصلي)
+            ...style, // يحترم الـ opacity والـ styles الأصلية من الـ CSS
             visibility: shouldShow ? 'visible' : 'hidden',
           }}
+          {...(rest as React.ImgHTMLAttributes<HTMLImageElement>)}
         />
       ) : (
         <video 
