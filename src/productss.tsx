@@ -32,87 +32,79 @@ const Products: React.FC = () => {
     const currentCategory = menuData.find(cat => cat.categoryName === categoryName);
     const [curationNumber] = useState(() => Math.floor(Math.random() * 100));
 
- useLayoutEffect(() => {
-if (!currentCategory) return;
+useLayoutEffect(() => {
+    if (!currentCategory) return;
 
- // دالة لتحديث حسابات ScrollTrigger بعد استقرار الصفحة
- const refreshTrigger = () => {
- ScrollTrigger.refresh();
-};
+    // دالة لتحديث حسابات ScrollTrigger بعد استقرار الصفحة
+    const refreshTrigger = () => {
+        ScrollTrigger.refresh();
+    };
 
-// مراقبة تحميل الصور 
-window.addEventListener('load', refreshTrigger);
+    // مراقبة تحميل الصور 
+    window.addEventListener('load', refreshTrigger);
 
- const ctx = gsap.context(() => {
- // --- STAGE 1: HERO ANIMATION (ظهور فوري) ---
- const tlHero = gsap.timeline({ 
- defaults: { ease: "power3.out", duration: 1.5 } 
- });
+    const ctx = gsap.context(() => {
+        // --- STAGE 1: HERO ANIMATION ---
+        const tlHero = gsap.timeline({ 
+            defaults: { ease: "power3.out", duration: 1.5 } 
+        });
 
-tlHero.fromTo(welcomeRef.current, { y: -50, opacity: 0 }, { y: 0, opacity: 1 })
- .fromTo(heroImageRef.current, { x: 100, opacity: 0, scale: 0.9 }, { x: 0, opacity: 1, scale: 1 }, "-=0.5")
- .fromTo(heroTextRef.current, { x: -100, opacity: 0 }, { x: 0, opacity: 1 }, "<")
-.fromTo(heroDividerRef.current, { scaleY: 0, opacity: 0 }, { scaleY: 1, opacity: 1 }, "<");
+        tlHero.from(welcomeRef.current, { y: -50, opacity: 0 })
+            .from(heroImageRef.current, { x: 100, opacity: 0, scale: 0.9 }, "-=0.5")
+            .from(heroTextRef.current, { x: -100, opacity: 0 }, "<")
+            .from(heroDividerRef.current, { scaleY: 0, opacity: 0 }, "<");
 
- // --- STAGE 2: PHILOSOPHY (ScrollTrigger) ---
-const tlPhil = gsap.timeline({
- scrollTrigger: {
- trigger: philSectionRef.current,
- start: "top 80%", 
- toggleActions: "play none none none",
-                    invalidateOnRefresh: true
- }
- });
-
- tlPhil.fromTo(philImageRef.current, { scale: 0.8, filter: "blur(15px)", opacity: 0 }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.5 })
- .fromTo(philTitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1 }, "-=1")
-.fromTo(philTextRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.8")
- .fromTo(philSignRef.current, { opacity: 0 }, { opacity: 1 }, "-=0.5");
-
-// --- STAGE 3: ARCHIVE (Masterpieces Header & Grid) ---
-            // أنميشن العنوان أولاً
- gsap.fromTo(archiveTitleRef.current, 
- { y: 40, opacity: 0 }, 
- { 
-y: 0, opacity: 1, 
- scrollTrigger: {
- trigger: archiveTitleRef.current,
- start: "top 90%",
- }
- }
-);
-
- // أنميشن الكروت بتأثير Stagger (تتابع) احترافي
-            const validCards = productsRef.current.filter(card => card !== null);
-            if (validCards.length > 0) {
-                gsap.fromTo(validCards, 
-                    { y: 60, opacity: 0 }, 
-                    { 
-                        y: 0, 
-                        opacity: 1, 
-                        stagger: 0.15, 
-                        duration: 1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: archiveSectionRef.current,
-                            start: "top 70%", // يبدأ عندما يظهر أعلى الجريد في الشاشة
-                        }
-                    }
-                );
+        // --- STAGE 2: PHILOSOPHY ---
+        const tlPhil = gsap.timeline({
+            scrollTrigger: {
+                trigger: philSectionRef.current,
+                start: "top 85%", 
+                toggleActions: "play none none none",
+                invalidateOnRefresh: true
             }
+        });
 
- }, containerRef);
+        tlPhil.from(philImageRef.current, { scale: 0.8, filter: "blur(15px)", opacity: 0, duration: 1.5 })
+            .from(philTitleRef.current, { y: 40, opacity: 0 }, "-=1")
+            .from(philTextRef.current, { y: 30, opacity: 0 }, "-=0.8")
+            .from(philSignRef.current, { opacity: 0 }, "-=0.5");
 
- // تحديث الحسابات يدوياً بعد رندر الـ DOM
- const timer = setTimeout(refreshTrigger, 800);
+        // --- STAGE 3: ARCHIVE ---
+        gsap.from(archiveTitleRef.current, { 
+            y: 40, 
+            opacity: 0, 
+            scrollTrigger: {
+                trigger: archiveTitleRef.current,
+                start: "top 95%",
+            }
+        });
 
- return () => {
- ctx.revert();
-clearTimeout(timer);
- window.removeEventListener('load', refreshTrigger);
-};
- }, [categoryName, currentCategory]);
+        const validCards = productsRef.current.filter(card => card !== null);
+        if (validCards.length > 0) {
+            gsap.from(validCards, { 
+                y: 60, 
+                opacity: 0, 
+                stagger: 0.15, 
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: archiveSectionRef.current,
+                    start: "top 75%", 
+                }
+            });
+        }
 
+    }, containerRef);
+
+    // تحديث الحسابات يدوياً بعد رندر الـ DOM
+    const timer = setTimeout(refreshTrigger, 1000);
+
+    return () => {
+        ctx.revert();
+        clearTimeout(timer);
+        window.removeEventListener('load', refreshTrigger);
+    };
+}, [categoryName, currentCategory]);
     if (!currentCategory) return <div className="error-msg">Royal Archive Not Found</div>;
 
     return (
