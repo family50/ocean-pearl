@@ -1,6 +1,6 @@
-import React, { useRef, useLayoutEffect, useState, useEffect } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { menuData } from './Products'; 
+import { menuData } from './Products'; // تأكد من صحة مسار بياناتك
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './roductss.css';
@@ -11,7 +11,7 @@ const Products: React.FC = () => {
     const { categoryName } = useParams<{ categoryName: string }>();
     const navigate = useNavigate();
     
-    // المراجع (Refs)
+    // المراجع (Refs) للأقسام والعناصر
     const containerRef = useRef<HTMLDivElement>(null);
     const welcomeRef = useRef<HTMLHeadingElement>(null);
     const heroTitleRef = useRef<HTMLHeadingElement>(null);
@@ -32,88 +32,108 @@ const Products: React.FC = () => {
     const currentCategory = menuData.find(cat => cat.categoryName === categoryName);
     const [curationNumber] = useState(() => Math.floor(Math.random() * 100));
 
-    // 1. ضمان بدء الصفحة من الأعلى تماماً عند تغيير التصنيف
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [categoryName]);
-
     useLayoutEffect(() => {
         if (!currentCategory) return;
 
-        // دالة تحديث الحسابات
+        // دالة لتحديث حسابات ScrollTrigger بعد استقرار الصفحة
         const refreshTrigger = () => {
             ScrollTrigger.refresh();
         };
 
-        // تحديث عند تحميل الصور أونلاين
+        // نراقب تحميل الصور لضمان عدم تداخل الأبعاد
         window.addEventListener('load', refreshTrigger);
 
         const ctx = gsap.context(() => {
-            // --- STAGE 1: HERO ANIMATION ---
+            // --- STAGE 1: HERO ANIMATION (الظهور الفوري) ---
             const tlHero = gsap.timeline({ 
                 defaults: { ease: "power3.out", duration: 1.5 } 
             });
 
-            tlHero.fromTo(welcomeRef.current, { y: -50, opacity: 0 }, { y: 0, opacity: 1 })
-                .fromTo(heroImageRef.current, { x: 100, opacity: 0, scale: 0.9 }, { x: 0, opacity: 1, scale: 1 }, "-=0.5")
-                .fromTo(heroTextRef.current, { x: -100, opacity: 0 }, { x: 0, opacity: 1 }, "<")
-                .fromTo(heroDividerRef.current, { scaleY: 0, opacity: 0 }, { scaleY: 1, opacity: 1 }, "<");
+            tlHero.fromTo(welcomeRef.current, 
+                { y: -50, opacity: 0 }, 
+                { y: 0, opacity: 1 }
+            )
+            .fromTo(heroImageRef.current, 
+                { x: 100, opacity: 0, scale: 0.9 }, 
+                { x: 0, opacity: 1, scale: 1 }, 
+                "-=0.5"
+            )
+            .fromTo(heroTextRef.current, 
+                { x: -100, opacity: 0 }, 
+                { x: 0, opacity: 1 }, 
+                "<"
+            )
+            .fromTo(heroDividerRef.current, 
+                { scaleY: 0, opacity: 0 }, 
+                { scaleY: 1, opacity: 1 }, 
+                "<"
+            );
 
-            // --- STAGE 2: PHILOSOPHY ---
+            // --- STAGE 2: PHILOSOPHY (ScrollTrigger) ---
             const tlPhil = gsap.timeline({
                 scrollTrigger: {
                     trigger: philSectionRef.current,
-                    start: "top 85%", // يبدأ مبكراً لضمان الانسيابية
-                    toggleActions: "play none none none",
-                    invalidateOnRefresh: true // لإعادة الحساب عند تغير حجم الصور
+                    start: "top 75%", // جعلناه يبدأ أبكر قليلاً لضمان الرؤية
+                    toggleActions: "play none none none"
                 }
             });
 
-            tlPhil.fromTo(philImageRef.current, { scale: 0.8, filter: "blur(15px)", opacity: 0 }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.5 })
-                .fromTo(philTitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1 }, "-=1")
-                .fromTo(philTextRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.8")
-                .fromTo(philSignRef.current, { opacity: 0 }, { opacity: 1 }, "-=0.5");
+            tlPhil.fromTo(philImageRef.current, 
+                { scale: 0.3, filter: "blur(20px)", opacity: 0 }, 
+                { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.8, ease: "power3.out" }
+            )
+            .fromTo(philTitleRef.current, 
+                { y: 40, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 1 }, 
+                "-=1.2"
+            )
+            .fromTo(philTextRef.current, 
+                { y: 30, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 1 }, 
+                "-=0.8"
+            )
+            .fromTo(philSignRef.current, 
+                { opacity: 0, scale: 0.8 }, 
+                { opacity: 1, scale: 1, duration: 1 }, 
+                "-=0.5"
+            );
 
             // --- STAGE 3: ARCHIVE ---
             gsap.fromTo(archiveTitleRef.current, 
-                { y: 40, opacity: 0 }, 
+                { y: 30, opacity: 0 }, 
                 { 
                     y: 0, opacity: 1, 
                     scrollTrigger: {
                         trigger: archiveTitleRef.current,
-                        start: "top 90%",
+                        start: "top 85%",
                     }
                 }
             );
 
-            const validCards = productsRef.current.filter(card => card !== null);
-            if (validCards.length > 0) {
-                gsap.fromTo(validCards, 
-                    { y: 60, opacity: 0 }, 
-                    { 
-                        y: 0, 
-                        opacity: 1, 
-                        stagger: 0.15, 
-                        duration: 1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: archiveSectionRef.current,
-                            start: "top 75%",
+            // أنميشن الكروت باستخدام stagger أفضل للأداء
+            productsRef.current.forEach((card) => {
+                if (card) {
+                    gsap.fromTo(card, 
+                        { y: 60, opacity: 0 }, 
+                        { 
+                            y: 0, opacity: 1,
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top 90%", // يبدأ عند اقترابه من أسفل الشاشة
+                            }
                         }
-                    }
-                );
-            }
+                    );
+                }
+            });
 
         }, containerRef);
 
-        // تحديث مكرر لضمان استقرار الـ Layout أونلاين
-        const timer1 = setTimeout(refreshTrigger, 500);
-        const timer2 = setTimeout(refreshTrigger, 1500);
+        // تحديث الحسابات بعد ثانية لضمان أن الـ DOM قد تم رسمه بالكامل
+        const timer = setTimeout(refreshTrigger, 1000);
 
         return () => {
             ctx.revert();
-            clearTimeout(timer1);
-            clearTimeout(timer2);
+            clearTimeout(timer);
             window.removeEventListener('load', refreshTrigger);
         };
     }, [categoryName, currentCategory]);
@@ -121,10 +141,10 @@ const Products: React.FC = () => {
     if (!currentCategory) return <div className="error-msg">Royal Archive Not Found</div>;
 
     return (
-        <div className="products-page-wrapper" ref={containerRef} style={{ overflow: 'hidden' }}>
+        <div className="products-page-wrapper" ref={containerRef}>
             
-            {/* STAGE 1: HERO WRAPPER - حجز مساحة الشاشة بالكامل */}
-            <section className="stage-screen stage-hero-3d" style={{ minHeight: '100vh', position: 'relative' }}>
+            {/* STAGE 1: THE GRAND ENTRANCE */}
+            <section className="stage-screen stage-hero-3d">
                 <div className="hero-welcome-header">
                     <h2 className="welcome-text-top" ref={welcomeRef}>Grand Curation</h2>
                 </div>
@@ -153,7 +173,7 @@ const Products: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="hero-3d-container" ref={heroImageRef} style={{ minHeight: '400px' }}>
+                    <div className="hero-3d-container" ref={heroImageRef}>
                         <div className="image-relative-box">
                             <img 
                                 src={currentCategory.image3d} 
@@ -172,22 +192,22 @@ const Products: React.FC = () => {
                 </div>
             </section>
 
-            {/* STAGE 2: PHILOSOPHY WRAPPER - منع القفز عبر minHeight */}
-            <section className="stage-screen stage-philosophy" ref={philSectionRef} style={{ minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
+            {/* STAGE 2: THE PHILOSOPHY */}
+            <section className="stage-screen stage-philosophy" ref={philSectionRef}>
                 <div className="philosophy-content">
                     <div className="text-side">
-                        <h2 className="philosophy-title" ref={philTitleRef}>
+                        <h2 className="philosophy-title" >
                             The Art of <br/><span>Oceanic Mastery</span>
                         </h2>
-                        <p className="philosophy-text" ref={philTextRef}>
+                        <p className="philosophy-text" >
                             Beyond the flavors lies an ancestral heritage, where every 
                             ingredient is treated as a jewel. Our <strong>{currentCategory.categoryName}</strong> 
                             collection is not just a menu; it is a curated exhibition of the sea's 
                             rare treasures, plated for the elite.
                         </p>
-                        <div className="signature-gold" ref={philSignRef}>Authentic & Refined</div>
+                        <div className="signature-gold" >Authentic & Refined</div>
                     </div>
-                    <div className="image-side" ref={philImageRef} style={{ minHeight: '450px' }}>
+                    <div className="image-side" >
                         <div className="glow-aura"></div>
                         <img 
                             src={currentCategory.image3d2} 
@@ -198,8 +218,8 @@ const Products: React.FC = () => {
                 </div>
             </section>
 
-            {/* STAGE 3: ROYAL ARCHIVE WRAPPER */}
-            <section className="stage-screen stage-archive" ref={archiveSectionRef} style={{ minHeight: '100vh' }}>
+            {/* STAGE 3: THE ROYAL ARCHIVE */}
+            <section className="stage-screen stage-archive" ref={archiveSectionRef}>
                 <div className="archive-intro">
                     <h2 className="archive-title" ref={archiveTitleRef}>Selected Masterpieces</h2>
                 </div>
@@ -211,9 +231,8 @@ const Products: React.FC = () => {
                             key={item.id} 
                             ref={(el) => { productsRef.current[index] = el; }}
                             onClick={() => navigate(`/single-product/${item.id}`)}
-                            style={{ minHeight: '400px' }} // حجز مساحة الكارت
                         >
-                            <div className="card-visual" style={{ height: '280px', background: 'rgba(255,255,255,0.03)' }}>
+                            <div className="card-visual">
                                 <img src={item.image} alt={item.name} className="prod-img-standard" />
                                 {item.highlight && <div className="luxe-badge">{item.highlight}</div>}
                             </div>
